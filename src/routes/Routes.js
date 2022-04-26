@@ -56,6 +56,11 @@ const AllRoutes = () => (
       path="/google/success/:token"
       element={<SocialAuthGoogleDir />}
     />
+     
+     <Route exact path="/users"  element={
+            <ProtectRoute redirectTo='/login'>
+              <Roles/>
+            </ProtectRoute>} />
 
     <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/login" element={<Login />} />
