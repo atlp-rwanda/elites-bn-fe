@@ -6,6 +6,12 @@
 
 ## Available Scripts
 
+clone this project to your local computer, then run:
+
+```ps
+npm install
+```
+
 In the project directory, you can run:
 
 ```ps
