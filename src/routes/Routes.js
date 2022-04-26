@@ -13,6 +13,7 @@ import SocialAuthGoogleDir from '../views/home/SocialAuthGoogleDir';
 import AccommodationList from '../components/accommodation/AccommodationList';
 import SuccessLogin from '../views/home/SuccessLogin';
 import Unauthorized from './unauthorizedRoutes';
+import Roles from '../components/roles/roles';
 
 const AllRoutes = () => (
   <Routes>

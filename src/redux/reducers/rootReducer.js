@@ -14,6 +14,7 @@ import AccommodationCreateReducer from './accommodationCreateReducer';
 import AccommodationUpdateReducer from './accommodationUpdateReducer';
 import landingDashboardReducers from './landingDashboardReducers';
 import mostTravelledReducer from './mostTravelledReducer';
+import usersReducers from './usersReducers';
 
 export default combineReducers({
   mostTravelledLocation: mostTravelledReducer,
@@ -31,6 +32,7 @@ export default combineReducers({
   accommodationDelete: AccommodationDeleteReducer,
   accommodationCreate: AccommodationCreateReducer,
   accommodationUpdate: AccommodationUpdateReducer,
+  users: usersReducers,
 });
 
 
