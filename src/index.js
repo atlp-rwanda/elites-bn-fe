@@ -16,9 +16,9 @@ axios.interceptors.response.use(
   (response) => response,
   (error) => {
     const { status } = error.response;
-    if (status === 401) {
-      window.location = '/login';
-    }
+    // if (status === 401) {
+    //   window.location = '/login';
+    // }
     if (status === 500) {
       window.location = '/serverError';
     }

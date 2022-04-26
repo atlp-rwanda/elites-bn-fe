@@ -4,7 +4,6 @@ const useStyles = makeStyles({
     loginPage: {
       height: '100vh',
       display: 'flex',
-      overflow: 'hidden',
     },
   
     title: {
@@ -42,12 +41,10 @@ const useStyles = makeStyles({
       margin: '40% auto',
       width: '100%',
       height: '30vh',
-      alignContent: 'center',
     },
   
     rightBanner: {
       color: '#FFFFFF',
-      textAlign: 'center',
       fontWeight: 'bold',
       fontSize: '26px',
     },
@@ -58,7 +55,7 @@ const useStyles = makeStyles({
       textAlign: 'center',
       width: '70%',
       height: '10vh',
-      marginLeft: '15% ',
+      marginLeft: '20% ',
     },
 
     error:{

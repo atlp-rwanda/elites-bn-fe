@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-const NavBar = ({ forwardRef }) => {
+const NavBar = () => {
   const classes = useStyles();
   return (
     <Container>
@@ -31,17 +31,16 @@ const NavBar = ({ forwardRef }) => {
           },
         }}
       >
-        <a href="/login"  underline="hover" style={{ align: 'center', color: 'white', textDecoration: 'none' }}>
-          Login
-        </a>
-        <a
+        <Link href="/login" underline="hover" style={{ align: 'center', color: 'white' }}>
+          {'Login'}
+        </Link>
+        <Link
           href="#"
-          ref={forwardRef}
           underline="hover"
-          style={{ align: 'center', color: 'white',  textDecoration: 'none' }}
+          style={{ align: 'center', color: 'white' }}
         >
-          Register
-        </a>
+          {'Register'}
+        </Link>
       </Box>
     </Container>
   );
