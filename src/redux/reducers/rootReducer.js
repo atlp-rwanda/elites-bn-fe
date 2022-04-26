@@ -23,6 +23,7 @@ import tripRequestReducer from './tripRequestReducer'
 import allLocationsReducer from './allLocationsReducer'
 import AccommodationReviewCreateReducer from './accommodationCreateReviewReducer';
 import globalUserSearchReducer from './userSearchReducer';
+import chatReducers from './chatReducers';
 
 export default combineReducers({
   mostTravelledLocation: mostTravelledReducer,
@@ -49,6 +50,7 @@ export default combineReducers({
   Locations:allLocationsReducer,
   tripRequest:tripRequestReducer,
   reviewAccommodation: AccommodationReviewCreateReducer,
+  chat: chatReducers,
 });
 
 

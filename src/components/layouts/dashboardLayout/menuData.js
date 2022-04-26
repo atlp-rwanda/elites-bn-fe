@@ -43,11 +43,6 @@ export const adminSideBarData = [
     route: '/users',
   },
   {
-    title: 'Chat',
-    icon: <Forum />,
-    route: '/chat',
-  },
-  {
     title: 'Logout',
     icon: <Logout />,
     route: '/logout',
@@ -81,11 +76,6 @@ export const userSideBarData = [
     route: '/tripRequests',
   },
   {
-    title: 'Chat',
-    icon: <Forum />,
-    route: '/chat',
-  },
-  {
     title: 'Logout',
     icon: <Logout />,
     route: '/logout',
@@ -117,11 +107,6 @@ export const travelAdminSidebarData = [
     title: 'Users',
     icon: <Group />,
     route: '/users',
-  },
-  {
-    title: 'Chat',
-    icon: <Forum />,
-    route: '/chat',
   },
   {
     title: 'Logout',

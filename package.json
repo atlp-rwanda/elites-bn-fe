@@ -80,7 +80,6 @@
     "babel-jest": "^28.1.0",
     "babel-polyfill": "^6.26.0",
     "circular-progress-bar": "^2.1.0",
-    "data-fns": "^0.1.8",
     "date-fns": "^2.28.0",
     "dotenv": "^16.0.0",
     "enzyme-adapter-react-16": "^1.15.6",

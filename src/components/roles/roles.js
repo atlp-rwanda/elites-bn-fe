@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../layouts/dashboardLayout/Sidebar';
 import TopBar from '../layouts/dashboardLayout/TopBar';
-import { adminSideBarData } from '../layouts/dashboardLayout/menuData';
 import { DataGrid } from '@mui/x-data-grid';
 import {
   usersAction,
@@ -216,7 +215,7 @@ const Roles = (props) => {
 
   return (
     <>
-      <Sidebar menuData={adminSideBarData} />
+      <Sidebar />
       <TopBar />
       <div style={{ height: '80vh', width: '78vw', marginLeft: '20%' }}>
         <Box

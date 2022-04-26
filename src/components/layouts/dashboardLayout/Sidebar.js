@@ -21,15 +21,21 @@ import {
   userSideBarData,
   travelAdminSidebarData,
 } from './menuData';
+import ForumIcon from '@mui/icons-material/Forum';
 import './sidebar.scss';
+import ChatDialoge from '../../chat/openChatDialog';
+import { Tooltip } from '@mui/material';
 
 const Sidebar = () => {
   const currentUserState = useSelector((state) => state.currentUser);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const { currentUser } = currentUserState;
-
   const [open, setOpen] = React.useState(false);
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+    const handleClose = () => {
+        setOpenDrawer(false);
+      };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -53,6 +59,7 @@ const Sidebar = () => {
       : userSideBarData;
 
   return (
+    <>
     <div className="sidebar">
       <Box
         position="fixed"
@@ -105,8 +112,52 @@ const Sidebar = () => {
               )}
             </ListItem>
           ))}
+
+<Tooltip 
+        title='Chat with us'>
+        <Button
+          sx={{
+            color: 'white',
+            fontSize: '19px',
+            backgroundColor: 'white',
+            marginTop: '30%',
+            marginLeft:'20px',
+            padding: '20px',
+            borderRadius: '50%',
+            color: '#07539F',
+            position: 'absolute',
+            ['@media (max-width:1200px)']: {
+              width: '10%',
+              marginLeft: '10px',
+              backgroundSize: '10%'
+              },
+            ['@media (max-width:500px)']: {
+                width: '20%',
+                marginLeft: '10px',
+                },
+          }}
+          onClick={() => {
+            setOpenDrawer(true);
+          }}
+          onMouseOver={(event)=>{
+              event.target.style.background = 'white';
+          }}
+          
+        >
+          <ForumIcon />
+        </Button>
+
+        </Tooltip>
         </List>
+        
       </Box>
+      
+            
+      <Box sx={{ width: 1000 }}></Box>
+
+      
+        <ChatDialoge open={openDrawer} handleClose={handleClose} />
+
       <Dialog
         open={open}
         onClose={handleCloseModel}
@@ -126,6 +177,7 @@ const Sidebar = () => {
         </DialogActions>
       </Dialog>
     </div>
+    </>
   );
 };
 
