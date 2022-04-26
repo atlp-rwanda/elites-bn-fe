@@ -14,6 +14,15 @@ clone this project to your local computer, then run:
 yarn install
 ```
 
+<<<<<<< HEAD
+=======
+In the project directory, you can run:
+
+```ps
+yarn start
+```
+
+>>>>>>> This is a combination of 16 commits.
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 

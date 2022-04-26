@@ -49,7 +49,11 @@ const NotFound = () => {
           </Typography>
           <Button
             onClick={() => {
+<<<<<<< HEAD
               navigate('/');
+=======
+              navigate('/home');
+>>>>>>> This is a combination of 16 commits.
             }}
             variant="outlined"
             sx={{ marginTop: '1rem' }}

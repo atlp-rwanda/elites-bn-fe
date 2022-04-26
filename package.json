@@ -7,9 +7,15 @@
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "lint": "eslint --fix --ext .",
+<<<<<<< HEAD
     "test": "jest --config=jest.config.js",
     "coverage": "jest --collect-coverage",
     "coveralls": "jest --config=jest.config.js --coverage && cat ./coverage/lcov.info | coveralls",
+=======
+    "test": "jest --config=jest.config.json",
+    "coverage": "jest --collect-coverage",
+    "coveralls": "jest --config=jest.config.json --coverage && cat ./coverage/lcov.info | coveralls",
+>>>>>>> This is a combination of 16 commits.
     "scss": "node-sass --watch src/scss -o src/css"
   },
   "repository": {
@@ -34,12 +40,18 @@
     "coveralls": "^3.1.1",
     "css-loader": "^6.7.1",
     "enzyme": "^3.11.0",
+<<<<<<< HEAD
+=======
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.2",
+>>>>>>> This is a combination of 16 commits.
     "eslint": "^7.14.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
+<<<<<<< HEAD
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.0",
@@ -47,6 +59,12 @@
     "prettier": "^2.6.2",
     "react-test-renderer": "^18.1.0",
     "regenerator-runtime": "^0.13.9",
+=======
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.0.3",
+    "prettier": "^2.6.2",
+    "react-test-renderer": "^18.1.0",
+>>>>>>> This is a combination of 16 commits.
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.72.0",
@@ -57,6 +75,7 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+<<<<<<< HEAD
     "@mui/icons-material": "^5.6.2",
     "@mui/lab": "^5.0.0-alpha.81",
     "@mui/material": "^5.6.3",
@@ -75,19 +94,38 @@
     "jest-canvas-mock": "^2.4.0",
     "jest-transform-stub": "^2.0.0",
     "jwt-decode": "^3.1.2",
+=======
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.3",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
+    "babel-jest": "^28.0.2",
+    "dotenv": "^16.0.0",
+    "history": "^5.3.0",
+>>>>>>> This is a combination of 16 commits.
     "mocha": "^10.0.0",
     "node-sass": "^7.0.1",
     "nyc": "^15.1.0",
     "react": "^18.0.0",
+<<<<<<< HEAD
     "react-animation": "^1.2.2",
     "react-dom": "^18.0.0",
     "react-material-ui-form-validator": "^3.0.0",
     "react-redux": "^8.0.1",
     "react-router": "^6.3.0",
+=======
+    "react-dom": "^18.0.0",
+    "react-material-ui-form-validator": "^3.0.0",
+    "react-redux": "^8.0.1",
+>>>>>>> This is a combination of 16 commits.
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+<<<<<<< HEAD
     "redux-mock-store": "^1.5.4",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
@@ -97,6 +135,11 @@
       "./setupTests.js"
     ]
   },
+=======
+    "redux-thunk": "^2.4.1",
+    "web-vitals": "^2.1.4"
+  },
+>>>>>>> This is a combination of 16 commits.
   "browserslist": {
     "production": [
       ">0.2%",

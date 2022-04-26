@@ -8,7 +8,8 @@ import ProtectRoute from './protectedRoutes';
 import Login from '../views/home/Login';
 import SuccessLogin from '../views/home/SuccessLogin';
 import Unauthorized from './unauthorizedRoutes';
-
+import Signup from '../components/signup/Signup';
+import SignupSuccess from '../components/signup/SignupSuccess';
 
 const AllRoutes = () => (
   <Routes>
@@ -21,6 +22,8 @@ const AllRoutes = () => (
               <SuccessLogin/>
             </ProtectRoute>}/>
     <Route path="*" element={<NotFoundPage />} />
+    <Route path='/signup' element={<Signup />} />
+    <Route path='/signup/success' element={<SignupSuccess />} />
   </Routes>
 );
 
