@@ -14,6 +14,9 @@ function App() {
         <BrowserRouter>
           <header>
             <Link to='/'>HOME</Link>
+            <div>
+              <Link to='/accommodations'>ACCOMMODATIONS</Link>
+            </div>
           </header>
           <Routes>
             <Route path='/accommodations' element={<Accommodations />} />
