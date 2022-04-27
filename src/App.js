@@ -3,7 +3,7 @@ import React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import Accommodations from './components/accommodations/Accommodations';
+import Accommodations from './components/accommodations/accommodations';
 import Home from './components/home/Home';
 import theme from './theme';
 
