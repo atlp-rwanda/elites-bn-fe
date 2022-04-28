@@ -1,2 +1,5 @@
-export const GET_ACCOMMODATIONS = 'GET_ACCOMMODATIONS';
-export const ACCOMMODATIONS_ERROR = 'ACCOMMODATIONS_ERROR';
+const actionTypes = {
+  SET_ACCOMMODATIONS: 'SET_ACCOMMODATIONS',
+  // Put all other types below
+};
+export default actionTypes;

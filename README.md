@@ -1,21 +1,23 @@
 # Barefoot Nomad FrontEnd
-[![Maintainability](https://api.codeclimate.com/v1/badges/fbfe351329ae4b62a71e/maintainability)](https://codeclimate.com/github/atlp-rwanda/elites-bn-fe/maintainability) [![CircleCI](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev.svg?style=svg&circle-token=f02327d66245fdb7fe005f489db5b9e1cd11ee3c)](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev)	[![Coverage Status](https://coveralls.io/repos/github/atlp-rwanda/elites-bn-fe/badge.svg?branch=dev)](https://coveralls.io/github/atlp-rwanda/elites-bn-fe?branch=dev)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/fbfe351329ae4b62a71e/maintainability)](https://codeclimate.com/github/atlp-rwanda/elites-bn-fe/maintainability) [![CircleCI](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev.svg?style=svg&circle-token=f02327d66245fdb7fe005f489db5b9e1cd11ee3c)](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev) [![Coverage Status](https://coveralls.io/repos/github/atlp-rwanda/elites-bn-fe/badge.svg?branch=dev)](https://coveralls.io/github/atlp-rwanda/elites-bn-fe?branch=dev)
+
 ### Requirements
 
-> For development, you need to have node installed and global npm or yarn installed in your environment.
+> For development, you need to have node installed and package manager npm or yarn installed in your environment.
 
 ## Available Scripts
 
 clone this project to your local computer, then run:
 
 ```ps
-npm install
+yarn install
 ```
 
 In the project directory, you can run:
 
 ```ps
-npm start
+yarn start
 ```
 
 Runs the app in the development mode.\
@@ -25,14 +27,14 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 ```ps
-npm test
+yarn test
 ```
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ```ps
-npm run build
+yarn run build
 ```
 
 Builds the app for production to the `build` folder.\

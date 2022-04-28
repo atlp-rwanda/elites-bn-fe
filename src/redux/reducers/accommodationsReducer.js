@@ -1,4 +1,6 @@
-import { GET_ACCOMMODATIONS } from '../types';
+import actionTypes from '../types';
+
+const { SET_ACCOMMODATIONS } = actionTypes;
 
 const initialState = {
   accommodations: [],
@@ -7,7 +9,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_ACCOMMODATIONS:
+    case SET_ACCOMMODATIONS:
       return {
         ...state,
         accommodations: action.payload,

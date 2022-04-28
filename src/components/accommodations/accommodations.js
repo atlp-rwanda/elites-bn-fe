@@ -1,38 +1,63 @@
-/* eslint-disable jsx-quotes */
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import getAccommodations from '../../redux/actions/accommodationsActions';
+import setAccommodations from '../../redux/actions/accommodationsActions';
+import LinearProgress from '../progressBar/linearProgress';
+import Sidebar from '../layouts/dashboardLayout/Sidebar';
+import TopBar from '../layouts/dashboardLayout/TopBar';
+import { sideBarData } from '../layouts/dashboardLayout/adminMenuData';
 
-class accommodations extends Component {
-  componentDidMount() {
-    this.props.getAccommodations();
-  }
+const Accommodations = () => {
+  const accommodationState = useSelector((state) => state.allAccommodations);
+  const { accommodations } = accommodationState;
+  const dispatch = useDispatch();
 
-  render() {
-    const { accommodations } = this.props.accommodations;
-    console.log(accommodations);
+  const fetchAccommodations = async () => {
+    const res = await axios
+      .get('https://elites-barefoot-nomad.herokuapp.com/api/v1/accommodations')
+      .catch((err) => {
+        console.log(err);
+      });
+    dispatch(setAccommodations(res.data.payload));
+  };
 
+  useEffect(() => {
+    fetchAccommodations();
+  }, []);
+
+  if (accommodationState.loading) {
     return (
-      <div className='accommodation'>
+      <>
+        <Sidebar sideBarData={sideBarData} />
+        <TopBar />
+        <LinearProgress />
+      </>
+    );
+  }
+  return (
+    <>
+      <Sidebar sideBarData={sideBarData} />
+      <TopBar />
+      <div className="accommodation">
         <ButtonGroup>
-          <Button color='primary' variant='contained'>
+          <Button color="primary" variant="contained">
             PRIMARY
           </Button>
-          <Button color='secondary' variant='contained'>
+          <Button color="secondary" variant="contained">
             SECONDARY
           </Button>
-          <Button color='info' variant='contained'>
+          <Button color="info" variant="contained">
             INFO
           </Button>
-          <Button color='error' variant='contained'>
+          <Button color="error" variant="contained">
             ERROR
           </Button>
-          <Button color='success' variant='contained'>
+          <Button color="success" variant="contained">
             SUCCESS
           </Button>
-          <Button color='success' variant='outlined'>
+          <Button color="success" variant="outlined">
             OUTLINED
           </Button>
         </ButtonGroup>
@@ -42,10 +67,8 @@ class accommodations extends Component {
           </React.Fragment>
         ))}
       </div>
-    );
-  }
-}
+    </>
+  );
+};
 
-const mapStateToProps = (state) => ({ accommodations: state.accommodations });
-
-export default connect(mapStateToProps, { getAccommodations })(accommodations);
+export default Accommodations;

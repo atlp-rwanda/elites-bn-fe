@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 plugins:
   duplication:
     enabled: true
@@ -8,10 +8,11 @@ plugins:
           mass_threshold: 50
   eslint:
     enabled: true
+    channel: 'eslint-7'
   fixme:
     enabled: true
   nodesecurity:
     enabled: true
 exclude_patterns:
-- node_modules/
-- "**/test/"
+  - node_modules/
+  - '**/test/'
