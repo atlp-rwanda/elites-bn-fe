@@ -1,0 +1,10 @@
+{
+    "collectCoverage":true,
+    "coverageThreshold":{
+        "global":{
+            "branches": 100,
+            "lines":90
+        }
+    },
+    "testTimeout": 10000
+}
