@@ -4,7 +4,7 @@ import { GET_ACCOMMODATIONS, ACCOMMODATIONS_ERROR } from '../types';
 const getAccommodations = () => async (dispatch) => {
   try {
     const res = await axios.get(
-      'https://elites-barefoot-nomad.herokuapp.com/api/v1/accommodations'
+      'https://elites-barefoot-nomad.herokuapp.com/api/v1/accommodations',
     );
     console.log(res);
     dispatch({

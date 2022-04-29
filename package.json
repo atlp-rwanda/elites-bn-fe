@@ -7,7 +7,7 @@
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "lint": "eslint --fix --ext .",
-    "test": "react-scripts test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.0.2",
     "prettier": "^2.6.2",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
@@ -52,6 +53,7 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "babel-jest": "^28.0.2",
     "dotenv": "^16.0.0",
     "node-sass": "^7.0.1",
     "react": "^18.0.0",

@@ -1,7 +1,9 @@
 /* eslint-disable jsx-quotes */
 import React from 'react';
 import { ThemeProvider } from '@emotion/react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter, Routes, Route, Link,
+} from 'react-router-dom';
 import './App.css';
 import Accommodations from './components/accommodations/accommodations';
 import Home from './components/home/Home';
