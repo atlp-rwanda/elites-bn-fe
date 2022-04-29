@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev.svg?style=svg&circle-token=f02327d66245fdb7fe005f489db5b9e1cd11ee3c)](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev)
 # Barefoot Nomad FrontEnd
 
 ### Requirements
