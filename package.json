@@ -39,6 +39,7 @@
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.0.2",
     "prettier": "^2.6.2",
+    "react-test-renderer": "^18.1.0",
     "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.72.0",
@@ -78,5 +79,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "verbose": true
   }
 }
