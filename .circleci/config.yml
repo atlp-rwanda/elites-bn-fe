@@ -1,0 +1,26 @@
+version: 2.1
+
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:16.14.0
+
+    steps:
+      - checkout
+      - run:
+          name: 'NODE VERSION'
+          command: node --version
+      - run:
+          name: 'INSTALLING DEPENDENCY'
+          command: npm install
+      - run:
+          name: 'TESTING'
+          command: 'npm test'
+
+workflows:
+  test-deploy:
+    jobs:
+      - build

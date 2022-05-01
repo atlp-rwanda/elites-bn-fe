@@ -7,7 +7,7 @@
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "lint": "eslint --fix --ext .",
-    "test": "jest --config=jestconfig.json"
+    "test": "jest --config=jest.config.json"
   },
   "repository": {
     "type": "git",
