@@ -1,5 +1,5 @@
 # Barefoot Nomad FrontEnd
-[![Maintainability](https://api.codeclimate.com/v1/badges/2be87cd7dd91c6183243/maintainability)](https://codeclimate.com/github/andela/elites-bn-fe/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/2be87cd7dd91c6183243/test_coverage)](https://codeclimate.com/github/andela/elites-bn-fe/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2be87cd7dd91c6183243/maintainability)](https://codeclimate.com/github/atlp-rwanda/elites-bn-fe) [![Test Coverage](https://api.codeclimate.com/v1/badges/2be87cd7dd91c6183243/test_coverage)](https://codeclimate.com/github/atlp-rwanda/elites-bn-fe/test_coverage)
 ### Requirements
 
 > For development, you need to have node installed and global npm or yarn installed in your environment.
