@@ -19,6 +19,9 @@ jobs:
       - run:
           name: 'TESTING'
           command: 'npm test'
+      - run:
+          name: 'COVERAGE'
+          command: 'npm run coveralls'
 
 workflows:
   test-deploy:
