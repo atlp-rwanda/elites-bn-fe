@@ -3,8 +3,9 @@ version: 2.1
 
 jobs:
   build:
-  
-    
+    environment:
+      CC_TEST_REPORTER_ID: "541c473d812414661ab6eaa038cc3076587616065706796853fef62493660520"
+
     docker:
       - image: cimg/node:16.14.0
     
@@ -28,15 +29,13 @@ jobs:
 
       - run:
           name: "coverage"
-          command: "npm coverage"   
+          command: "npm run coverage"   
 
       
-
       - run:
-                name: Send coverage report to Code Climate
-                command:
-                   
-                    ./cc-test-reporter after-build -t lcov
+          name: Send coverage report to Code Climate
+          command:
+                ./cc-test-reporter after-build -t lcov
 
       - store_artifacts:
           path: test-results
@@ -45,6 +44,6 @@ jobs:
           path: coverage
 
 workflows:
-  cabal-bn-fe-workflow:
+  test-deploy:
     jobs:
       - build
