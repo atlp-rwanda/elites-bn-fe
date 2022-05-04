@@ -6,5 +6,7 @@
             "lines":90
         }
     },
+    "coverageReporters": ["lcov","text"],
+    "coverageDirectory": "coverage",
     "testTimeout": 10000
 }
