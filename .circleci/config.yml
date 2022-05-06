@@ -3,9 +3,7 @@ version: 2.1
 
 jobs:
   build:
-    environment:
-      CC_TEST_REPORTER_ID: "541c473d812414661ab6eaa038cc3076587616065706796853fef62493660520"
-
+   
     docker:
       - image: cimg/node:16.14.0
     
@@ -13,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: "Install dependencies"
-          command: "npm install"
+          command: "yarn install"
       - run:
           name: Install Test Reporter
           command: |
@@ -25,17 +23,11 @@ jobs:
 
       - run:
           name: "run test"
-          command: "npm test"
-
+          command: "yarn test"
+   
       - run:
-          name: "coverage"
-          command: "npm run coverage"   
-
-      
-      - run:
-          name: Send coverage report to Code Climate
-          command:
-                ./cc-test-reporter after-build -t lcov
+          name: 'COVERAGE'
+          command: 'yarn run coveralls'
 
       - store_artifacts:
           path: test-results
