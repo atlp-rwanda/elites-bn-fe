@@ -1,6 +1,7 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "es2021" : 2021
   },
   "extends": ["plugin:react/recommended", "airbnb"],
   "parserOptions": {
