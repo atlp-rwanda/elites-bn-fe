@@ -8,5 +8,6 @@
     },
     "coverageReporters": ["lcov","text"],
     "coverageDirectory": "coverage",
-    "testTimeout": 10000
+    "testTimeout": 10000,
+    "testEnvironment": "jsdom"
 }

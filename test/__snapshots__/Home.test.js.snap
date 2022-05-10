@@ -1,15 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Snapshot Test Snapshot for Home Component 1`] = `
-<div
-  className="App"
->
-  <header
-    className="App-header"
-  >
-    <p>
+
+    <h2>
       Welcome to Barefoot
-    </p>
-  </header>
-</div>
+    </h2>
+ 
 `;

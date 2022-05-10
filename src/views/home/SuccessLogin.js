@@ -10,6 +10,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { makeStyles } from "@mui/styles";
 
 const SuccessLogin = (props) => {
   const handleClose = () => {
@@ -31,8 +32,17 @@ const SuccessLogin = (props) => {
     setOpen(false);
   };
 
+  const useStyles= makeStyles({
+    body:{
+        textAlign: 'center',
+    }
+  });
+
+  const classes = useStyles();
+
   return (
-    <div>
+    
+    <div className={classes.body}>    
       <p>Successfully Login!</p>
       <Snackbar
         anchorOrigin={ {'vertical':"top", 'horizontal':"left"} }
