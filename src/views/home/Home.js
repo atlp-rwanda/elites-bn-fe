@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-
-const Home = () => (
-  <div className="App">
-    <header className="App-header">
-      <p>Welcome to Barefoot</p>
-    </header>
-  </div>
-);
-export default Home;
-=======
 import React, { useEffect } from 'react';
 import { makeStyles } from '@mui/styles';
 import Typography from '@mui/material/Typography';
@@ -74,4 +62,3 @@ const HomeComponent = () => {
 };
 
 export default HomeComponent;
->>>>>>>  This is a combination of 10 commits.

@@ -45,19 +45,19 @@ const LoginComponent = (props) => {
   const handleLogin = async (event) => {
     event.preventDefault();
     setLoading(true);
-    await props.login(email, password);
-
+    await props.login(email, password); 
     if (!token) {
-      await props.showSuccessSnackbar('incorrect email or password', 'error');
-      setLoading(false);
+     await props.showSuccessSnackbar('incorrect email or password', 'error' );
+     setLoading(false);
     }
   };
 
-  const handleClose = () => {
-    props.clearSnackbar();
+  const handleClose = async () => {
+    await props.clearSnackbar();
   };
 
   useEffect(() => {
+    document.body.style.overflow = "hidden";
     if (token) {
       const funct = async () => {
         await props.showSuccessSnackbar('Successfully login', 'success');
@@ -204,7 +204,8 @@ const LoginComponent = (props) => {
               borderRadius: '20px',
               textAlign: 'center',
               width: '137px',
-              margin: '10px',
+              marginLeft: '30%',
+              marginTop: '3%',
               borderColor: 'white',
               color: '#FFFFFF',
               outlineColor: '#FFFFFF',

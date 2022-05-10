@@ -49,7 +49,7 @@ const NotFound = () => {
           </Typography>
           <Button
             onClick={() => {
-              navigate('/home');
+              navigate('/');
             }}
             variant="outlined"
             sx={{ marginTop: '1rem' }}
