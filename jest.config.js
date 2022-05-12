@@ -21,7 +21,8 @@ module.exports ={
       clearMocks: true,
 
     
-
+      setupFiles: ['jest-canvas-mock', 'jest-localstorage-mock'],
+      "resetMocks": false,
       "collectCoverage":true,
       "coverageThreshold":{
           "global":{
