@@ -24,12 +24,12 @@ module.exports ={
       setupFiles: ['jest-canvas-mock', 'jest-localstorage-mock'],
       "resetMocks": false,
       "collectCoverage":true,
-      "coverageThreshold":{
-          "global":{
-              "branches": 100,
-              "lines":90
-          }
-      },
+    //   "coverageThreshold":{
+    //       "global":{
+    //           "branches": 50,
+    //           "lines":50
+    //       }
+    //   },
       "coverageReporters": ["lcov","text"],
       "coverageDirectory": "coverage",
       "testTimeout": 10000,
