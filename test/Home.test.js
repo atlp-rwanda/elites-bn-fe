@@ -7,6 +7,6 @@ describe('Snapshot Test', () => {
 
   test('Snapshot for Home Component', () => {
       const renderedComponent = renderer.create(<Home />).toJSON();
-      expect(renderedComponent).toBeTruthy();
+      expect(renderedComponent).toMatchSnapshot();
     });
 });
