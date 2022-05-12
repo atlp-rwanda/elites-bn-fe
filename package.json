@@ -9,7 +9,7 @@
     "lint": "eslint --fix --ext .",
     "test": "jest --config=jest.config.js",
     "coverage": "jest --collect-coverage",
-    "coveralls": "jest --config=jest.config.json --coverage && cat ./coverage/lcov.info | coveralls",
+    "coveralls": "jest --config=jest.config.js --coverage && cat ./coverage/lcov.info | coveralls",
     "scss": "node-sass --watch src/scss -o src/css"
   },
   "repository": {
