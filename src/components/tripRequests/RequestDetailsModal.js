@@ -367,6 +367,7 @@ export default function BasicModal(props) {
               )}
             </ButtonGroup>
           </Box>
+
         </Modal>
         {confirmModalData && (
           <ConfirmModal

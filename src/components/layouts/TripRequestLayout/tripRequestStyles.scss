@@ -1,0 +1,21 @@
+@media only screen and (max-width: 600px) and (min-width: 200px) {
+.destinationBtn{
+display:flex;
+flex-direction:column;
+justify-content: center;
+align-items: center;
+margin-bottom: 2rem;
+}
+.datePicker{
+
+  display:flex;
+  flex-direction:column;
+  align-self: center;
+  margin-left: 2rem;
+
+}
+
+.box{
+  margin-top:20rem  ;
+}
+}
