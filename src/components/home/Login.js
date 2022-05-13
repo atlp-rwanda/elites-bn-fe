@@ -22,16 +22,16 @@ import {
   showSuccessSnackbar,
   clearSnackbar,
 } from '../../redux/actions/snackbarActions';
+import Loader from './loader';
 import Alert from '@mui/material/Alert';
 import { connect } from 'react-redux';
-import LoadingButton from '@mui/lab/LoadingButton';
 
 const LoginComponent = (props) => {
   const token = JSON.parse(localStorage.getItem('userToken'));
   let navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
@@ -44,12 +44,17 @@ const LoginComponent = (props) => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
+    setLoading(true);
     await props.login(email, password);
+
     if (!token) {
       await props.showSuccessSnackbar('incorrect email or password', 'error');
-      setIsLoading(false);
+      setLoading(false);
     }
+  };
+
+  const handleClose = () => {
+    props.clearSnackbar();
   };
 
   const googleDir = async () => {
@@ -67,12 +72,7 @@ const LoginComponent = (props) => {
     window.location.reload;
   };
 
-  const handleClose = async () => {
-    await props.clearSnackbar();
-  };
-
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
     if (token) {
       const funct = async () => {
         await props.showSuccessSnackbar('Successfully login', 'success');
@@ -94,13 +94,19 @@ const LoginComponent = (props) => {
         }}
         style={{ paddingTop: '20% auto' }}
       >
+        <Loader open={loading} />
         <Container className={classes.formContainer}>
           <Paper className='paper-login'>
             <Typography component='h1' variant='h5' className={classes.title}>
               Sign In to Your Account
             </Typography>
             <div className={classes.social}>
-              <GoogleIcon className={classes.googleIcon} onClick={googleDir} />
+              {/* <GoogleIcon className={classes.google} /> */}
+              <GoogleIcon
+                className={classes.google}
+                className='iconTestid'
+                onClick={googleDir}
+              />
               <FacebookRoundedIcon
                 className={classes.facebook}
                 onClick={facebook}
@@ -161,23 +167,19 @@ const LoginComponent = (props) => {
                 {'Forgot Password?'}
               </Link>
               <br />
-              <LoadingButton
+              <Button
                 variant='contained'
                 type='submit'
-                sx={{ color: 'white' }}
-                loading={isLoading}
                 style={{
                   borderRadius: '20px',
                   textAlign: 'center',
                   margin: '10px',
                   width: '200px',
-                  color: 'white,',
-                  borderColor: 'white',
                   backgroundColor: '#07539F',
                 }}
               >
                 Sign In
-              </LoadingButton>
+              </Button>
             </ValidatorForm>
           </Paper>
         </Container>
@@ -197,6 +199,7 @@ const LoginComponent = (props) => {
           {props.SnackBar.SnackbarMessage}
         </Alert>
       </Snackbar>
+
       <Box
         sx={{
           width: '40vw',
@@ -219,17 +222,15 @@ const LoginComponent = (props) => {
           </div>
 
           <Button
-            href='/signup'
             variant='outlined'
             style={{
               borderRadius: '20px',
               textAlign: 'center',
-              width: '50%',
-              marginLeft: '25%',
-              marginTop: '3%',
+              width: '137px',
+              margin: '10px',
               borderColor: 'white',
               color: '#FFFFFF',
-              outlineColor: '#ffffff',
+              outlineColor: '#FFFFFF',
             }}
           >
             Sign Up

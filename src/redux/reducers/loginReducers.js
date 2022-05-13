@@ -13,7 +13,7 @@ export default function (state = initialState, action) {
         ...state,
         isLoggedIn: true,
         user: payload.user,
-        role: payload.role
+        role: payload.role,
       };
 
     case LoginTypes.LOGIN_FAIL:

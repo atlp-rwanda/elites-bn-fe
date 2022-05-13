@@ -31,14 +31,18 @@ const NavBar = ({ forwardRef }) => {
           },
         }}
       >
-        <a href="/login"  underline="hover" style={{ align: 'center', color: 'white', textDecoration: 'none' }}>
+        <a
+          href='/login'
+          underline='hover'
+          style={{ align: 'center', color: 'white', textDecoration: 'none' }}
+        >
           Login
         </a>
         <a
-          href="/signup"
+          href='/signup'
           ref={forwardRef}
-          underline="hover"
-          style={{ align: 'center', color: 'white',  textDecoration: 'none' }}
+          underline='hover'
+          style={{ align: 'center', color: 'white', textDecoration: 'none' }}
         >
           Register
         </a>

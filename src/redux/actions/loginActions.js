@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { LoginTypes, LOGOUT } from '../types';
-import jwt_decode from "jwt-decode";
+import jwt_decode from 'jwt-decode';
 
 const API_URL =
   'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/login';

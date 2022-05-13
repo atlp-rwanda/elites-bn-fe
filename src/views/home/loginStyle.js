@@ -1,81 +1,82 @@
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
-    loginPage: {
-      height: '100vh',
-      display: 'flex',
-      overflow: 'hidden',
-    },
-  
-    title: {
-      color: '#07539F',
-      fontWeight: '700',
-      paddingBottom: '5px',
-      fontFamily: 'Montserrat',
-      fontSize: '26px'
-    },
-  
-    form: {
-      backgroundColor: 'inherit',
-    },
-  
-    signinButton: {
-      borderRadius: '20',
-      color: '#07539F',
-    },
-  
-    formContainer: {
-      margin: '10% auto',
-      alignContent: 'center',
-      textAlign: 'center',
-    },
-  
-    social: {
-      color: '#9A9A9A',
-    },
+  loginPage: {
+    height: '100vh',
+    display: 'flex',
+    overflow: 'hidden',
+  },
 
-    googleIcon: {
-      marginRight: '20px',
-    },
-  
-    rightSideDiv: {
-      margin: '40% auto',
-      width: '100%',
-      height: '30vh',
-      alignContent: 'center',
-    },
-  
-    rightBanner: {
-      color: '#FFFFFF',
-      textAlign: 'center',
-      fontWeight: 'bold',
-      fontSize: '26px',
-    },
-  
-    rightBannerParagraph: {
-      color: '#FFFFFF',
-      fontWeight: 'regular',
-      textAlign: 'center',
-      width: '70%',
-      height: '10vh',
-      marginLeft: '15% ',
-    },
+  title: {
+    color: '#07539F',
+    fontWeight: '700',
+    paddingBottom: '5px',
+    fontFamily: 'Montserrat',
+    fontSize: '26px',
+  },
 
-    error:{
-      color:'#ff0e02',
-      fontSize: '9px',
-    },
+  form: {
+    backgroundColor: 'inherit',
+  },
 
-    backgroundDiv:{
-      backgroundColor: '#FFFFFF',
-      height: '288.58px',
-      left: '1028.73px',
-      width: '310.87px',
-      top: '-92.85px',
-      opacity:'20%',
-      position: 'absolute',
-      transform: 'rotate(40.54deg)'
-    }
-  });
+  signinButton: {
+    borderRadius: '20',
+    color: '#07539F',
+  },
 
-  export default useStyles;
+  formContainer: {
+    margin: '10% auto',
+    alignContent: 'center',
+    textAlign: 'center',
+  },
+
+  social: {
+    color: '#9A9A9A',
+  },
+
+  googleIcon: {
+    marginRight: '20px',
+    cursor: 'pointer',
+  },
+
+  rightSideDiv: {
+    margin: '40% auto',
+    width: '100%',
+    height: '30vh',
+    alignContent: 'center',
+  },
+
+  rightBanner: {
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: '26px',
+  },
+
+  rightBannerParagraph: {
+    color: '#FFFFFF',
+    fontWeight: 'regular',
+    textAlign: 'center',
+    width: '70%',
+    height: '10vh',
+    marginLeft: '15% ',
+  },
+
+  error: {
+    color: '#ff0e02',
+    fontSize: '9px',
+  },
+
+  backgroundDiv: {
+    backgroundColor: '#FFFFFF',
+    height: '288.58px',
+    left: '1028.73px',
+    width: '310.87px',
+    top: '-92.85px',
+    opacity: '20%',
+    position: 'absolute',
+    transform: 'rotate(40.54deg)',
+  },
+});
+
+export default useStyles;

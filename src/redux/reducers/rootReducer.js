@@ -7,7 +7,6 @@ import signupReducer from './signupReducer';
 export default combineReducers({
   allAccommodations: accommodationReducer,
   login: loginReducers,
-  SnackBar: SnackBarReducer, 
+  SnackBar: SnackBarReducer,
   signup: signupReducer,
 });
-
