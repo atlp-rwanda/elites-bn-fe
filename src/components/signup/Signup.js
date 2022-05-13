@@ -71,20 +71,18 @@ function Signup(props) {
 				}
 				{
 					<div style={{ marginTop: '10%', marginBottom: '10%' }}>
-						<Typography variant="h4" component="h3" style={{ color: '#07539F', fontFamily: 'Montserrat, sans-serif', fontWeight: 'bold' }}>
+						<Typography variant="h4" component="h3" style={{ color: '#07539F', fontFamily: 'Montserrat, sans-serif', fontWeight: 'bold', textAlign: 'center' }}>
 							Create Account
 						</Typography>
 						<br />
-						<GoogleIcon style={{ color: '#9A9A9A' }} />
-						&nbsp;
-						&nbsp;
-						&nbsp;
-						<FacebookOutlinedIcon style={{ color: '#9A9A9A' }} />
-						<br />
-						<br />
+						<p style={{ textAlign: 'center' }}><GoogleIcon style={{ color: '#9A9A9A' }} />
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							<FacebookOutlinedIcon style={{ color: '#9A9A9A' }} /></p>
 						<br />
 						<div>
-							<Typography variant="body1" component="h3" style={{ color: '#9A9A9A' }}>
+							<Typography variant="body1" component="h3" style={{ color: '#9A9A9A', textAlign: 'center' }}>
 								or use your email for registration
 							</Typography>
 						</div>
@@ -93,82 +91,92 @@ function Signup(props) {
 						<ValidatorForm form onSubmit={() => props.registerUser({ names, email, password })}>
 							<div>
 
-								<FormControl sx={{ m: 1, width: '50%' }} required>
-									{/* <InputLabel htmlFor="standard-adornment-names">Names</InputLabel> */}
-									{/* <Input
+								<p style={{ textAlign: 'center' }}>
+									<FormControl sx={{ m: 1, width: '50%' }} required>
+										{/* <InputLabel htmlFor="standard-adornment-names">Names</InputLabel> */}
+										{/* <Input
 									id="standard-adornment-names"
 									type='text'
 									value={names}
 									onChange={(e) => setNames(e.target.value)}
 								/> */}
-									<TextValidator
-										id="standard-adornment-names"
-										type='text'
-										value={names}
-										validators={['required',]}
-										errorMessages={[
-											'This field is required',
-										]}
-										variant="filled"
-										label="Names"
-										sx={{ m: 1, width: '100%' }}
-										onChange={(e) => setNames(e.target.value)}
-									/>
-								</FormControl>
+										<TextValidator
+											id="standard-adornment-names"
+											type='text'
+											value={names}
+											validators={['required',]}
+											errorMessages={[
+												'This field is required',
+											]}
+											variant="filled"
+											label="Names"
+											sx={{ m: 1, width: '100%' }}
+											onChange={(e) => setNames(e.target.value)}
+										/>
+									</FormControl>
+								</p>
 							</div>
 							<div>
-								<FormControl sx={{ m: 1, width: '50%' }} variant="standard">
-									{/* <InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
+								<p style={{ textAlign: 'center' }}>
+									<FormControl sx={{ m: 1, width: '50%' }} variant="standard">
+										{/* <InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
 									<Input
 										id="standard-adornment-names"
 										type='email'
 										value={email}
 										onChange={(e) => setEmail(e.target.value)}
 									/> */}
-									<TextValidator
-										id="standard-adornment-email"
-										type='text'
-										value={email}
-										validators={['required', 'isEmail']}
-										errorMessages={[
-											'This field is required',
-											'email is not valid',
-										]}
-										variant="filled"
-										label="Email"
-										sx={{ m: 1, width: '100%' }}
-										onChange={(e) => setEmail(e.target.value)}
-									/>
-								</FormControl>
+										<TextValidator
+											id="standard-adornment-email"
+											type='text'
+											value={email}
+											validators={['required', 'isEmail']}
+											errorMessages={[
+												'This field is required',
+												'email is not valid',
+											]}
+											variant="filled"
+											label="Email"
+											sx={{ m: 1, width: '100%' }}
+											onChange={(e) => setEmail(e.target.value)}
+										/>
+									</FormControl>
+								</p>
+
 							</div>
 							<div>
-								<FormControl sx={{ m: 1, width: '50%' }} variant="standard">
-									{/* <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+								<p style={{ textAlign: 'center' }}>
+									<FormControl sx={{ m: 1, width: '50%' }} variant="standard">
+										{/* <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
 									<Input
 										id="standard-adornment-password"
 										type='password'
 										value={password}
 										onChange={(e) => setPassword(e.target.value)}
 									/> */}
-									<TextValidator
-										id="standard-adornment-password"
-										type='password'
-										value={password}
-										validators={['required']}
-										errorMessages={[
-											'This field is required',
-										]}
-										variant="filled"
-										label="Password"
-										sx={{ m: 1, width: '100%' }}
-										onChange={(e) => setPassword(e.target.value)}
-									/>
-								</FormControl>
+										<TextValidator
+											id="standard-adornment-password"
+											type='password'
+											value={password}
+											validators={['required']}
+											errorMessages={[
+												'This field is required',
+											]}
+											variant="filled"
+											label="Password"
+											sx={{ m: 1, width: '100%' }}
+											onChange={(e) => setPassword(e.target.value)}
+										/>
+									</FormControl>
+								</p>
+
 							</div>
 							<br />
 							<div>
+								<p style={{ textAlign: 'center' }}>
+									<Button type='submit' disabled={props.signupData.loading} variant='contained' style={{ backgroundColor: '#07539F', borderRadius: '20px', width: '40%' }}>{props.signupData.loading ? <CircularProgress style={{ color: 'white' }} size="25px" /> : 'Register'}</Button>
+								</p>
 
-								<Button type='submit' disabled={props.signupData.loading} variant='contained' style={{ backgroundColor: '#07539F', borderRadius: '20px', width: '40%' }}>{props.signupData.loading?<CircularProgress style={{color:'white'}} size="25px" />:'Register'}</Button>
 							</div>
 						</ValidatorForm>
 					</div>

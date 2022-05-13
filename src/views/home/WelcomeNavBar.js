@@ -35,7 +35,7 @@ const NavBar = ({ forwardRef }) => {
           Login
         </a>
         <a
-          href="#"
+          href="/signup"
           ref={forwardRef}
           underline="hover"
           style={{ align: 'center', color: 'white',  textDecoration: 'none' }}

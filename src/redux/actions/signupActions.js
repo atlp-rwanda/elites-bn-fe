@@ -5,20 +5,20 @@ import {
 	USER_REGISTER_SUCCESS
 } from '../types'
 
-const userRegisterRequest = () => {
+export const userRegisterRequest = () => {
 	return {
 		type: USER_REGISTER_REQUEST
 	}
 }
 
-const userRegisterSuccess = (data) => {
+export const userRegisterSuccess = (data) => {
 	return {
 		type: USER_REGISTER_SUCCESS,
 		payload: data
 	}
 }
 
-const userRegisterFailure = (error) => {
+export const userRegisterFailure = (error) => {
 	return {
 		type: USER_REGISTER_FAIRURE,
 		payload: error

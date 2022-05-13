@@ -2,7 +2,6 @@
 
 exports[`Snapshot Test Snapshot for Home Component 1`] = `
 <div
-<<<<<<< HEAD
   className="makeStyles-home-1"
 >
   <style
@@ -41,7 +40,7 @@ exports[`Snapshot Test Snapshot for Home Component 1`] = `
         Login
       </a>
       <a
-        href="#"
+        href="/signup"
         style={
           Object {
             "align": "center",
@@ -226,16 +225,5 @@ exports[`Snapshot Test Snapshot for Home Component 1`] = `
       </div>
     </div>
   </div>
-=======
-  className="App"
->
-  <header
-    className="App-header"
-  >
-    <p>
-      Welcome to Barefoot
-    </p>
-  </header>
->>>>>>> This is a combination of 16 commits.
 </div>
 `;

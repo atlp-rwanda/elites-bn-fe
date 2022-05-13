@@ -201,6 +201,7 @@ const LoginComponent = (props) => {
           </div>
 
           <Button
+            href='/signup'
             variant="outlined"
             style={{
               borderRadius: '20px',

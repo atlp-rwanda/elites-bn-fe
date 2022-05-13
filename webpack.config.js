@@ -44,13 +44,10 @@ module.exports = {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader'],
       },
-<<<<<<< HEAD
       {
         test: /\.html$/i,
         loader: "html-loader"
       },
-=======
->>>>>>> This is a combination of 16 commits.
     ],
   },
   plugins: [
