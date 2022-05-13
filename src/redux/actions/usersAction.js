@@ -1,5 +1,5 @@
 import axios from "axios";
-import actionTypes from "../types";
+import { actionTypes } from "../types";
 
 const API_URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/';
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MSwiaWF0IjoxNjUyMjkxODQwLCJleHAiOjE2ODMzOTU4NDB9.iY8XDFthiuk_BoWAzbHye_BTF5SmPSi-ZJBV_HaGkAo';

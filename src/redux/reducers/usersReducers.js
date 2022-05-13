@@ -1,4 +1,4 @@
-import actionTypes from "../types";
+import { actionTypes } from "../types";
 
 const initialState = {
     users : [],
