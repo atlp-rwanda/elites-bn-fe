@@ -6,9 +6,6 @@ const API_URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/';
 const UPDATE_ROLE_URL =
   'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/updateRole';
 const URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/roles';
-// const token =
-//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MSwibmFtZXMiOiJZQU5HRU5FWUUgUGF0cmljayIsImlhdCI6MTY1MjYxNDcyMCwiZXhwIjoxNjgzNzE4NzIwfQ.U88PyYKxXEpS0iEXu7_04K2sH8A-dkb5UOouhYJ2rCw';
-// const authorization = `Authorization: Bearer ${token}` ;
 const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
 export const usersAction = () => async (dispatch) => {
   try {
