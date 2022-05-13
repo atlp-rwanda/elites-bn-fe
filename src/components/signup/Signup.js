@@ -92,7 +92,7 @@ function Signup(props) {
 							<div>
 
 								<p style={{ textAlign: 'center' }}>
-									<FormControl sx={{ m: 1, width: '50%' }} required>
+									<FormControl sx={{ m: 1, width: '65%' }} required>
 										{/* <InputLabel htmlFor="standard-adornment-names">Names</InputLabel> */}
 										{/* <Input
 									id="standard-adornment-names"
@@ -118,7 +118,7 @@ function Signup(props) {
 							</div>
 							<div>
 								<p style={{ textAlign: 'center' }}>
-									<FormControl sx={{ m: 1, width: '50%' }} variant="standard">
+									<FormControl sx={{ m: 1, width: '65%' }} variant="standard">
 										{/* <InputLabel htmlFor="standard-adornment-email">Email</InputLabel>
 									<Input
 										id="standard-adornment-names"
@@ -146,7 +146,7 @@ function Signup(props) {
 							</div>
 							<div>
 								<p style={{ textAlign: 'center' }}>
-									<FormControl sx={{ m: 1, width: '50%' }} variant="standard">
+									<FormControl sx={{ m: 1, width: '65%' }} variant="standard">
 										{/* <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
 									<Input
 										id="standard-adornment-password"
