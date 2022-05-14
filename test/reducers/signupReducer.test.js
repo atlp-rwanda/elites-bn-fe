@@ -23,6 +23,10 @@ describe('loginReduce(state, action)', ()=>{
 		payload: 'payload'
 	}
 
+	const registerInvalidAction = {
+		type: 'INVALID',
+	}
+
 	it('should return loading True',()=>{
         const reducer = signupReducer(initialState, registerRequestAction);
         expect(reducer).toEqual({loading: true});
@@ -36,6 +40,11 @@ describe('loginReduce(state, action)', ()=>{
 	it('should return loading false loading success',()=>{
         const reducer = signupReducer(initialState, registerSuccessAction);
         expect(reducer).toEqual({loading: false, data: 'payload'});
+    })
+
+	it('should return loading false loading invalid',()=>{
+        const reducer = signupReducer(initialState, registerInvalidAction);
+        expect(reducer).toEqual({loading: false,});
     })
 
 })
