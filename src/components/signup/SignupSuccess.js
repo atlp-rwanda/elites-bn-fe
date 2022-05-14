@@ -23,7 +23,7 @@ function SignupSuccess() {
 						<br />
 						<br />
 						<br />
-						<p style={{textAlign: 'center',}}><Button component={Link} to="/signin" variant="outlined" style={{ color: '#f1f1f1', minWidth: '40%', borderColor: '#f1f1f1', borderRadius: '20px' }}>SIGN IN</Button></p>
+						<p style={{textAlign: 'center',}}><Button component={Link} to="/login" variant="outlined" style={{ color: '#f1f1f1', minWidth: '40%', borderColor: '#f1f1f1', borderRadius: '20px' }}>SIGN IN</Button></p>
 					</div>
 				</Grid>
 				<Grid item md={3} lg={4}>
