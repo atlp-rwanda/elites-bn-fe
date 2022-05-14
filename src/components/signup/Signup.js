@@ -59,15 +59,18 @@ function Signup(props) {
 				<SignupWelcome />
 			</Grid>
 			<Grid item xs={12} md={7} lg={7}>
-				<Snackbar
-					open={props.signupData.error ? true : false}
+
+				{
+					props.signupData.hasOwnProperty('error') ? <Snackbar
+					open={props.signupData.hasOwnProperty('error') ? true : false}
 					autoHideDuration={6000}
 					onClose={handleClose}
-					message={props.signupData.error}
+					message={props.signupData.error.response.data.message}
 					action={action}
-				/>
+				/> : null
+				}
 				{
-					props.signupData.error ? <h4>{null}</h4> : props.signupData.data ? <Navigate to='/signup/success' /> : ''
+					props.signupData.hasOwnProperty('error') ? <h4>{null}</h4> : props.signupData.data ? <Navigate to='/signup/success' /> : ''
 				}
 				{
 					<div style={{ marginTop: '10%', marginBottom: '10%' }}>

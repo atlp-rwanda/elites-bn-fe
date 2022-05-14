@@ -28,7 +28,7 @@ export const userRegisterFailure = (error) => {
 const API_URL ='https://elites-barefoot-nomad.herokuapp.com/api/v1/users/register'
 
 export const registerUser = ({names, email, password}) =>{
-	return (dispatch) => {
+	return  (dispatch) => {
 		dispatch(userRegisterRequest())
 		axios.post(API_URL,{
 			names,
@@ -37,8 +37,7 @@ export const registerUser = ({names, email, password}) =>{
 		}).then(response=>{
 			dispatch(userRegisterSuccess(response.data))
 		}).catch(error=>{
-			console.log(error);
-			dispatch(userRegisterFailure(error.response.data.message))
+			dispatch(userRegisterFailure(error))
 		})
 	}
 }
