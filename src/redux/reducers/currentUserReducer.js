@@ -1,16 +1,16 @@
-import { SET_ACCOMMODATIONS } from '../types';
+import { SET_CURRENT_USER } from '../types';
 
 const initialState = {
-  accommodations: [],
+  currentUser: [],
   loading: true,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case SET_ACCOMMODATIONS:
+    case SET_CURRENT_USER:
       return {
         ...state,
-        accommodations: action.payload,
+        currentUser: action.payload,
         loading: false,
       };
     default:

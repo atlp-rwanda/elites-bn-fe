@@ -1,6 +1,5 @@
-import { actionTypes } from '../types';
+import { SET_ACCOMMODATIONS } from '../types';
 
-const { SET_ACCOMMODATIONS } = actionTypes;
 const setAccommodations = (accommodations) => ({
   type: SET_ACCOMMODATIONS,
   payload: accommodations,

@@ -1,0 +1,77 @@
+// temporary data
+
+const tripsRows = [
+  {
+    id: 1,
+    user: 'Manzi Kevin',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_d3SP2vKOeGFVESn5rk6xnPiQ0naW2e-ldA&usqp=CAU',
+    departLocation: 'Kigali',
+    tripReason: 'this is trip for research purpose',
+    status: 'approved',
+  },
+  {
+    id: 2,
+    user: 'J paul Ishimwe',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcg4Y51XjQ-zSf87X4nUPTQzsF83eFdZswTg&usqp=CAU',
+    departLocation: 'Nairobi',
+    tripReason: 'this is trip for research purpose',
+    status: 'approved',
+  },
+  {
+    id: 3,
+    user: 'Otile Brown',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnS1o3mO3S_Nkfw1WAGaRJ6KaOGgODpfoOsA&usqp=CAU',
+    departLocation: 'Nairobi',
+    tripReason: 'this is trip for research purpose',
+    status: 'rejected',
+  },
+  {
+    id: 4,
+    user: 'Honovan Bangz',
+    img: 'https://res.cloudinary.com/dpd4zujfh/image/upload/v1645206928/vmp5drzvlotykib6cndo.jpg',
+    departLocation: 'Kigali',
+    tripReason: 'this is trip for research purpose',
+    status: 'pending',
+  },
+  {
+    id: 5,
+    user: 'Christian Kalisa',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCvPW4n2sq5EZhgjLF3U0iEZAMfkAE-J0nOA&usqp=CAU',
+    departLocation: 'Nairobi',
+    tripReason: 'this is trip for research purpose',
+    status: 'pending',
+  },
+  {
+    id: 6,
+    user: 'Christian Kalisa',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh3KmTx1VgakCuIn_lHNEx-SYlQ-BWnfgAQA&usqp=CAU',
+    departLocation: 'Nairobi',
+    tripReason: 'this is trip for research purpose',
+    status: 'rejected',
+  },
+  {
+    id: 7,
+    user: 'Christian Kalisa',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCvPW4n2sq5EZhgjLF3U0iEZAMfkAE-J0nOA&usqp=CAU',
+    departLocation: 'Nairobi',
+    tripReason: 'this is trip for research purpose',
+    status: 'approved',
+  },
+  {
+    id: 8,
+    user: 'Christian Kalisa',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCvPW4n2sq5EZhgjLF3U0iEZAMfkAE-J0nOA&usqp=CAU',
+    departLocation: 'Nairobi',
+    tripReason: 'this is trip for research purpose',
+    status: 'approved',
+  },
+  {
+    id: 9,
+    user: 'Christian Kalisa',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCvPW4n2sq5EZhgjLF3U0iEZAMfkAE-J0nOA&usqp=CAU',
+    departLocation: 'Nairobi',
+    tripReason: 'this is trip for research purpose',
+    status: 'pending',
+  },
+];
+export default tripsRows;

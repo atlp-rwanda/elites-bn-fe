@@ -1,6 +1,6 @@
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 import { LoginTypes, LOGOUT } from '../types';
-import jwt_decode from 'jwt-decode';
 
 const API_URL =
   'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/login';
@@ -11,7 +11,7 @@ export const login = (email, password) => async (dispatch) => {
       password,
     });
     const token = response.data.payload;
-    const decoded = jwt_decode(token.accesstoken);
+    const decoded = jwtDecode(token.accesstoken);
     if (token) {
       localStorage.setItem('userToken', JSON.stringify(token));
       localStorage.setItem('roleId', JSON.stringify(decoded.role));

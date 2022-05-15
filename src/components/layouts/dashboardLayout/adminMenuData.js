@@ -15,7 +15,7 @@ export const sideBarData = [
   {
     title: 'Dashboard',
     icon: <Dashboard />,
-    route: '/home',
+    route: '/dashboard',
   },
   {
     title: 'Locations',
@@ -50,6 +50,6 @@ export const sideBarData = [
   {
     title: 'Logout',
     icon: <Logout />,
-    route: '/logout',
+    route: '/success',
   },
 ];

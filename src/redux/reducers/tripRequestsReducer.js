@@ -1,16 +1,16 @@
-import { SET_ACCOMMODATIONS } from '../types';
+import { SET_TRIP_REQUESTS } from '../types';
 
 const initialState = {
-  accommodations: [],
+  tripRequests: [],
   loading: true,
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case SET_ACCOMMODATIONS:
+    case SET_TRIP_REQUESTS:
       return {
         ...state,
-        accommodations: action.payload,
+        tripRequests: action.payload,
         loading: false,
       };
     default:
