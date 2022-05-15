@@ -1,16 +1,21 @@
+/* eslint-disable no-var */
+/* eslint-disable vars-on-top */
 /* eslint-disable no-nested-ternary */
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import moment from 'moment';
 import Button from '@mui/material/Button';
+import moment from 'moment';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ButtonGroup, Stack } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import CloseIcon from '@mui/icons-material/Close';
-import './requestsTable.scss';
+import '../tripRequests/requestsTable.scss';
 import ConfirmModal from '../confirmModal/ConfirmModal';
+import { closeViewTrip } from '../../redux/actions/tripViewAction';
+import ViewTripRequestSkeleton from './ViewTripRequestSkeleton';
+import { clearSingleTripRequest } from '../../redux/actions/singleTripRequestActions';
 
 const classes = {
   modal: {
@@ -75,25 +80,29 @@ const classes = {
   },
 };
 
-export default function BasicModal(props) {
-  const { show, close, tripRequest } = props;
+export default function ViewTripRequest() {
   const [showConfirmModal, setShowConfirmModal] = React.useState(false);
   const [confirmModalData, setConfirmModalData] = React.useState('');
 
   const entireState = useSelector((state) => state);
-  const tripRequestsState = entireState.allTripRequests;
+  const singleTripState = entireState.singleTrip;
+  const tripViewState = entireState.tripView;
   const locationsState = entireState.allLocations;
   const currentUserState = entireState.currentUser;
+  const { tripRequest, loading } = singleTripState;
+  const { tripViewOpen } = tripViewState;
 
-  const { tripRequests } = tripRequestsState;
   const { currentUser } = currentUserState;
   const { locations } = locationsState;
-  const currentTripRequest = tripRequests.filter(
-    (request) => request.id === tripRequest
-  );
+  const dispatch = useDispatch();
 
-  if (currentTripRequest.length === 1) {
-    const {
+  const handleClose = () => {
+    dispatch(closeViewTrip());
+    dispatch(clearSingleTripRequest());
+  };
+
+  if (tripRequest) {
+    var {
       id,
       names,
       returnDate,
@@ -105,18 +114,18 @@ export default function BasicModal(props) {
       status,
       address,
       User,
-    } = currentTripRequest[0];
+    } = tripRequest;
 
-    const departLocationName = locations.filter(
-      (location) => location.id === departLocation
+    var departLocationName = locations.filter(
+      (location) => location?.id === departLocation
     )[0].locationName;
 
-    let destinationNames;
+    var destinationNames;
 
     if (destinations.length === 1) {
       const parsedDestinations = JSON.parse(destinations);
       destinationNames = locations.filter(
-        (location) => location.id === parsedDestinations.destinationId
+        (location) => location?.id === parsedDestinations.destinationId
       )[0].locationName;
     }
     if (destinations.length > 1) {
@@ -131,15 +140,19 @@ export default function BasicModal(props) {
         return thisLocationName;
       });
     }
+  }
 
-    return (
-      <div>
-        <Modal
-          open={show}
-          onClose={close}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
+  return (
+    <div>
+      <Modal
+        open={tripViewOpen}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        {loading ? (
+          <ViewTripRequestSkeleton />
+        ) : (
           <Box sx={classes.modal}>
             <Box
               sx={{
@@ -160,7 +173,7 @@ export default function BasicModal(props) {
               </Typography>
             </Box>
 
-            <CloseIcon sx={classes.closeIcon} onClick={close} />
+            <CloseIcon sx={classes.closeIcon} onClick={handleClose} />
             <Box sx={{ padding: '1px 1rem' }}>
               <Box sx={classes.userInfo}>
                 <Box
@@ -367,15 +380,15 @@ export default function BasicModal(props) {
               )}
             </ButtonGroup>
           </Box>
-        </Modal>
-        {confirmModalData && (
-          <ConfirmModal
-            showModal={showConfirmModal}
-            close={() => setShowConfirmModal(false)}
-            modalData={confirmModalData}
-          />
         )}
-      </div>
-    );
-  }
+      </Modal>
+      {confirmModalData && (
+        <ConfirmModal
+          showModal={showConfirmModal}
+          close={() => setShowConfirmModal(false)}
+          modalData={confirmModalData}
+        />
+      )}
+    </div>
+  );
 }

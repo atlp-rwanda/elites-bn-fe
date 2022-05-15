@@ -35,10 +35,15 @@ const AllRoutes = () => (
         </ProtectRoute>
       }
     />
-     <Route exact path="/users"  element={
-            <ProtectRoute redirectTo='/login'>
-              <Roles/>
-            </ProtectRoute>} />
+    <Route
+      exact
+      path="/users"
+      element={
+        <ProtectRoute redirectTo="/login">
+          <Roles />
+        </ProtectRoute>
+      }
+    />
     <Route path="/signup" element={<Signup />} />
     <Route path="/signup/success" element={<SignupSuccess />} />
     <Route
@@ -55,22 +60,27 @@ const AllRoutes = () => (
       path="/google/success/:token"
       element={<SocialAuthGoogleDir />}
     />
-     
-     <Route exact path="/users"  element={
-            <ProtectRoute redirectTo='/login'>
-              <Roles/>
-            </ProtectRoute>} />
+
+    <Route
+      exact
+      path="/users"
+      element={
+        <ProtectRoute redirectTo="/login">
+          <Roles />
+        </ProtectRoute>
+      }
+    />
 
     <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/login" element={<Login />} />
     <Route
       exact
       path="/success"
-      element={(
+      element={
         <ProtectRoute redirectTo="/login">
           <SuccessLogin />
         </ProtectRoute>
-      )}
+      }
     />
     <Route path="*" element={<NotFoundPage />} />
   </Routes>

@@ -7,6 +7,7 @@ import {
 } from '../types';
 import { openGlobalSnackBar } from './globalSnackBarActions';
 import { closeLoader } from './loaderActions';
+import { loadSingleTripRequest } from './singleTripRequestActions';
 
 export const setTripRequests = (tripRequests) => ({
   type: SET_TRIP_REQUESTS,
@@ -81,6 +82,7 @@ export const approveTripRequest = (id, token) =>
       )
       .then((res) => {
         dispatch(tripApproved());
+        dispatch(loadSingleTripRequest(id));
         dispatch(loadTripRequests());
         dispatch(closeLoader());
         dispatch(
@@ -107,6 +109,7 @@ export const rejectTripRequest = (id, token) =>
       )
       .then((res) => {
         dispatch(tripRejected());
+        dispatch(loadSingleTripRequest(id));
         dispatch(loadTripRequests());
         dispatch(closeLoader());
         dispatch(

@@ -1,14 +1,14 @@
 /* eslint-disable */
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import { DataGrid } from '@mui/x-data-grid';
 import { Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import BasicModal from './RequestDetailsModal';
-import setTripRequests from '../../redux/actions/tripRequestsActions';
+import { loadTripRequests } from '../../redux/actions/tripRequestsActions';
 import SkeletonTable from './SkeletonTable';
-import setLocations from '../../redux/actions/locationsActions';
+import { loadLocations } from '../../redux/actions/locationsActions';
 import './requestsTable.scss';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import Loader from '../progressBar/Loader';
@@ -35,32 +35,9 @@ const RequestsTable = () => {
 
   const dispatch = useDispatch();
 
-  const fetchTripRequests = async () => {
-    console.log('%cLoader', 'background-color:black', loaderOpen);
-    const res = await axios
-      .get('https://elites-barefoot-nomad.herokuapp.com/api/v1/trips', {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    dispatch(setTripRequests(res.data.payload));
-  };
-
-  const fetchLLocations = async () => {
-    const res = await axios
-      .get('https://elites-barefoot-nomad.herokuapp.com/api/v1/locations')
-      .catch((err) => {
-        console.log(err);
-      });
-    dispatch(setLocations(res.data.payload));
-  };
-
   useEffect(() => {
-    fetchTripRequests();
-    fetchLLocations();
+    dispatch(loadLocations());
+    dispatch(loadTripRequests());
   }, []);
 
   userColumns =

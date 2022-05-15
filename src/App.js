@@ -4,6 +4,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import NotificationsPanel from './components/notifications/NotificationsPanel';
+import ViewTripRequest from './components/notifications/ViewTripRequest';
 import GlobalSnackBar from './components/snackbar/GlobalSnackBar';
 import history from './history';
 import { openGlobalSnackBar } from './redux/actions/globalSnackBarActions';
@@ -15,25 +17,41 @@ function App() {
   axios.interceptors.response.use(
     (response) => response,
     (error) => {
-      const { status } = error.response;
+      const {
+        status,
+        data: { path },
+      } = error.response;
       if (status === 401) {
+        dispatch(
+          openGlobalSnackBar({
+            message: 'Unauthorized error!',
+            severity: 'error',
+          })
+        );
         window.location = '/login';
       }
       if (status === 500) {
         dispatch(
           openGlobalSnackBar({
-            message: 'Internal Server error!',
+            message: 'Internal Server error, try again later!',
             severity: 'error',
           })
         );
       }
       if (status === 404) {
-        dispatch(
-          openGlobalSnackBar({
-            message: 'Resource you are looking for is not found!',
-            severity: 'error',
-          })
-        );
+        if (
+          !(
+            path.split('/').includes('notifications') ||
+            path.split('/').includes('profiles')
+          )
+        ) {
+          dispatch(
+            openGlobalSnackBar({
+              message: 'Resource you are looking for is not found!',
+              severity: 'error',
+            })
+          );
+        }
       }
 
       return Promise.reject(error);
@@ -41,7 +59,9 @@ function App() {
   );
   return (
     <BrowserRouter history={history}>
+      <ViewTripRequest />
       <GlobalSnackBar />
+      <NotificationsPanel />
       <Routes />
     </BrowserRouter>
   );

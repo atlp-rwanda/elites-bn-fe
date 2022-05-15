@@ -17,6 +17,8 @@ import jwtDecode from 'jwt-decode';
 import setCurrentUser, {
   setCurrentUserProfile,
 } from '../../../redux/actions/currentUserActions';
+import { loadNotifications } from '../../../redux/actions/notificationsActions';
+import { showNotificationPanel } from '../../../redux/actions/notificationPanelActions';
 
 const Search = styled('div')(({ theme }) => ({
   backgroundColor: 'white',
@@ -38,19 +40,23 @@ const Icons = styled(Box)(({ theme }) => ({
 }));
 
 const TopBar = () => {
-  const currentUserState = useSelector((state) => state.currentUser);
-  const { currentUser } = currentUserState;
-  const { currentUserProfile } = currentUserState;
-  // console.log(
-  //   '%cCurrentUserProfile====',
-  //   'background-color:green',
-  //   currentUserProfile
-  // );
   const dispatch = useDispatch();
+  const entireState = useSelector((state) => state);
+  const notificationsState = entireState.allNotifications;
   const { pathname } = useLocation();
+  const currentUserState = entireState.currentUser;
+  const { currentUser, currentUserProfile } = currentUserState;
+  const { notifications } = notificationsState;
+
+  const unreadNotifications = () => {
+    const unreads = notifications.filter(
+      (notification) => !notification.isRead
+    );
+    return unreads.length;
+  };
 
   const getCurrentUserProfile = async (id, token) => {
-    console.log('%cTokenInGetProfile====', 'background-color:green', token);
+    // console.log('%cTokenInGetProfile====', 'background-color:green', token);
     const res = await axios
       .get(
         `https://elites-barefoot-nomad.herokuapp.com/api/v1/profiles/${id}`,
@@ -63,7 +69,7 @@ const TopBar = () => {
       .catch((err) => {
         console.log(err);
       });
-    dispatch(setCurrentUserProfile(res.data.payload));
+    res && dispatch(setCurrentUserProfile(res.data.payload));
   };
 
   const getCurrentUser = () => {
@@ -105,6 +111,7 @@ const TopBar = () => {
 
   useEffect(() => {
     getCurrentUser();
+    dispatch(loadNotifications());
   }, []);
 
   const { names, roleName } = currentUser;
@@ -156,7 +163,14 @@ const TopBar = () => {
             paddingRight: { xs: '0.8rem', sm: '1.5rem' },
           }}
         >
-          <Badge badgeContent={2} color="error">
+          <Badge
+            badgeContent={unreadNotifications()}
+            color="error"
+            onClick={() => {
+              dispatch(showNotificationPanel());
+            }}
+            sx={{ cursor: 'pointer' }}
+          >
             <Notifications />
           </Badge>
           <Box>
@@ -180,8 +194,12 @@ const TopBar = () => {
             </Typography>
           </Box>
           <Avatar
-            sx={{ width: { xs: 30, sm: 40 }, height: { xs: 30, sm: 40 } }}
-            src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            sx={{
+              width: { xs: 30, sm: 40 },
+              height: { xs: 30, sm: 40 },
+              cursor: 'pointer',
+            }}
+            src={currentUserProfile?.picture}
           />
         </Icons>
       </Stack>
