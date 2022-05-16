@@ -8,6 +8,10 @@ import signupReducer from './signupReducer';
 import tripRequestsReducer from './tripRequestsReducer';
 import loaderReducer from './loaderReducer';
 import globalSnackBarReducer from './globalSnackBarReducer';
+import AccommodationListReducer from './accommodationListReducer';
+import AccommodationDeleteReducer from './accommodationDeleteReducer';
+import AccommodationCreateReducer from './accommodationCreateReducer';
+import AccommodationUpdateReducer from './accommodationUpdateReducer';
 
 export default combineReducers({
   allAccommodations: accommodationReducer,
@@ -19,4 +23,8 @@ export default combineReducers({
   globalSnackBar: globalSnackBarReducer,
   signup: signupReducer,
   currentUser: currentUserReducer,
+  accommodations: AccommodationListReducer,
+  accommodationDelete: AccommodationDeleteReducer,
+  accommodationCreate: AccommodationCreateReducer,
+  accommodationUpdate: AccommodationUpdateReducer,
 });

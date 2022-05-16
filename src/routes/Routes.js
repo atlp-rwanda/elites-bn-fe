@@ -11,12 +11,16 @@ import Login from '../views/home/Login';
 import Signup from '../components/signup/Signup';
 import SignupSuccess from '../components/signup/SignupSuccess';
 import SocialAuthGoogleDir from '../views/home/SocialAuthGoogleDir';
+import Accommodation from '../components/accommodation/Accommodation';
+import AccommodationList from '../components/accommodation/AccommodationList';
+import ProtectedTravelAdminRoutes from './protectedTravelAdminRoutes';
 
 const AllRoutes = () => (
   <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/accommodations" element={<Accommodations />} />
-    <Route path="/login" element={<Login />} />
+    <Route path='/' element={<Home />} />
+    {/* <Route path='/accommodations' element={<AccommodationList />} /> */}
+    <Route path='/dashboard' element={<Dashboard />} />
+    <Route path='/login' element={<Login />} />
     <Route
       path="/dashboard"
       element={
@@ -35,6 +39,15 @@ const AllRoutes = () => (
     />
     <Route path="/signup" element={<Signup />} />
     <Route path="/signup/success" element={<SignupSuccess />} />
+    <Route
+      exact
+      path='/accommodations'
+      element={
+        <ProtectedTravelAdminRoutes redirectTo='/login'>
+          <AccommodationList />
+        </ProtectedTravelAdminRoutes>
+      }
+    />
     <Route
       className="socialtestid"
       path="/google/success/:token"

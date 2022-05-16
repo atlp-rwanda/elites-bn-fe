@@ -1,0 +1,203 @@
+import { Box, Button, Grid, Typography, TextField, MenuItem, TextareaAutosize, Avatar, CircularProgress, LinearProgress, Snackbar, IconButton, colors, Alert } from '@mui/material';
+import { borderRadius } from '@mui/system';
+import { DataGrid } from '@mui/x-data-grid';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { Navigate } from 'react-router';
+import { async } from 'regenerator-runtime';
+import { fetchAccommodations } from '../../redux/actions/accommodationListActions';
+import { clearSnackbar, showSuccessSnackbar } from '../../redux/actions/snackbarActions';
+import Sidebar from '../layouts/dashboardLayout/Sidebar';
+import TopBar from '../layouts/dashboardLayout/TopBar';
+import AccommodationCreateModal from './AccommodationCreateModal';
+import AccommodationDeleteModal from './AccommodationDeleteModal';
+import AccommodationUpdateModal from './AccommodationUpdateModal';
+import AccommodationViewModal from './AccommodationViewModal';
+import { sideBarData } from './travelAdminMenuData';
+
+const columns = [
+	{ field: 'id', headerName: 'ID', width: 90 },
+	{
+		field: 'image',
+		headerName: 'Image',
+		width: 100,
+		renderCell: (params) => <Avatar variant='square' src={params.value} />
+		// editable: true,
+	},
+	{
+		field: 'accommodationName',
+		headerName: 'Accommodation',
+		flex: 1
+		// editable: true,
+	},
+	{
+		field: 'location',
+		headerName: 'Location',
+		flex: 1
+		// editable: true,
+	},
+	{
+		field: 'actions',
+		headerName: 'Actions',
+		renderCell: (params) => {
+			const [open, setOpen] = useState(false);
+			const [openD, setOpenD] = useState(false)
+			const [openU, setOpenU] = useState(false)
+
+			return <div>
+				<AccommodationDeleteModal modalId={params.value.id + 'a'} accommodation={params.value.acc} handleClose={() => setOpenD(false)} isOpen={openD} />
+				<AccommodationViewModal modalId={params.value.id} accommodation={params.value.acc} handleClose={() => setOpen(false)} isOpen={open} />
+				<AccommodationUpdateModal accommodation={params.value.acc} handleClose={() => setOpenU(false)} isOpen={openU} />
+				<Button id={params.value.id} onClick={() => setOpen(true)} sx={{ ml: 1, color: '#07539F', borderColor: '#07539F' }} variant='outlined'>
+					VIEW
+				</Button>
+				<Button onClick={() => setOpenU(true)} sx={{ ml: 1, background: '#07539F' }} variant='contained'>
+					EDIT
+				</Button>
+
+				<Button onClick={() => setOpenD(true)} sx={{ ml: 1, color: 'red', borderColor: 'red' }} variant='outlined'>
+					DELETE
+				</Button>
+			</div>
+		},
+		flex: 1
+	},
+];
+
+function AccommodationList(props) {
+
+	const [state, setState] = useState({
+		open: true,
+		vertical: 'top',
+		horizontal: 'center',
+	});
+
+	const handleClose = () => {
+		props.clearSnackbar()
+		setState({ ...state, open: false });
+	};
+
+	const [openC, setOpenC] = useState(false)
+	const [locations, setLocations] = useState([])
+
+	const handleOpenCreate = () => {
+		setOpenC(true)
+	}
+
+	useEffect(() => {
+		const fetchA = async () => {
+			const result = await axios('https://elites-barefoot-nomad.herokuapp.com/api/v1/locations')
+			setLocations(result.data.payload)
+			await props.fetchAccommodations()
+		}
+		fetchA()
+
+	}, [])
+
+
+	useEffect(() => {
+
+	})
+
+	const action = (
+		<React.Fragment>
+			<Button style={{ color: '#fff' }} size="small" onClick={handleClose}>
+				UNDO
+			</Button>
+		</React.Fragment>
+	);
+
+	return (
+
+		<div>
+
+			<Sidebar sideBarData={sideBarData} />
+			<TopBar />
+			<div style={{ height: '100vh', width: '100vw', marginLeft: '20%' }}>
+				<br></br>
+
+				<Box
+					sx={{
+						width: '78vw',
+						height: '80%',
+						backgroundColor: 'white',
+						borderRadius: '15px',
+
+					}}
+				>
+					<AccommodationCreateModal locations={locations} handleClose={() => setOpenC(false)} isOpen={openC} />
+					<Button onClick={handleOpenCreate} sx={{ m: 4, color: '#07539F', }} variant="outlined">CREATE AN ACCOMMODATION</Button>
+					<Typography variant="body1" sx={{
+						color: '#07539F',
+						ml: 4,
+						fontWeight: 'bold',
+						fontSize: '20px'
+
+					}}>
+						View accommodations
+					</Typography>
+					<br /><br />
+					{
+						JSON.stringify(props.snackbarData) !== JSON.stringify({}) ? <Snackbar
+							anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+							open={props.snackbarData.SnackbarOpen}
+							onClose={handleClose}
+							key={'top' + 'center'}
+							// autoHideDuration={6000}
+							action={action}
+						>
+							<Alert onClose={handleClose} severity={props.snackbarData.severityMessage} >
+								{props.snackbarData.SnackbarMessage}
+							</Alert>
+						</Snackbar> : null
+					}
+
+					{
+						props.accommodationsData.loading ?
+							<p style={{ textAlign: 'center' }}><CircularProgress /></p>
+							: props.accommodationsData.hasOwnProperty('data') ? <DataGrid sx={
+								{ mx: 2, }
+							}
+								autoHeight={true}
+								rows={props.accommodationsData.data.payload.map((acc) => {
+									return {
+										...acc,
+										actions: { acc, id: acc.id },
+										image: acc.images[0] ?? 'https://res.cloudinary.com/dpd4zujfh/image/upload/v1647960905/barefoot_api/cmniep6tdtlcz9vvxjty.jpg',
+										location: acc.location.locationName
+									}
+								})}
+								columns={columns}
+								pageSize={5}
+								rowsPerPageOptions={[5]}
+								disableSelectionOnClick
+							/> : ''
+					}
+
+
+				</Box>
+			</div>
+
+		</div>
+	)
+}
+
+const mapStateToProps = (state, ownProps) => {
+	return {
+		accommodationsData: state.accommodations,
+		accommodationDeleteData: state.accommodationDelete,
+		accommodationUpdateData: state.accommodationUpdate,
+		snackbarData: state.SnackBar
+	}
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+	return {
+		fetchAccommodations: () => dispatch(fetchAccommodations()),
+		showSuccessSnackbar: () => dispatch(showSuccessSnackbar(message, severityMessage)),
+		clearSnackbar: () => dispatch(clearSnackbar())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccommodationList)
