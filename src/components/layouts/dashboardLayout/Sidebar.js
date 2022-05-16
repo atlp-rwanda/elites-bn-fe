@@ -14,12 +14,16 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { logout } from '../../../redux/actions/loginActions';
+import { adminSideBarData, userSideBarData } from './menuData';
+import './sidebar.scss';
 
-const Sidebar = (props) => {
-  const loginState = useSelector((state) => state.login);
+const Sidebar = () => {
+  const currentUserState = useSelector((state) => state.currentUser);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const { currentUser } = currentUserState;
 
   const [open, setOpen] = React.useState(false);
 
@@ -36,7 +40,8 @@ const Sidebar = (props) => {
     window.location.reload();
   };
   const navigate = useNavigate();
-  const menuData = props.sideBarData;
+  const menuData =
+    currentUser?.roleId === 1 ? adminSideBarData : userSideBarData;
   return (
     <div className="sidebar">
       <Box
@@ -62,7 +67,11 @@ const Sidebar = (props) => {
         </Typography>
         <List>
           {menuData.map((data) => (
-            <ListItem key={data.title} disablePadding>
+            <ListItem
+              className={pathname === data.route && 'active'}
+              key={data.title}
+              disablePadding
+            >
               {data.title === 'Logout' ? (
                 <ListItemButton onClick={() => handleClickOpen()}>
                   <ListItemIcon sx={{ color: 'white' }}>

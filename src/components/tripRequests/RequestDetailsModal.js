@@ -67,7 +67,7 @@ const classes = {
   },
   arrowIcon: {
     fontSize: '18px',
-    color: 'gray',
+    color: '#79B5D7',
     marginLeft: '0.5rem',
     marginRight: '0.5rem',
   },
@@ -108,8 +108,9 @@ export default function BasicModal(props) {
     let destinationNames;
 
     if (destinations.length === 1) {
+      const parsedDestinations = JSON.parse(destinations);
       destinationNames = locations.filter(
-        (location) => location.id === destinations[0].destinationId
+        (location) => location.id === parsedDestinations.destinationId
       )[0].locationName;
     }
     if (destinations.length > 1) {
@@ -281,7 +282,7 @@ export default function BasicModal(props) {
                 Edit
               </Button> */}
               {status === 'pending' ? (
-                currentUser.roleId !== 5 && currentUser.roleId === 3 ? (
+                currentUser.roleId === 3 ? (
                   <>
                     <Button variant="contained" size="medium" color="success">
                       Approve
@@ -290,12 +291,16 @@ export default function BasicModal(props) {
                       Reject
                     </Button>
                   </>
-                ) : (
+                ) : currentUser.roleId === 5 ? (
                   <Button variant="contained" size="medium" color="primary">
                     Edit
                   </Button>
+                ) : (
+                  <Typography color="blue">
+                    You are only allowed to view
+                  </Typography>
                 )
-              ) : currentUser.roleId !== 5 && currentUser.roleId === 3 ? (
+              ) : currentUser.roleId === 3 ? (
                 <>
                   <Button
                     variant="contained"
@@ -314,7 +319,7 @@ export default function BasicModal(props) {
                     Reject
                   </Button>
                 </>
-              ) : (
+              ) : currentUser.roleId === 5 ? (
                 <Button
                   variant="contained"
                   size="medium"
@@ -323,6 +328,10 @@ export default function BasicModal(props) {
                 >
                   Edit
                 </Button>
+              ) : (
+                <Typography color="blue">
+                  You are only allowed to view
+                </Typography>
               )}
             </ButtonGroup>
           </Box>

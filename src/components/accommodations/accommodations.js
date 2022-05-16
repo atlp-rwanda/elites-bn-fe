@@ -7,7 +7,6 @@ import setAccommodations from '../../redux/actions/accommodationsActions';
 import LinearProgress from '../progressBar/linearProgress';
 import Sidebar from '../layouts/dashboardLayout/Sidebar';
 import TopBar from '../layouts/dashboardLayout/TopBar';
-import { sideBarData } from '../layouts/dashboardLayout/adminMenuData';
 
 const Accommodations = () => {
   const accommodationState = useSelector((state) => state.allAccommodations);
@@ -30,7 +29,7 @@ const Accommodations = () => {
   if (accommodationState.loading) {
     return (
       <>
-        <Sidebar sideBarData={sideBarData} />
+        <Sidebar />
         <TopBar />
         <LinearProgress />
       </>
@@ -38,7 +37,7 @@ const Accommodations = () => {
   }
   return (
     <>
-      <Sidebar sideBarData={sideBarData} />
+      <Sidebar />
       <TopBar />
       <div className="accommodation">
         <ButtonGroup>

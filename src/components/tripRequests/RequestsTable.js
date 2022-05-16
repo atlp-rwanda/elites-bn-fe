@@ -5,11 +5,11 @@ import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import './requestsTable.scss';
 import BasicModal from './RequestDetailsModal';
 import setTripRequests from '../../redux/actions/tripRequestsActions';
 import SkeletonTable from './SkeletonTable';
 import setLocations from '../../redux/actions/locationsActions';
+import './requestsTable.scss';
 
 const RequestsTable = () => {
   const [showModal, setShowModal] = useState(false);
@@ -116,12 +116,14 @@ const RequestsTable = () => {
                 >
                   View
                 </div>
-                <div
-                  className="deleteButton"
-                  onClick={() => handleDelete(params.row.id)}
-                >
-                  Delete
-                </div>
+                {params.row.status == 'pending' && (
+                  <div
+                    className="deleteButton"
+                    onClick={() => handleDelete(params.row.id)}
+                  >
+                    Delete
+                  </div>
+                )}
               </div>
             ),
           },
@@ -173,12 +175,6 @@ const RequestsTable = () => {
                   }}
                 >
                   View
-                </div>
-                <div
-                  className="deleteButton"
-                  onClick={() => handleDelete(params.row.id)}
-                >
-                  Delete
                 </div>
               </div>
             ),
