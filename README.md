@@ -1,6 +1,6 @@
 # Barefoot Nomad FrontEnd
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/fbfe351329ae4b62a71e/maintainability)](https://codeclimate.com/github/atlp-rwanda/elites-bn-fe/maintainability) [![CircleCI](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev.svg?style=svg&circle-token=f02327d66245fdb7fe005f489db5b9e1cd11ee3c)](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev) [![Coverage Status](https://coveralls.io/repos/github/atlp-rwanda/elites-bn-fe/badge.svg?branch=dev)](https://coveralls.io/github/atlp-rwanda/elites-bn-fe?branch=dev)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fbfe351329ae4b62a71e/maintainability)](https://codeclimate.com/github/atlp-rwanda/elites-bn-fe/maintainability) [![CircleCI](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev.svg?style=svg&circle-token=f02327d66245fdb7fe005f489db5b9e1cd11ee3c)](https://circleci.com/gh/atlp-rwanda/elites-bn-fe/tree/dev) [![Coverage Status](https://coveralls.io/repos/github/atlp-rwanda/elites-bn-fe/badge.svg)](https://coveralls.io/github/atlp-rwanda/elites-bn-fe)
 
 ### Requirements
 
