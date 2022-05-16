@@ -5,28 +5,34 @@ import Sidebar from '../layouts/dashboardLayout/Sidebar';
 import TopBar from '../layouts/dashboardLayout/TopBar';
 import { sideBarData } from '../layouts/dashboardLayout/adminMenuData';
 import { DataGrid } from '@mui/x-data-grid';
-import { usersAction } from '../../redux/actions/usersAction';
+import { usersAction, userRoles, updateRoles } from '../../redux/actions/usersAction';
 import { connect } from 'react-redux';
-import { Button } from '@mui/material';
+import { Button, selectClasses } from '@mui/material';
 import useAutocomplete from '@mui/material/useAutocomplete';
-import { Box } from '@mui/system';
+import { Box, style } from '@mui/system';
 
 const Roles = (props) => {
-  const roles = [
-    { label: 'Travel Admin' },
-    { label: 'requester' },
-    { label: 'Manager' },
-    { label: 'Super Admin' },
-    { label: 'requester' },
-    { label: 'Manager' },
-    { label: 'Super Admin' },
-  ];
+
+  // const [rows, setRows] = useState(initialRows);
+  // const changed = handleChange();
+
+  const roles = () => {
+    const data = props.users.roles;
+    let arr = []
+    for (let i = 0; i < data.length; i++) {
+      arr.push(data[i].name);
+    }
+    console.log(arr);
+    return arr;
+  };
+  
+  const getRoles = roles();
 
   const columns = [
     {
       field: 'names',
       headerName: 'Names',
-      width: 150,
+      width: 300,
       headerClassName: 'super-app-theme--header',
       headerAlign: 'center',
     },
@@ -34,35 +40,47 @@ const Roles = (props) => {
       field: 'email',
       headerName: 'Email',
       type: 'email',
-      width: 250,
+      width: 300,
       headerClassName: 'super-app-theme--header',
       headerAlign: 'center',
     },
 
+    // {
+    //   field: 'edit',
+    //   headerName: 'edit',
+    //   width: 200,
+    //   headerClassName: 'super-app-theme--header',
+    //   headerAlign: 'center',
+    //   renderCell: () => (
+    //     <Autocomplete
+    //       id="asynchronous-demo"
+    //       options={roles()}
+          
+    //       sx={{ width: '100%', border: 'none' }}
+    //       style={{ border: 'none', width: '100%' }}
+    //       renderInput={(params) => (
+    //         <TextField {...params} style={{ width: '100%', border: 'none', height: '100%'}} />
+    //       )}
+    //     />
+    //   ),
+    //   // onClick={handleClickOpen}
+    // },
     {
       field: 'role',
       headerName: 'Role',
+      editable: true,
       width: 300,
       headerClassName: 'super-app-theme--header',
       headerAlign: 'center',
-      renderCell: () => (
-        <Autocomplete
-          multiple
-          id="asynchronous-demo"
-          options={roles}
-          sx={{ width: 300 }}
-          style={{ border: 'none', width: 300 }}
-          renderInput={(params) => (
-            <TextField {...params} style={{ width: '300px' }} />
-          )}
-        />
-      ),
-      // onClick={handleClickOpen}
+      type: 'singleSelect',
+      valueOptions: getRoles,
+      onchange:{onChangeHandle},
     },
+
     {
       field: 'manager',
       headerName: 'Manager',
-      width: 300,
+      width: 250,
       headerClassName: 'super-app-theme--header',
       headerAlign: 'center',
     },
@@ -84,7 +102,7 @@ const Roles = (props) => {
           id: data[i].id,
           names: data[i].names,
           email: data[i].email,
-          role: data[i].roleId,
+          role: data[i].Role.name,
           manager: data[i].ManagerId.names,
         });
       } else {
@@ -92,7 +110,7 @@ const Roles = (props) => {
           id: data[i].id,
           names: data[i].names,
           email: data[i].email,
-          role: data[i].roleId,
+          role: data[i].Role.name,
           manager: data[i].ManagerId,
         });
       }
@@ -100,41 +118,51 @@ const Roles = (props) => {
     return emptyArray;
   };
   const row = rows();
-
   useEffect(() => {
     const func = async () => {
       await props.usersAction();
     };
     func();
+
+    const rolesFunction = async () => {
+      await props.userRoles();
+    };
+    rolesFunction();
   }, []);
+
+  // dispatch update email
+  const onChangeHandle = async(email) =>{
+    await props.updateRoles(email);
+  }
 
   return (
     <>
       <Sidebar sideBarData={sideBarData} />
       <TopBar />
-      <div style={{ height: '80vh', width: '70vw', marginLeft: '20%' }}>
-        <Box 
-        sx={{
-          height: '80vh',
-          width: '70vw',
-          '& .super-app-theme--header': {
-            backgroundColor: '#07539F',
-            color: 'white',
-            fontWeight: '600',
-          },
-        }}
+      <div style={{ height: '80vh', width: '78vw', marginLeft: '20%' }}>
+        <Box
+          sx={{
+            height: '80vh',
+            width: '78vw',
+            backgroundColor: '#ffffff',
+            '& .super-app-theme--header': {
+              backgroundColor: '#07539F',
+              color: 'white',
+              fontWeight: '600',
+            },
+          }}
         >
-
-        <DataGrid
-          rows={row}
-          getRowSpacing={getRowSpacing}
-          columns={columns}
-          pageSize={8}
-          rowsPerPageOptions={[8]}
-          style={{textAlign: 'center'}}
-        />
+          <DataGrid
+            rows={row}
+            getRowSpacing={getRowSpacing}
+            columns={columns}
+            pageSize={7}
+            onCellEditCommit = {(params)=> {
+              console.dir(params.email);
+              return params.email}}
+            rowsPerPageOptions={[8]}
+          />
         </Box>
-        
       </div>
     </>
   );
@@ -148,4 +176,6 @@ const mapStatesToProps = (state) => {
 
 export default connect(mapStatesToProps, {
   usersAction,
+  userRoles,
+  updateRoles,
 })(Roles);
