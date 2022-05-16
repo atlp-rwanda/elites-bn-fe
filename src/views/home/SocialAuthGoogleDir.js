@@ -7,7 +7,7 @@ import { Container } from '@mui/material';
 const SocialAuthGoogleDir = () => {
   const { token } = useParams();
   const newToken = token.replace(/\|+/gi, '.');
-  const userToken = localStorage.setItem('user', newToken);
+  const userToken = localStorage.setItem('userToken', newToken);
 
   return (
     <>
