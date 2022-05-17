@@ -1,4 +1,9 @@
-import { SET_TRIP_REQUESTS } from '../types';
+import {
+  APPROVE_TRIP_REQUEST,
+  DELETE_TRIP_REQUEST,
+  REJECT_TRIP_REQUEST,
+  SET_TRIP_REQUESTS,
+} from '../types';
 
 const initialState = {
   tripRequests: [],
@@ -11,6 +16,21 @@ export default function (state = initialState, action) {
       return {
         ...state,
         tripRequests: action.payload,
+        loading: false,
+      };
+    case DELETE_TRIP_REQUEST:
+      return {
+        ...state,
+        loading: false,
+      };
+    case APPROVE_TRIP_REQUEST:
+      return {
+        ...state,
+        loading: false,
+      };
+    case REJECT_TRIP_REQUEST:
+      return {
+        ...state,
         loading: false,
       };
     default:

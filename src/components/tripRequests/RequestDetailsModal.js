@@ -5,10 +5,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ButtonGroup, Stack } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import CloseIcon from '@mui/icons-material/Close';
 import './requestsTable.scss';
+import {
+  approveTripRequest,
+  rejectTripRequest,
+} from '../../redux/actions/tripRequestsActions';
 
 const classes = {
   modal: {
@@ -77,6 +81,7 @@ export default function BasicModal(props) {
   const { show, close, tripRequest } = props;
 
   const entireState = useSelector((state) => state);
+  const dispatch = useDispatch();
   const tripRequestsState = entireState.allTripRequests;
   const locationsState = entireState.allLocations;
   const currentUserState = entireState.currentUser;
@@ -90,6 +95,7 @@ export default function BasicModal(props) {
 
   if (currentTripRequest.length === 1) {
     const {
+      id,
       names,
       returnDate,
       departDate,
@@ -125,6 +131,21 @@ export default function BasicModal(props) {
         return thisLocationName;
       });
     }
+
+    const handleApprove = (tripId) => {
+      if (
+        window.confirm('Are you sure you want to approve this trip request?')
+      ) {
+        dispatch(approveTripRequest(tripId));
+      }
+    };
+    const handleReject = (tripId) => {
+      if (
+        window.confirm('Are you sure you want to reject this trip request?')
+      ) {
+        dispatch(rejectTripRequest(tripId));
+      }
+    };
     return (
       <div>
         <Modal
@@ -169,7 +190,7 @@ export default function BasicModal(props) {
                   <img
                     style={classes.userInfo.userImg}
                     alt="user"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcg4Y51XjQ-zSf87X4nUPTQzsF83eFdZswTg&usqp=CAU"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_d3SP2vKOeGFVESn5rk6xnPiQ0naW2e-ldA&usqp=CAU"
                   />
                 </Box>
                 <Box flex={1} display="flex" alignItems="center">
@@ -284,10 +305,20 @@ export default function BasicModal(props) {
               {status === 'pending' ? (
                 currentUser.roleId === 3 ? (
                   <>
-                    <Button variant="contained" size="medium" color="success">
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      color="success"
+                      onClick={() => handleApprove(id)}
+                    >
                       Approve
                     </Button>
-                    <Button variant="contained" size="medium" color="secondary">
+                    <Button
+                      variant="contained"
+                      size="medium"
+                      color="secondary"
+                      onClick={() => handleReject(id)}
+                    >
                       Reject
                     </Button>
                   </>

@@ -6,7 +6,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import BasicModal from './RequestDetailsModal';
-import setTripRequests from '../../redux/actions/tripRequestsActions';
+import setTripRequests, {
+  deleteTripRequest,
+} from '../../redux/actions/tripRequestsActions';
 import SkeletonTable from './SkeletonTable';
 import setLocations from '../../redux/actions/locationsActions';
 import './requestsTable.scss';
@@ -14,7 +16,7 @@ import './requestsTable.scss';
 const RequestsTable = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentTripRequest, setCurrentTripRequest] = useState('');
-  /// ///////
+
   let userColumns;
   let rows;
   const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
@@ -42,23 +44,9 @@ const RequestsTable = () => {
   };
 
   const handleDelete = async (id) => {
-    const res = await axios
-      .delete(
-        `https://elites-barefoot-nomad.herokuapp.com/api/v1/trips/${id}`,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(
-      `%cdelete clicked id:${id}`,
-      'color:green;font-size:20px;background-color:white',
-      res
-    );
+    if (window.confirm('Are you sure you want to delete this trip request?')) {
+      dispatch(deleteTripRequest(id));
+    }
   };
 
   const fetchLLocations = async () => {
@@ -74,8 +62,6 @@ const RequestsTable = () => {
     fetchTripRequests();
     fetchLLocations();
   }, []);
-
-  /// ////////////
 
   userColumns =
     currentUser.roleId === 5
