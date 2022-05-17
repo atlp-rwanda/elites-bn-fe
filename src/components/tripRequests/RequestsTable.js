@@ -3,19 +3,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import BasicModal from './RequestDetailsModal';
-import setTripRequests, {
-  deleteTripRequest,
-} from '../../redux/actions/tripRequestsActions';
+import setTripRequests from '../../redux/actions/tripRequestsActions';
 import SkeletonTable from './SkeletonTable';
 import setLocations from '../../redux/actions/locationsActions';
 import './requestsTable.scss';
+import ConfirmModal from '../confirmModal/ConfirmModal';
 
 const RequestsTable = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showBasicModal, setShowBasicModal] = useState(false);
   const [currentTripRequest, setCurrentTripRequest] = useState('');
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [confirmModalData, setConfirmModalData] = useState('');
 
   let userColumns;
   let rows;
@@ -41,12 +42,6 @@ const RequestsTable = () => {
         console.log(err);
       });
     dispatch(setTripRequests(res.data.payload));
-  };
-
-  const handleDelete = async (id) => {
-    if (window.confirm('Are you sure you want to delete this trip request?')) {
-      dispatch(deleteTripRequest(id));
-    }
   };
 
   const fetchLLocations = async () => {
@@ -97,18 +92,35 @@ const RequestsTable = () => {
                   className="viewButton"
                   onClick={() => {
                     setCurrentTripRequest(params.row.id);
-                    setShowModal(true);
+                    setShowBasicModal(true);
                   }}
                 >
                   View
                 </div>
                 {params.row.status == 'pending' && (
-                  <div
-                    className="deleteButton"
-                    onClick={() => handleDelete(params.row.id)}
-                  >
-                    Delete
-                  </div>
+                  <>
+                    <Button
+                      variant="primary"
+                      size="small"
+                      className="editButton"
+                    >
+                      Edit
+                    </Button>
+                    <div
+                      className="deleteButton"
+                      onClick={() => {
+                        setConfirmModalData({
+                          message:
+                            'Are you sure you want to delete this trip request?',
+                          action: 'delete',
+                          id: params.row.id,
+                        });
+                        setShowConfirmModal(true);
+                      }}
+                    >
+                      Delete
+                    </div>
+                  </>
                 )}
               </div>
             ),
@@ -157,7 +169,7 @@ const RequestsTable = () => {
                   className="viewButton"
                   onClick={() => {
                     setCurrentTripRequest(params.row.id);
-                    setShowModal(true);
+                    setShowBasicModal(true);
                   }}
                 >
                   View
@@ -204,10 +216,17 @@ const RequestsTable = () => {
           </div>
         </div>
         <BasicModal
-          show={showModal}
-          close={() => setShowModal(false)}
+          show={showBasicModal}
+          close={() => setShowBasicModal(false)}
           tripRequest={currentTripRequest}
         />
+        {confirmModalData && (
+          <ConfirmModal
+            showModal={showConfirmModal}
+            close={() => setShowConfirmModal(false)}
+            modalData={confirmModalData}
+          />
+        )}
       </>
     );
   }

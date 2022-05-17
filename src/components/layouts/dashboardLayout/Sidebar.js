@@ -105,7 +105,7 @@ const Sidebar = () => {
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to log out to barefoot Nomad?
+            Are you sure you want to log out of barefoot Nomad?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

@@ -9,10 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import CloseIcon from '@mui/icons-material/Close';
 import './requestsTable.scss';
-import {
-  approveTripRequest,
-  rejectTripRequest,
-} from '../../redux/actions/tripRequestsActions';
+import ConfirmModal from '../confirmModal/ConfirmModal';
 
 const classes = {
   modal: {
@@ -79,6 +76,8 @@ const classes = {
 
 export default function BasicModal(props) {
   const { show, close, tripRequest } = props;
+  const [showConfirmModal, setShowConfirmModal] = React.useState(false);
+  const [confirmModalData, setConfirmModalData] = React.useState('');
 
   const entireState = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -132,20 +131,6 @@ export default function BasicModal(props) {
       });
     }
 
-    const handleApprove = (tripId) => {
-      if (
-        window.confirm('Are you sure you want to approve this trip request?')
-      ) {
-        dispatch(approveTripRequest(tripId));
-      }
-    };
-    const handleReject = (tripId) => {
-      if (
-        window.confirm('Are you sure you want to reject this trip request?')
-      ) {
-        dispatch(rejectTripRequest(tripId));
-      }
-    };
     return (
       <div>
         <Modal
@@ -257,11 +242,6 @@ export default function BasicModal(props) {
                     display="flex"
                     alignItems="center"
                   >
-                    {/* Kigali
-                    <DoubleArrowIcon sx={classes.arrowIcon} />
-                    Rwanda
-                    <DoubleArrowIcon sx={classes.arrowIcon} />
-                    Kenya */}
                     {!Array.isArray(destinationNames)
                       ? destinationNames
                       : destinationNames.map((destination, i, arr) => (
@@ -309,7 +289,15 @@ export default function BasicModal(props) {
                       variant="contained"
                       size="medium"
                       color="success"
-                      onClick={() => handleApprove(id)}
+                      onClick={() => {
+                        setConfirmModalData({
+                          message:
+                            'Are you sure you want to APPROVE this trip request?',
+                          action: 'approve',
+                          id,
+                        });
+                        setShowConfirmModal(true);
+                      }}
                     >
                       Approve
                     </Button>
@@ -317,7 +305,15 @@ export default function BasicModal(props) {
                       variant="contained"
                       size="medium"
                       color="secondary"
-                      onClick={() => handleReject(id)}
+                      onClick={() => {
+                        setConfirmModalData({
+                          message:
+                            'Are you sure you want to REJECT this trip request?',
+                          action: 'reject',
+                          id,
+                        });
+                        setShowConfirmModal(true);
+                      }}
                     >
                       Reject
                     </Button>
@@ -367,6 +363,13 @@ export default function BasicModal(props) {
             </ButtonGroup>
           </Box>
         </Modal>
+        {confirmModalData && (
+          <ConfirmModal
+            showModal={showConfirmModal}
+            close={() => setShowConfirmModal(false)}
+            modalData={confirmModalData}
+          />
+        )}
       </div>
     );
   }

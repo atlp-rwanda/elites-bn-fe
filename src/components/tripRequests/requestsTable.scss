@@ -68,11 +68,15 @@
       border: 1px dotted rgba(0, 0, 139, 0.596);
       cursor: pointer;
     }
+    .viewButton:hover {
+      background-color: #c7eefc;
+      border: 1px solid rgba(0, 0, 139, 0.596);
+    }
     .editButton {
       padding: 2px 5px;
       border-radius: 5px;
       color: white;
-      border: 1px solid rgba(2, 27, 97, 0.596);
+      border: 1px solid rgba(147, 159, 192, 0.596);
       background: #4560fa;
       cursor: pointer;
     }
@@ -83,6 +87,11 @@
       color: crimson;
       border: 1px dotted rgba(220, 20, 60, 0.6);
       cursor: pointer;
+    }
+    .deleteButton:hover {
+      color: white;
+      background-color: #e93219;
+      border: 1px solid rgba(226, 16, 16, 0.596);
     }
   }
 }
