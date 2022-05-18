@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ButtonGroup, Stack } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import CloseIcon from '@mui/icons-material/Close';
 import './requestsTable.scss';
@@ -80,7 +80,6 @@ export default function BasicModal(props) {
   const [confirmModalData, setConfirmModalData] = React.useState('');
 
   const entireState = useSelector((state) => state);
-  const dispatch = useDispatch();
   const tripRequestsState = entireState.allTripRequests;
   const locationsState = entireState.allLocations;
   const currentUserState = entireState.currentUser;
@@ -279,9 +278,6 @@ export default function BasicModal(props) {
                 paddingTop: '1rem',
               }}
             >
-              {/* <Button variant="contained" size="small" color="primary">
-                Edit
-              </Button> */}
               {status === 'pending' ? (
                 currentUser.roleId === 3 ? (
                   <>

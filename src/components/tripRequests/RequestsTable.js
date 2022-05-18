@@ -207,8 +207,7 @@ const RequestsTable = () => {
                 className="datagrid"
                 rows={rows}
                 columns={userColumns}
-                pageSize={8}
-                rowsPerPageOptions={[6]}
+                pageSize={9}
                 disableSelectionOnClick
                 sx={{ backgroundColor: 'white' }}
               />

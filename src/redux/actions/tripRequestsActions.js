@@ -6,8 +6,6 @@ import {
   SET_TRIP_REQUESTS,
 } from '../types';
 
-const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
-
 const setTripRequests = (tripRequests) => ({
   type: SET_TRIP_REQUESTS,
   payload: tripRequests,
@@ -25,8 +23,9 @@ const tripRejected = () => ({
   type: REJECT_TRIP_REQUEST,
 });
 
-export const loadTripRequests = () =>
-  function (dispatch) {
+export const loadTripRequests = () => {
+  const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
+  return function (dispatch) {
     axios
       .get('https://elites-barefoot-nomad.herokuapp.com/api/v1/trips', {
         headers: {
@@ -35,13 +34,14 @@ export const loadTripRequests = () =>
       })
       .then((res) => {
         dispatch(setTripRequests(res.data.payload));
-        console.log('%cdispatched', 'background-color:teal', res.data.payload);
       })
       .catch((err) => console.log(err));
   };
+};
 
-export const deleteTripRequest = (id) =>
+export const deleteTripRequest = (id, token) =>
   function (dispatch) {
+    console.log('%cTokennn in Actions==', 'background-color:green', token);
     axios
       .delete(
         `https://elites-barefoot-nomad.herokuapp.com/api/v1/trips/${id}`,
@@ -58,7 +58,7 @@ export const deleteTripRequest = (id) =>
       .catch((err) => console.log(err));
   };
 
-export const approveTripRequest = (id) =>
+export const approveTripRequest = (id, token) =>
   function (dispatch) {
     axios
       .patch(
@@ -77,7 +77,7 @@ export const approveTripRequest = (id) =>
       .catch((err) => console.log(err));
   };
 
-export const rejectTripRequest = (id) =>
+export const rejectTripRequest = (id, token) =>
   function (dispatch) {
     axios
       .patch(

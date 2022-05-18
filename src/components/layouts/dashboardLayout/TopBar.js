@@ -41,7 +41,8 @@ const TopBar = () => {
   const { pathname } = useLocation();
 
   const getCurrentUser = () => {
-    const token = localStorage.getItem('userToken');
+    const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
+    console.log('%cTokenInTopBar====', 'background-color:green', token);
     let currentUserInfo;
     if (token) {
       const decoded = jwtDecode(token);
@@ -69,6 +70,7 @@ const TopBar = () => {
         names: decoded.names,
         roleName,
         roleId: decoded.role,
+        token,
       };
       dispatch(setCurrentUser(currentUserInfo));
     }

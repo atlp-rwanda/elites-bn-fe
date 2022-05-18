@@ -4,7 +4,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import { Button } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   approveTripRequest,
   deleteTripRequest,
@@ -12,22 +12,25 @@ import {
 } from '../../redux/actions/tripRequestsActions';
 
 const ConfirmModal = (props) => {
+  const entireState = useSelector((state) => state);
   const dispatch = useDispatch();
+  const currentUserState = entireState.currentUser;
   const { showModal, close, modalData } = props;
   const { message, id, action } = modalData;
+  const { token } = currentUserState.currentUser;
 
   const handleAction = () => {
     if (action === 'delete') {
-      dispatch(deleteTripRequest(id));
+      dispatch(deleteTripRequest(id, token));
       close();
     }
     if (action === 'approve') {
-      dispatch(approveTripRequest(id));
+      dispatch(approveTripRequest(id, token));
       console.log('%cIdddd=', 'background-color:teal', id);
       close();
     }
     if (action === 'reject') {
-      dispatch(rejectTripRequest(id));
+      dispatch(rejectTripRequest(id, token));
       close();
     }
   };
