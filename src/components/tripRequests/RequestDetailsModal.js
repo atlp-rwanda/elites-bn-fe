@@ -244,7 +244,7 @@ export default function BasicModal(props) {
                     {!Array.isArray(destinationNames)
                       ? destinationNames
                       : destinationNames.map((destination, i, arr) => (
-                          <React.Fragment key={destination}>
+                          <React.Fragment key={i}>
                             {destination}
                             {i + 1 === arr.length ? (
                               ' .'

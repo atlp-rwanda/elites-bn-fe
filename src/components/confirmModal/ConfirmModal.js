@@ -10,6 +10,7 @@ import {
   deleteTripRequest,
   rejectTripRequest,
 } from '../../redux/actions/tripRequestsActions';
+import { showLoader } from '../../redux/actions/loaderActions';
 
 const ConfirmModal = (props) => {
   const entireState = useSelector((state) => state);
@@ -23,15 +24,18 @@ const ConfirmModal = (props) => {
     if (action === 'delete') {
       dispatch(deleteTripRequest(id, token));
       close();
+      dispatch(showLoader());
     }
     if (action === 'approve') {
       dispatch(approveTripRequest(id, token));
       console.log('%cIdddd=', 'background-color:teal', id);
       close();
+      dispatch(showLoader());
     }
     if (action === 'reject') {
       dispatch(rejectTripRequest(id, token));
       close();
+      dispatch(showLoader());
     }
   };
   return (

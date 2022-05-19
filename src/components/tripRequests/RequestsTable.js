@@ -11,6 +11,7 @@ import SkeletonTable from './SkeletonTable';
 import setLocations from '../../redux/actions/locationsActions';
 import './requestsTable.scss';
 import ConfirmModal from '../confirmModal/ConfirmModal';
+import Loader from '../progressBar/Loader';
 
 const RequestsTable = () => {
   const [showBasicModal, setShowBasicModal] = useState(false);
@@ -29,9 +30,12 @@ const RequestsTable = () => {
 
   const { tripRequests, loading } = tripRequestsState;
   const { locations } = locationsState;
+  const { loaderOpen } = entireState.loader;
+
   const dispatch = useDispatch();
 
   const fetchTripRequests = async () => {
+    console.log('%cLoader', 'background-color:black', loaderOpen);
     const res = await axios
       .get('https://elites-barefoot-nomad.herokuapp.com/api/v1/trips', {
         headers: {
@@ -226,6 +230,7 @@ const RequestsTable = () => {
             modalData={confirmModalData}
           />
         )}
+        {loaderOpen && <Loader />}
       </>
     );
   }

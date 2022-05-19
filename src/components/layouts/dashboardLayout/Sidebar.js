@@ -68,7 +68,7 @@ const Sidebar = () => {
         <List>
           {menuData.map((data) => (
             <ListItem
-              className={pathname === data.route && 'active'}
+              className={pathname === data.route ? 'active' : ''}
               key={data.title}
               disablePadding
             >
@@ -78,7 +78,7 @@ const Sidebar = () => {
                     {data.icon}
                   </ListItemIcon>
                   <ListItemText
-                    sx={{ display: { xs: 'none', sm: 'block' } }}
+                    sx={{ display: { md: 'none', lg: 'block' } }}
                     primary={data.title}
                   />
                 </ListItemButton>
@@ -88,7 +88,7 @@ const Sidebar = () => {
                     {data.icon}
                   </ListItemIcon>
                   <ListItemText
-                    sx={{ display: { xs: 'none', sm: 'block' } }}
+                    sx={{ display: { md: 'none', lg: 'block' } }}
                     primary={data.title}
                   />
                 </ListItemButton>

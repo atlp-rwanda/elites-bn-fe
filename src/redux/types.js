@@ -9,6 +9,10 @@ export const SET_TRIPS_OWNERS = 'SET_TRIPS_OWNERS';
 export const ACCOMMODATIONS_ERROR = 'ACCOMMODATIONS_ERROR';
 export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR';
 export const OPEN_SNACKBAR = 'OPEN_SNACKBAR';
+
+export const OPEN_LOADER = 'OPEN_LOADER';
+export const CLOSE_LOADER = 'CLOSE_LOADER';
+
 export const LOGOUT = 'LOGOUT';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 

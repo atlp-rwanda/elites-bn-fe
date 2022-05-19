@@ -17,7 +17,7 @@ export const login = (email, password) => async (dispatch) => {
       localStorage.setItem('roleId', JSON.stringify(decoded.role));
       dispatch({
         type: LoginTypes.LOGIN_SUCCESS,
-        payload: { token: token, role: decoded.role },
+        payload: { token, role: decoded.role },
       });
     }
   } catch (err) {

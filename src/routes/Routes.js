@@ -8,8 +8,6 @@ import TripRequests from '../components/tripRequests/TripRequests';
 import NotFoundPage from '../views/notFound/NotFoundPage';
 import ProtectRoute from './protectedRoutes';
 import Login from '../views/home/Login';
-import SuccessLogin from '../views/home/SuccessLogin';
-import Unauthorized from './unauthorizedRoutes';
 import Signup from '../components/signup/Signup';
 import SignupSuccess from '../components/signup/SignupSuccess';
 import SocialAuthGoogleDir from '../views/home/SocialAuthGoogleDir';
