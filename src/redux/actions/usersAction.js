@@ -3,11 +3,12 @@ import { actionTypes } from '../types';
 // import jwt_decode from "jwt-decode";
 
 const API_URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/';
-const UPDATE_ROLE_URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/';
+const UPDATE_ROLE_URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/updateRole';
 const URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/roles';
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MSwibmFtZXMiOiJZQU5HRU5FWUUgUGF0cmljayIsImlhdCI6MTY1MjYxNDcyMCwiZXhwIjoxNjgzNzE4NzIwfQ.U88PyYKxXEpS0iEXu7_04K2sH8A-dkb5UOouhYJ2rCw';
+// const token =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MSwibmFtZXMiOiJZQU5HRU5FWUUgUGF0cmljayIsImlhdCI6MTY1MjYxNDcyMCwiZXhwIjoxNjgzNzE4NzIwfQ.U88PyYKxXEpS0iEXu7_04K2sH8A-dkb5UOouhYJ2rCw';
 // const authorization = `Authorization: Bearer ${token}` ;
+const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
 export const usersAction = () => async (dispatch) => {
   try {
     const response = await axios.get(API_URL, {
@@ -21,7 +22,6 @@ export const usersAction = () => async (dispatch) => {
       });
     }
   } catch (err) {
-    console.log(err);
     dispatch({
       type: actionTypes.LOAD_USERS_FAIL,
       payload: 'failed to load users',
@@ -29,11 +29,11 @@ export const usersAction = () => async (dispatch) => {
   }
 };
 
-export const userRoles = (email) => async (dispatch) => {
+export const userRoles = () => async (dispatch) => {
   try {
     const res = await axios.get(URL, {
       headers: { Authorization: `Bearer ${token}` },
-    }, { email });
+    },);
     if (res) {
       dispatch({
         type: actionTypes.SET_ROLES,
@@ -49,11 +49,12 @@ export const userRoles = (email) => async (dispatch) => {
   }
 };
 
-export const updateRoles = () => async (dispatch) => {
+export const updateRoles = (id, email) => async (dispatch) => {
   try {
-    const res = await axios.patch(UPDATE_ROLE_URL, {
-      headers: { Authorization: `Bearer ${token}` },
-    }, );
+    const res = await axios.patch(`${UPDATE_ROLE_URL}/${id}`, {'email' :email}, {
+      headers: { Authorization: `Bearer ${token}`},
+    });
+    console.log(res);
     if (res) {
       dispatch({
         type: actionTypes.UPDATE_ROLE,

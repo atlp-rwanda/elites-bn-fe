@@ -36,6 +36,10 @@ const AllRoutes = () => (
         </ProtectRoute>
       }
     />
+     <Route exact path="/users"  element={
+            <ProtectRoute redirectTo='/login'>
+              <Roles/>
+            </ProtectRoute>} />
     <Route path="/signup" element={<Signup />} />
     <Route path="/signup/success" element={<SignupSuccess />} />
     <Route
