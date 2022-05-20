@@ -3,7 +3,8 @@ import { actionTypes } from '../types';
 // import jwt_decode from "jwt-decode";
 
 const API_URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/';
-const UPDATE_ROLE_URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/updateRole';
+const UPDATE_ROLE_URL =
+  'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/updateRole';
 const URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/roles';
 // const token =
 //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MSwibmFtZXMiOiJZQU5HRU5FWUUgUGF0cmljayIsImlhdCI6MTY1MjYxNDcyMCwiZXhwIjoxNjgzNzE4NzIwfQ.U88PyYKxXEpS0iEXu7_04K2sH8A-dkb5UOouhYJ2rCw';
@@ -33,7 +34,7 @@ export const userRoles = () => async (dispatch) => {
   try {
     const res = await axios.get(URL, {
       headers: { Authorization: `Bearer ${token}` },
-    },);
+    });
     if (res) {
       dispatch({
         type: actionTypes.SET_ROLES,
@@ -51,9 +52,13 @@ export const userRoles = () => async (dispatch) => {
 
 export const updateRoles = (id, email) => async (dispatch) => {
   try {
-    const res = await axios.patch(`${UPDATE_ROLE_URL}/${id}`, {'email' :email}, {
-      headers: { Authorization: `Bearer ${token}`},
-    });
+    const res = await axios.patch(
+      `${UPDATE_ROLE_URL}/${id}`,
+      { email: email },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     console.log(res);
     if (res) {
       dispatch({
@@ -69,5 +74,3 @@ export const updateRoles = (id, email) => async (dispatch) => {
     });
   }
 };
-
-

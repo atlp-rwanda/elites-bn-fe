@@ -71,9 +71,9 @@ describe('usersStore()', () => {
 
   it('dispatches FAILED_TO_UPDATE', () => {
     mock.onPatch(UPDATE_ROLE_URL,{
-        headers: { Authorization: `Bearer ${token}`},
+        headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6MSwibmFtZXMiOiJZQU5HRU5FWUUgUGF0cmljayIsImlhdCI6MTY1MjYxNDcyMCwiZXhwIjoxNjgzNzE4NzIwfQ.U88PyYKxXEpS0iEXu7_04K2sH8A-dkb5UOouhYJ2rCw`},
       }).reply(404);
-    store.dispatch(updateRoles(3,'niyonzimadeus@gmail.com')).then(() => {
+    store.dispatch(updateRoles(3,'sendefour@gmail.com')).then(() => {
       let expectedActions = [
         {
           type: actionTypes.FAILED_TO_UPDATE,
