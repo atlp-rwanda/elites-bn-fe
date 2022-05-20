@@ -69,7 +69,10 @@ describe('tripRequestsStore(creds)', () => {
     store.clearActions();
     mock.onGet(API_URL).reply(200);
     store.dispatch(loadTripRequests());
-    const expectedActions = [];
+    store.dispatch(setTripRequests(allTripRequests));
+    const expectedActions = [
+      { type: SET_TRIP_REQUESTS, payload: allTripRequests },
+    ];
     expect(store.getActions()).toEqual(expectedActions);
   });
 

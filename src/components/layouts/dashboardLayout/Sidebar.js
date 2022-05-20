@@ -78,7 +78,7 @@ const Sidebar = () => {
                     {data.icon}
                   </ListItemIcon>
                   <ListItemText
-                    sx={{ display: { md: 'none', lg: 'block' } }}
+                    sx={{ display: { xs: 'none', md: 'block' } }}
                     primary={data.title}
                   />
                 </ListItemButton>
@@ -88,7 +88,7 @@ const Sidebar = () => {
                     {data.icon}
                   </ListItemIcon>
                   <ListItemText
-                    sx={{ display: { md: 'none', lg: 'block' } }}
+                    sx={{ display: { xs: 'none', md: 'block' } }}
                     primary={data.title}
                   />
                 </ListItemButton>

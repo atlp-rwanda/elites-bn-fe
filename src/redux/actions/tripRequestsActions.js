@@ -5,6 +5,7 @@ import {
   DELETE_TRIP_REQUEST,
   SET_TRIP_REQUESTS,
 } from '../types';
+import { openGlobalSnackBar } from './globalSnackBarActions';
 import { closeLoader } from './loaderActions';
 
 export const setTripRequests = (tripRequests) => ({
@@ -56,6 +57,12 @@ export const deleteTripRequest = (id, token) =>
         dispatch(tripDeleted());
         dispatch(loadTripRequests());
         dispatch(closeLoader());
+        dispatch(
+          openGlobalSnackBar({
+            message: 'Trip request deleted successfully!',
+            severity: 'success',
+          })
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -76,6 +83,12 @@ export const approveTripRequest = (id, token) =>
         dispatch(tripApproved());
         dispatch(loadTripRequests());
         dispatch(closeLoader());
+        dispatch(
+          openGlobalSnackBar({
+            message: 'Trip request approved successfully!',
+            severity: 'success',
+          })
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -96,6 +109,12 @@ export const rejectTripRequest = (id, token) =>
         dispatch(tripRejected());
         dispatch(loadTripRequests());
         dispatch(closeLoader());
+        dispatch(
+          openGlobalSnackBar({
+            message: 'Trip request rejected successfully!',
+            severity: 'success',
+          })
+        );
       })
       .catch((err) => console.log(err));
   };

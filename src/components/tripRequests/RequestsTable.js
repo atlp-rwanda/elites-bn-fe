@@ -26,6 +26,7 @@ const RequestsTable = () => {
   const tripRequestsState = entireState.allTripRequests;
   const locationsState = entireState.allLocations;
   const curentUserState = entireState.currentUser;
+
   const { currentUser } = curentUserState;
 
   const { tripRequests, loading } = tripRequestsState;

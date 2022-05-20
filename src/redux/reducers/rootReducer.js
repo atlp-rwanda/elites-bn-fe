@@ -7,6 +7,7 @@ import SnackBarReducer from './snackbarReduces';
 import signupReducer from './signupReducer';
 import tripRequestsReducer from './tripRequestsReducer';
 import loaderReducer from './loaderReducer';
+import globalSnackBarReducer from './globalSnackBarReducer';
 
 export default combineReducers({
   allAccommodations: accommodationReducer,
@@ -15,6 +16,7 @@ export default combineReducers({
   login: loginReducers,
   SnackBar: SnackBarReducer,
   loader: loaderReducer,
+  globalSnackBar: globalSnackBarReducer,
   signup: signupReducer,
   currentUser: currentUserReducer,
 });
