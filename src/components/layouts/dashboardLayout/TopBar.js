@@ -10,10 +10,13 @@ import {
 import { Notifications } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useEffect } from 'react';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
-import setCurrentUser from '../../../redux/actions/currentUserActions';
+import setCurrentUser, {
+  setCurrentUserProfile,
+} from '../../../redux/actions/currentUserActions';
 
 const Search = styled('div')(({ theme }) => ({
   backgroundColor: 'white',
@@ -37,12 +40,34 @@ const Icons = styled(Box)(({ theme }) => ({
 const TopBar = () => {
   const currentUserState = useSelector((state) => state.currentUser);
   const { currentUser } = currentUserState;
+  const { currentUserProfile } = currentUserState;
+  // console.log(
+  //   '%cCurrentUserProfile====',
+  //   'background-color:green',
+  //   currentUserProfile
+  // );
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
+  const getCurrentUserProfile = async (id, token) => {
+    console.log('%cTokenInGetProfile====', 'background-color:green', token);
+    const res = await axios
+      .get(
+        `https://elites-barefoot-nomad.herokuapp.com/api/v1/profiles/${id}`,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+    dispatch(setCurrentUserProfile(res.data.payload));
+  };
+
   const getCurrentUser = () => {
     const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
-    console.log('%cTokenInTopBar====', 'background-color:green', token);
     let currentUserInfo;
     if (token) {
       const decoded = jwtDecode(token);
@@ -67,12 +92,14 @@ const TopBar = () => {
           roleName = undefined;
       }
       currentUserInfo = {
+        id: decoded.id,
         names: decoded.names,
         roleName,
         roleId: decoded.role,
         token,
       };
       dispatch(setCurrentUser(currentUserInfo));
+      getCurrentUserProfile(decoded.id, token);
     }
   };
 
@@ -154,7 +181,7 @@ const TopBar = () => {
           </Box>
           <Avatar
             sx={{ width: { xs: 30, sm: 40 }, height: { xs: 30, sm: 40 } }}
-            src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src={currentUserProfile?.picture}
           />
         </Icons>
       </Stack>

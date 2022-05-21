@@ -85,158 +85,167 @@ const LoginComponent = (props) => {
 
   const classes = useStyles();
   return (
-    <div className={classes.loginPage}>
-      <Box
-        sx={{
-          width: '100vw',
-          height: '100vh',
-          paddingTop: '50% auto',
-        }}
-        style={{ paddingTop: '20% auto' }}
-      >
-        <Container className={classes.formContainer}>
-          <Paper className="paper-login">
-            <Typography component="h1" variant="h5" className={classes.title}>
-              Sign In to Your Account
-            </Typography>
-            <div className={classes.social}>
-              <GoogleIcon className={classes.googleIcon} onClick={googleDir} />
-              <FacebookRoundedIcon
-                className={classes.facebook}
-                onClick={facebook}
-              />
-            </div>
-            <br />
-            <Typography className={classes.social}>
-              Or use your email account
-            </Typography>
-            <ValidatorForm form onSubmit={handleLogin}>
-              <FormControl margin="normal" required fullWidth>
-                <TextValidator
-                  label="email"
-                  name="Email"
-                  variant="filled"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <EmailIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                  value={email}
-                  onChange={onChangeEmail}
-                  style={{ backgroundColor: '#F4F8F5', width: '300px' }}
-                  validators={['required', 'isEmail']}
-                  errorMessages={[
-                    'This field is required',
-                    'email is not valid',
-                  ]}
-                />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <TextValidator
-                  label="Password"
-                  name="password"
-                  type="password"
-                  variant="filled"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <LockIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                  value={password}
-                  onChange={onChangePassword}
-                  validators={['required']}
-                  style={{ backgroundColor: '#F4F8F5', width: '300px' }}
-                  errorMessages={['Password is required.']}
-                />
-              </FormControl>
-              <Link
-                href="#"
-                underline="none"
-                style={{ color: '#07539F', marginBottom: '20px' }}
-              >
-                {'Forgot Password?'}
-              </Link>
-              <br />
-              <LoadingButton
-                variant="contained"
-                type="submit"
-                sx={{ color: 'white' }}
-                loading={isLoading}
-                style={{
-                  borderRadius: '20px',
-                  textAlign: 'center',
-                  margin: '10px',
-                  width: '200px',
-                  color: 'white,',
-                  borderColor: 'white',
-                  backgroundColor: '#07539F',
-                }}
-              >
-                Sign In
-              </LoadingButton>
-            </ValidatorForm>
-          </Paper>
-        </Container>
-      </Box>
-
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
-        open={props.SnackBar.SnackbarOpen}
-        autoHideDuration={5000}
-        onClose={handleClose}
-      >
-        <Alert
-          onClose={handleClose}
-          severity={props.SnackBar.severityMessage}
-          sx={{ width: '100%' }}
+    <>
+      <div className={classes.loginPage}>
+        <Box
+          sx={{
+            width: '100vw',
+            height: '100vh',
+            paddingTop: '50% auto',
+          }}
+          style={{ paddingTop: '20% auto' }}
         >
-          {props.SnackBar.SnackbarMessage}
-        </Alert>
-      </Snackbar>
-      <Box
-        sx={{
-          width: '40vw',
-          height: '100vh',
-          backgroundColor: '#07539F',
-          ['@media (max-width:924px)']: {
-            display: 'none',
-          },
-        }}
-      >
-        <div className={classes.rightSideDiv}>
-          <div className={classes.backgroundDiv}></div>
-          <Typography variant="h4" gutterBottom className={classes.rightBanner}>
-            Hello Friend!
-          </Typography>
-          <div className={classes.rightBannerParagraph}>
-            <Typography paragraph>
-              Enter your personal details and start your journey with us
-            </Typography>
-          </div>
+          <Container className={classes.formContainer}>
+            <Paper className="paper-login">
+              <Typography component="h1" variant="h5" className={classes.title}>
+                Sign In to Your Account
+              </Typography>
+              <div className={classes.social}>
+                <GoogleIcon
+                  className={classes.googleIcon}
+                  onClick={googleDir}
+                />
+                <FacebookRoundedIcon
+                  className={classes.facebook}
+                  onClick={facebook}
+                />
+              </div>
+              <br />
+              <Typography className={classes.social}>
+                Or use your email account
+              </Typography>
+              <ValidatorForm form onSubmit={handleLogin}>
+                <FormControl margin="normal" required fullWidth>
+                  <TextValidator
+                    label="email"
+                    name="Email"
+                    variant="filled"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <EmailIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                    value={email}
+                    onChange={onChangeEmail}
+                    style={{ backgroundColor: '#F4F8F5', width: '300px' }}
+                    validators={['required', 'isEmail']}
+                    errorMessages={[
+                      'This field is required',
+                      'email is not valid',
+                    ]}
+                  />
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <TextValidator
+                    label="Password"
+                    name="password"
+                    type="password"
+                    variant="filled"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <LockIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                    value={password}
+                    onChange={onChangePassword}
+                    validators={['required']}
+                    style={{ backgroundColor: '#F4F8F5', width: '300px' }}
+                    errorMessages={['Password is required.']}
+                  />
+                </FormControl>
+                <Link
+                  href="#"
+                  underline="none"
+                  style={{ color: '#07539F', marginBottom: '20px' }}
+                >
+                  {'Forgot Password?'}
+                </Link>
+                <br />
+                <LoadingButton
+                  variant="contained"
+                  type="submit"
+                  sx={{ color: 'white' }}
+                  loading={isLoading}
+                  style={{
+                    borderRadius: '20px',
+                    textAlign: 'center',
+                    margin: '10px',
+                    width: '200px',
+                    color: 'white,',
+                    borderColor: 'white',
+                    backgroundColor: '#07539F',
+                  }}
+                >
+                  Sign In
+                </LoadingButton>
+              </ValidatorForm>
+            </Paper>
+          </Container>
+        </Box>
 
-          <Button
-            href="/signup"
-            variant="outlined"
-            style={{
-              borderRadius: '20px',
-              textAlign: 'center',
-              width: '50%',
-              marginLeft: '25%',
-              marginTop: '3%',
-              borderColor: 'white',
-              color: '#FFFFFF',
-              outlineColor: '#ffffff',
-            }}
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+          open={props.SnackBar.SnackbarOpen}
+          autoHideDuration={5000}
+          onClose={handleClose}
+        >
+          <Alert
+            onClose={handleClose}
+            severity={props.SnackBar.severityMessage}
+            sx={{ width: '100%' }}
           >
-            Sign Up
-          </Button>
-        </div>
-      </Box>
-    </div>
+            {props.SnackBar.SnackbarMessage}
+          </Alert>
+        </Snackbar>
+        <Box
+          sx={{
+            width: '40vw',
+            height: '100vh',
+            backgroundColor: '#07539F',
+            ['@media (max-width:924px)']: {
+              display: 'none',
+            },
+          }}
+        >
+          <div className={classes.rightSideDiv}>
+            <div className={classes.backgroundDiv}></div>
+            <Typography
+              variant="h4"
+              gutterBottom
+              className={classes.rightBanner}
+            >
+              Hello Friend!
+            </Typography>
+            <div className={classes.rightBannerParagraph}>
+              <Typography paragraph>
+                Enter your personal details and start your journey with us
+              </Typography>
+            </div>
+
+            <Button
+              href="/signup"
+              variant="outlined"
+              style={{
+                borderRadius: '20px',
+                textAlign: 'center',
+                width: '50%',
+                marginLeft: '25%',
+                marginTop: '3%',
+                borderColor: 'white',
+                color: '#FFFFFF',
+                outlineColor: '#ffffff',
+              }}
+            >
+              Sign Up
+            </Button>
+          </div>
+        </Box>
+      </div>
+    </>
   );
 };
 

@@ -103,6 +103,7 @@ export default function BasicModal(props) {
       tripReason,
       status,
       address,
+      User,
     } = currentTripRequest[0];
 
     const departLocationName = locations.filter(
@@ -174,7 +175,10 @@ export default function BasicModal(props) {
                   <img
                     style={classes.userInfo.userImg}
                     alt="user"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_d3SP2vKOeGFVESn5rk6xnPiQ0naW2e-ldA&usqp=CAU"
+                    src={
+                      User?.Profile?.picture ??
+                      'https://res.cloudinary.com/dpd4zujfh/image/upload/v1653137040/barefoot_api/profiles/avatar_fjiug5.jpg'
+                    }
                   />
                 </Box>
                 <Box flex={1} display="flex" alignItems="center">

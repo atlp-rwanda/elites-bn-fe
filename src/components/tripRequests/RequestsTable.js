@@ -194,7 +194,9 @@ const RequestsTable = () => {
       return {
         id: request.id,
         user: request.names,
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_d3SP2vKOeGFVESn5rk6xnPiQ0naW2e-ldA&usqp=CAU',
+        img:
+          request.User?.Profile?.picture ??
+          'https://res.cloudinary.com/dpd4zujfh/image/upload/v1653137040/barefoot_api/profiles/avatar_fjiug5.jpg',
         departLocation,
         tripReason: request.tripReason,
         status: request.status,
