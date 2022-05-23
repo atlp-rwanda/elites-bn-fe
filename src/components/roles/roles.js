@@ -74,6 +74,7 @@ const Roles = (props) => {
         <Autocomplete
           id="asynchronous-demo"
           options={roles()}
+          disableClearable
           value={params.value}
           onChange={(e) => {
             setEmail(params.row.email);
@@ -93,7 +94,7 @@ const Roles = (props) => {
           renderInput={(params) => (
             <TextField
               {...params}
-              style={{ width: '100%', border: 'none', height: '100%' }}
+              style={{ width: '100%', border: 'none', height: '100%'}}
             />
           )}
         />
