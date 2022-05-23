@@ -10,6 +10,11 @@ import {
 } from '../../src/redux/actions/snackbarActions';
 import { LoginTypes, LOGOUT } from '../../src/redux/types';
 import { OPEN_SNACKBAR, CLOSE_SNACKBAR } from '../../src/redux/types';
+import { showSuccessSnackbar, clearSnackbar } from '../../src/redux/actions/snackbarActions';
+import {
+  LoginTypes, LOGOUT, OPEN_SNACKBAR, CLOSE_SNACKBAR,
+} from '../../src/redux/types';
+
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
 const mock = new MockAdapter(axios);

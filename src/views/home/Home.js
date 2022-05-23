@@ -6,8 +6,6 @@ import NavBar from './WelcomeNavBar';
 import Bottom from './BottomNavBar.js';
 import useStyles from './homeStyle';
 
-
-
 const Home = () => {
   const classes = useStyles();
   return (

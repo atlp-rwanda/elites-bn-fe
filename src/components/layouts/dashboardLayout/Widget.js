@@ -1,59 +1,107 @@
-import React from 'react';
+/* eslint-disable max-len */
+/* eslint-disable array-callback-return */
+import React, { useEffect } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { MdNorthEast } from 'react-icons/md';
 import { HiDotsHorizontal } from 'react-icons/hi';
+import { useDispatch, useSelector } from 'react-redux';
+import setTripStatics from '../../../redux/actions/landingDashboardActions';
 
-const Widget = () => (
-  <div className="AllWidget">
-    <section className="WidgetCard">
-      <div className="widget">
-        <p>Total Requests</p>
-        <p> 5852</p>
-        <div className="MdNorthEastContainer">
-          <MdNorthEast className="MdNortIcon" style={{ alignSelf: 'center' }} />
-          <p> +14%Inc </p>
+const Widget = () => {
+  const dispatch = useDispatch();
+  const tripStatisticsState = useSelector((state) => state.tripStatistics);
+  const pendingArray = [];
+  const approvedArray = [];
+  const rejectedArray = [];
+
+  tripStatisticsState.tripStatistics.map((key) => {
+    if (key.status === 'pending') {
+      pendingArray.push(key.status);
+    }
+    if (key.status === 'approved') {
+      approvedArray.push(key.status);
+    }
+    if (key.status === 'rejected') {
+      rejectedArray.push(key.status);
+    }
+  });
+
+  const TotalRequest = pendingArray.length + approvedArray.length + rejectedArray.length;
+  useEffect(() => {
+    dispatch(setTripStatics());
+  }, []);
+
+  return (
+
+    <div className="AllWidget">
+      <section className="WidgetCard">
+        <div className="widget">
+          <p>Total Pending Requests</p>
+          <p>
+            {' '}
+            {pendingArray.length}
+            {' '}
+          </p>
+          <div className="MdNorthEastContainer">
+            <MdNorthEast className="MdNortIcon" style={{ alignSelf: 'center' }} />
+            <p> +0.5%Inc </p>
+          </div>
         </div>
-      </div>
-      <div className="widgetCircularBar">
-        <HiDotsHorizontal className="DotHorizontal" />
-        <CircularProgressbar value={100} text={`+${100}%`} />
-      </div>
-
-    </section>
-
-    <section className="WidgetCard">
-      <div className="widget">
-        <p>Total Approved Requests</p>
-        <p> 3145</p>
-        <div className="MdNorthEastContainer">
-          <MdNorthEast className="MdNortIcon" style={{ alignSelf: 'center' }} />
-          <p> +0.6%Inc </p>
+        <div className="widgetCircularBar">
+          <HiDotsHorizontal className="DotHorizontal" />
+          <CircularProgressbar value={(100 * pendingArray.length) / TotalRequest} text={`+${(100 * pendingArray.length) / TotalRequest}%`} />
         </div>
-      </div>
-      <div className="widgetCircularBar">
-        <HiDotsHorizontal className="DotHorizontal" />
-        <CircularProgressbar value={60} text={`+${60}%`} />
-      </div>
 
-    </section>
+      </section>
 
-    <section className="WidgetCard">
-      <div className="widget">
-        <p>Total Rejected Requests</p>
-        <p> 1035</p>
-        <div className="MdNorthEastContainer">
-          <MdNorthEast className="MdNortIcon" style={{ alignSelf: 'center' }} />
-          <p> +0.4%Inc </p>
+      <section className="WidgetCard">
+        <div className="widget">
+          <p>
+            Total approved Requests
+          </p>
+          <p>
+            {' '}
+            {approvedArray.length}
+            {' '}
+          </p>
+          <div className="MdNorthEastContainer">
+            <MdNorthEast className="MdNortIcon" style={{ alignSelf: 'center' }} />
+            <p> +0.5%Inc </p>
+          </div>
         </div>
-      </div>
-      <div className="widgetCircularBar">
-        <HiDotsHorizontal className="DotHorizontal" />
-        <CircularProgressbar value={38} text={`+${38}%`} />
-      </div>
+        <div className="widgetCircularBar">
+          <HiDotsHorizontal className="DotHorizontal" />
+          <CircularProgressbar value={(100 * approvedArray.length) / TotalRequest} text={`+${(100 * approvedArray.length) / TotalRequest}%`} />
+        </div>
 
-    </section>
-  </div>
-);
+      </section>
+
+      <section className="WidgetCard">
+        <div className="widget">
+          <p>Total Rejected Requests</p>
+          <p>
+            {' '}
+            {
+              rejectedArray.length
+            }
+            {' '}
+
+          </p>
+          <div className="MdNorthEastContainer">
+            <MdNorthEast className="MdNortIcon" style={{ alignSelf: 'center' }} />
+            <p> +0.0%Inc </p>
+          </div>
+        </div>
+        <div className="widgetCircularBar">
+          <HiDotsHorizontal className="DotHorizontal" />
+          <CircularProgressbar value={(100 * rejectedArray.length) / TotalRequest} text={`+${(100 * rejectedArray.length) / TotalRequest}%`} />
+        </div>
+
+      </section>
+    </div>
+
+  );
+};
 
 export default Widget;

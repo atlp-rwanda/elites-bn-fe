@@ -5,43 +5,36 @@
 /* eslint-disable radix */
 import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import setMostVisitedLocation from '../../../redux/actions/mostVisitedAction';
 
 function BodyDashboard() {
-  const [visitlocation, setVisitlocation] = useState([]);
-  const [visitCount, setVisitCount] = useState([]);
+  const dispatch = useDispatch();
+  const mostVisitedLocationState = useSelector((state) => state.mostTravelledLocation);
   const visitArray = [];
   const locationArray = [];
 
-  useEffect(() => {
-    const getVisitdata = async () => {
-      const reqData = await axios.get(
-        'https://elites-barefoot-nomad.herokuapp.com/api/v1/locations/mostTravelled/all',
-      );
-      reqData.data.visitedLocations.map((key) => visitArray.push(key.visitCount));
-      setVisitCount(visitArray);
-      reqData.data.visitedLocations.map((key) => locationArray.push(key.locationName));
-      setVisitlocation(locationArray);
-    };
-    getVisitdata();
-  }, []);
+  mostVisitedLocationState.mostVisitedLocation.map((key) => {
+    locationArray.push(key.locationName);
+    visitArray.push(key.visitCount);
+  });
 
+  useEffect(() => {
+    dispatch(setMostVisitedLocation());
+  }, []);
   return (
     <>
       <div className="container-fluid mb-3 donut">
         <Chart
-          // sx={{
-          //   margins: '2rem',
-          // }}
           type="donut"
-          width={450}
-          // height={250}
-          series={visitCount}
+          // width={450}
+          series={visitArray}
           options={{
             title: { text: 'Visited Location' },
             noData: { text: 'Empty Data' },
-            colors: ['#04157d', '#40a3e8', '#0d2ce4'],
-            labels: visitlocation,
+            colors: ['#04157d', '#40a3e8', '#0d2ce4', '#ff0e02'],
+            labels: locationArray,
+            maintainAspectRatio: false,
             style: {
               leftMargin: '2.8rem',
             },

@@ -8,12 +8,12 @@ import signupReducer from './signupReducer';
 import tripRequestsReducer from './tripRequestsReducer';
 import loaderReducer from './loaderReducer';
 import globalSnackBarReducer from './globalSnackBarReducer';
-import AccommodationListReducer from './accommodationListReducer';
-import AccommodationDeleteReducer from './accommodationDeleteReducer';
-import AccommodationCreateReducer from './accommodationCreateReducer';
-import AccommodationUpdateReducer from './accommodationUpdateReducer';
+import landingDashboardReducers from './landingDashboardReducers';
+import mostTravelledReducer from './mostTravelledReducer';
 
 export default combineReducers({
+  mostTravelledLocation: mostTravelledReducer,
+  tripStatistics: landingDashboardReducers,
   allAccommodations: accommodationReducer,
   allTripRequests: tripRequestsReducer,
   allLocations: locationsReducer,
