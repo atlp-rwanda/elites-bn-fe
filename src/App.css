@@ -118,11 +118,11 @@ body {
   gap: 2%;
   margin-left: 240px;
   margin-right: 20px;
-} 
+}
 
- .AllWidget > * {
+.AllWidget > * {
   flex: 1;
-} 
+}
 
 .donut {
   background-color: #ffffff;
@@ -134,54 +134,51 @@ body {
 .dates {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 @media only screen and (max-width: 600px) and (min-width: 200px) {
+  .AllWidget {
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    margin-left: 10vh;
+    margin-right: 2vh;
+    /* margin-bottom: 1vh; */
+  }
 
-.AllWidget {
-  display: flex;
-  flex-direction: column;
-  gap: 2%;
-  margin-left: 10vh;
-  margin-right: 2vh;
-  /* margin-bottom: 1vh; */
-} 
+  .WidgetCard {
+    background-color: #ffffff;
+    padding: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    width: 80%;
+    padding: 0.3rem;
+    margin-bottom: 10px;
+  }
 
+  .barVertical {
+    background-color: blue;
+    border-radius: 10px;
+    width: 80%;
+    height: 90%;
+  }
 
-.WidgetCard {
-  background-color: #ffffff;
-  padding: 0.3rem;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 10px;
-  width: 80%;
-  padding: 0.3rem;
-  margin-bottom: 10px;
-}
-
-
-.barVertical {
-  background-color: blue;
-  border-radius: 10px;
-  width: 80%;
-  height: 90%;
-}
-
-.barChart {
-  display: flex;
-  flex-direction: column;
-  margin-left: 19%;
-  margin-top: 30px;
-  /* width: 700px; */
-  /* height: 450px; */
-  gap: 5%;
-}
-.donut {
-  background-color: #ffffff;
-  margin-top: 2%;
-  margin-left: 3%;
-  border-radius: 10px;
-  width: 95%;
-  height: 100px;
-}
+  .barChart {
+    display: flex;
+    flex-direction: column;
+    margin-left: 19%;
+    margin-top: 30px;
+    /* width: 700px; */
+    /* height: 450px; */
+    gap: 5%;
+  }
+  .donut {
+    background-color: #ffffff;
+    margin-top: 2%;
+    margin-left: 3%;
+    border-radius: 10px;
+    width: 95%;
+    height: 100px;
+  }
 }

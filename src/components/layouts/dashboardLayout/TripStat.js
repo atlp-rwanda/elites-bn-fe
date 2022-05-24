@@ -15,35 +15,35 @@ import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import {
   Typography, Button,
   Container,
-  FormControl,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import setTripStatics from '../../../redux/actions/landingDashboardActions';
 import Loader from '../../home/loader';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function TripStat(props) {
   const [value, setValue] = React.useState(['', '']);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [startDate, setstartDate] = useState('');
-  const [endDate, setendDate] = useState('');
+  const [startDate, setStartDate] = useState('1990-10-10');
+  const [endDate, setEndDate] = useState('2050-10-10');
   const [loading, setLoading] = useState(false);
 
-  const onChangestartDate = (e) => {
-    const startDate = e.target.value;
-    setstartDate(startDate);
+  const handleChangeDate = (e) => {
+    if (e.target.id === 'startDate') {
+      setStartDate(e.target.value);
+    }
+    if (e.target.id === 'endDate') {
+      setEndDate(e.target.value);
+    }
   };
 
-  const onChangeendDate = (e) => {
-    const endDate = e.target.value;
-    setendDate(endDate);
-  };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);
-    await props.setTripStatics(startDate, endDate);
+    // setLoading(true);
+    dispatch(setTripStatics(startDate, endDate));
   }
+
   const tripStatisticsState = useSelector((state) => state.tripStatistics);
   const pendingArray = [];
   const approvedArray = [];
@@ -62,30 +62,30 @@ function TripStat(props) {
   });
 
   useEffect(() => {
-    dispatch(setTripStatics());
+    dispatch(setTripStatics(startDate, endDate));
   }, []);
 
   return (
     <>
       <div className="tripStatistics">
         <div className="dates">
-          {/* <Typography>Filter From: </Typography> */}
-          <Loader open={loading} />
+          <Typography>Filter From: </Typography>
           <div>
-            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
                 label="Advanced keyboard"
                 value={value}
                 onChange={(newValue) => setValue(newValue)}
                 renderInput={(startProps, endProps) => (
-                  <>
-                    <input ref={startProps.inputRef} {...startProps.inputProps} />
+                  <form onSubmit={handleSubmit}>
+                    <input type="text" id="startDate" placeholder="yyyy-mm-dd" onChange={handleChangeDate} />
                     <Box sx={{ mx: 1 }}> to </Box>
-                    <input ref={endProps.inputRef} {...endProps.inputProps} />
-                  </>
+                    <input type="text" id="endDate" placeholder="yyyy-mm-dd" onChange={handleChangeDate} />
+                    <button type="submit">SEND</button>
+                  </form>
                 )}
               />
-            </LocalizationProvider> */}
+            </LocalizationProvider>
           </div>
         </div>
         <div className="container-fluid mb-3 barVertical">
