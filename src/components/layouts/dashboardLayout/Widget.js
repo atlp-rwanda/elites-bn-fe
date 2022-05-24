@@ -28,6 +28,13 @@ const Widget = () => {
   });
 
   const TotalRequest = pendingArray.length + approvedArray.length + rejectedArray.length;
+  const totPendingTripReq = (100 * pendingArray.length) / TotalRequest;
+  const totPendingTripReqPercentage = totPendingTripReq.toFixed(1);
+  const totApprovedTripReq = (100 * approvedArray.length) / TotalRequest;
+  const totApprovedTripReqPercentage = totApprovedTripReq.toFixed(1);
+  const totRejectedTripReq = (100 * rejectedArray.length) / TotalRequest;
+  const totRejectedTripReqPercentage = totRejectedTripReq.toFixed(1);
+
   useEffect(() => {
     dispatch(setTripStatics());
   }, []);
@@ -50,7 +57,7 @@ const Widget = () => {
         </div>
         <div className="widgetCircularBar">
           <HiDotsHorizontal className="DotHorizontal" />
-          <CircularProgressbar value={(100 * pendingArray.length) / TotalRequest} text={`+${(100 * pendingArray.length) / TotalRequest}%`} />
+          <CircularProgressbar value={totPendingTripReqPercentage} text={`+${totPendingTripReqPercentage}%`} />
         </div>
 
       </section>
@@ -72,7 +79,7 @@ const Widget = () => {
         </div>
         <div className="widgetCircularBar">
           <HiDotsHorizontal className="DotHorizontal" />
-          <CircularProgressbar value={(100 * approvedArray.length) / TotalRequest} text={`+${(100 * approvedArray.length) / TotalRequest}%`} />
+          <CircularProgressbar value={totApprovedTripReqPercentage} text={`+${totApprovedTripReqPercentage}%`} />
         </div>
 
       </section>
@@ -95,7 +102,7 @@ const Widget = () => {
         </div>
         <div className="widgetCircularBar">
           <HiDotsHorizontal className="DotHorizontal" />
-          <CircularProgressbar value={(100 * rejectedArray.length) / TotalRequest} text={`+${(100 * rejectedArray.length) / TotalRequest}%`} />
+          <CircularProgressbar value={totRejectedTripReqPercentage} text={`+${totRejectedTripReqPercentage}%`} />
         </div>
 
       </section>

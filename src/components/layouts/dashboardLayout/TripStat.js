@@ -7,18 +7,44 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import { useDispatch, useSelector } from 'react-redux';
-// import Box from '@mui/material/Box';
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
-// import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import {
+  Typography, Button,
+  Container,
+  FormControl,
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import setTripStatics from '../../../redux/actions/landingDashboardActions';
+import Loader from '../../home/loader';
 
-function TripStat() {
-  const [value, setValue] = React.useState([null, null]);
+function TripStat(props) {
+  const [value, setValue] = React.useState(['', '']);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [startDate, setstartDate] = useState('');
+  const [endDate, setendDate] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const onChangestartDate = (e) => {
+    const startDate = e.target.value;
+    setstartDate(startDate);
+  };
+
+  const onChangeendDate = (e) => {
+    const endDate = e.target.value;
+    setendDate(endDate);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    await props.setTripStatics(startDate, endDate);
+  }
   const tripStatisticsState = useSelector((state) => state.tripStatistics);
-  // console.log('tripStatisticsState.......................', tripStatisticsState);
   const pendingArray = [];
   const approvedArray = [];
   const rejectedArray = [];
@@ -42,10 +68,11 @@ function TripStat() {
   return (
     <>
       <div className="tripStatistics">
-        {/* <div className="dates">
-          <Typography>Filter From: </Typography>
+        <div className="dates">
+          {/* <Typography>Filter From: </Typography> */}
+          <Loader open={loading} />
           <div>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DateRangePicker
                 label="Advanced keyboard"
                 value={value}
@@ -58,13 +85,13 @@ function TripStat() {
                   </>
                 )}
               />
-            </LocalizationProvider>
+            </LocalizationProvider> */}
           </div>
-        </div> */}
+        </div>
         <div className="container-fluid mb-3 barVertical">
           <Chart
             type="bar"
-          // width={520}
+            // width={520}
             series={[
               {
                 name: 'LABELS',
