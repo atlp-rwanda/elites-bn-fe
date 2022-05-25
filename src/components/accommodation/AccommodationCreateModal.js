@@ -41,11 +41,6 @@ function AccommodationCreateModal({ isOpen, handleClose, locations, createAccomm
 	const handleCreateAccommodation = async () => {
 		await createAccommodation({ description, accommodationName, streetAddress, locationId, geoCoordinates, ammenities, image })
 		await fetchAccommodations()
-		if (createAccommodationData) {
-
-			await showSuccessSnackbar('CREATE SUCCESSFULL', 'success')
-
-		}
 		handleClose()
 	}
 
@@ -69,7 +64,7 @@ function AccommodationCreateModal({ isOpen, handleClose, locations, createAccomm
 							m: 4,
 
 						}} container spacing={2}>
-							<Grid item xs={4}>
+							<Grid item xs={12} md={4}>
 								<TextValidator
 									id=""
 									label="Name"
@@ -130,7 +125,7 @@ function AccommodationCreateModal({ isOpen, handleClose, locations, createAccomm
 									onChange={(e) => setGeoCoordinates(e.target.value)}
 								/>
 							</Grid>
-							<Grid item xs={8}>
+							<Grid item xs={12} md={8}>
 								<TextValidator
 									id=""
 									variant="filled"

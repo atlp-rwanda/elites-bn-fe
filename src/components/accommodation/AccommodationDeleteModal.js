@@ -6,13 +6,12 @@ import { deleteAccommodation } from '../../redux/actions/accommodationDeleteActi
 import { fetchAccommodations } from '../../redux/actions/accommodationListActions';
 import { showSuccessSnackbar } from '../../redux/actions/snackbarActions';
 
-
 const style = {
 	position: 'absolute',
 	top: '50%',
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
-	width: 400,
+	width: '70%',
 	bgcolor: 'background.paper',
 	border: '2px solid #fff',
 	boxShadow: 24,
@@ -32,10 +31,6 @@ function AccommodationDeleteModal({ isOpen, handleClose, accommodation, modalId,
 	const handleDelete = async () => {
 		await deleteAccommodation(accommodation.id)
 		await fetchAccommodations()
-		if (accommodationDeleteData) {
-			await showSuccessSnackbar('DELETE SUCCESSFULL', 'success')
-		}
-
 		handleClose()
 	}
 

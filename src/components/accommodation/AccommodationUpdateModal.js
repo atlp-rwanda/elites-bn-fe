@@ -55,12 +55,6 @@ function AccommodationUpdateModal({ isOpen, handleClose, accommodation, accommod
 			geoCoordinates
 		})
 		await fetchAccommodations()
-
-		if(accommodationUpdateData){
-			await showSuccessSnackbar('UPDATE SUCCESSFULL', 'success')
-		}
-		
-
 		handleClose()
 	}
 

@@ -21,6 +21,7 @@ import singleTripRequestReducer from './singleTripRequestReducer';
 import tripViewReducer from './tripViewReducer';
 import tripRequestReducer from './tripRequestReducer'
 import allLocationsReducer from './allLocationsReducer'
+import AccommodationReviewCreateReducer from './accommodationCreateReviewReducer';
 
 export default combineReducers({
   mostTravelledLocation: mostTravelledReducer,
@@ -45,4 +46,5 @@ export default combineReducers({
   notificationPanel: notificationPanelReducer,
   Locations:allLocationsReducer,
   tripRequest:tripRequestReducer,
+  reviewAccommodation: AccommodationReviewCreateReducer,
 });

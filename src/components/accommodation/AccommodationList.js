@@ -186,23 +186,6 @@ function AccommodationList(props) {
           </Typography>
           <br />
           <br />
-          {JSON.stringify(props.snackbarData) !== JSON.stringify({}) ? (
-            <Snackbar
-              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-              open={props.snackbarData.SnackbarOpen}
-              onClose={handleClose}
-              key={'top' + 'center'}
-              // autoHideDuration={6000}
-              action={action}
-            >
-              <Alert
-                onClose={handleClose}
-                severity={props.snackbarData.severityMessage}
-              >
-                {props.snackbarData.SnackbarMessage}
-              </Alert>
-            </Snackbar>
-          ) : null}
 
           {props.accommodationsData.loading ? (
             <p style={{ textAlign: 'center' }}>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { accommodationCreateType } from "../types";
-
+import { closeGlobalSnackBar, openGlobalSnackBar } from "./globalSnackBarActions";
 export const createAccommodationRequest = () => {
 	return {
 		type: accommodationCreateType.ACCOMMODATION_CREATE_REQUEST
@@ -44,12 +44,12 @@ export const createAccommodation = (accommodation) => {
 				}
 			}
 		).then(response => {
-			console.log(response.data)
+			dispatch(openGlobalSnackBar({message:'Accommodation created successfull', severity: 'success'}))
 			dispatch(createAccommodationSuccess(response.data))
 		}).catch(error => {
-			console.log(error.message);
+			dispatch(openGlobalSnackBar({message:'Accommodation created fail', severity: 'error'}))
 			dispatch(createAccommodationFailure(error))
-			debugger
+			
 		})
 	}
 }

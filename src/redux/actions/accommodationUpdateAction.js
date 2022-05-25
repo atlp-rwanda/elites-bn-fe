@@ -1,6 +1,6 @@
 import axios from "axios";
 import { accommodationUpdateType } from "../types";
-
+import { closeGlobalSnackBar, openGlobalSnackBar } from "./globalSnackBarActions";
 export const updateAccommodationRequest = () => {
 	return {
 		type: accommodationUpdateType.ACCOMMODATION_UPDATE_REQUEST
@@ -53,8 +53,10 @@ export const updateAccommodation = (id,accommodation) =>{
 			}
 		  }
 		).then(response=>{
+			dispatch(openGlobalSnackBar({message:'Accommodation update success', severity: 'success'}))
 			dispatch(updateAccommodationSuccess(response.data))
 		}).catch(error=>{
+			dispatch(openGlobalSnackBar({message:'Accommodation update fail', severity: 'error'}))
 			dispatch(updateAccommodationFailure(error))
 		})
 	}

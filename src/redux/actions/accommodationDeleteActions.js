@@ -1,7 +1,6 @@
 import axios from "axios";
 import { accommodationDeleteType } from "../types";
-import { showSuccessSnackbar } from "./snackbarActions";
-
+import { closeGlobalSnackBar, openGlobalSnackBar } from "./globalSnackBarActions";
 export const deleteAccommodationRequest = () => {
 	return {
 		type: accommodationDeleteType.ACCOMMODATION_DELETE_REQUEST
@@ -34,8 +33,10 @@ export const deleteAccommodation = (id) =>{
 			}
 		  }
 		).then((response)=>{
+			dispatch(openGlobalSnackBar({message:'Accommodation delete success', severity: 'success'}))
 			dispatch(deleteAccommodationSuccess(response.data))
 		}).catch(error=>{
+			dispatch(openGlobalSnackBar({message:'Accommodation delete fail', severity: 'error'}))
 			dispatch(deleteAccommodationFailure(error))
 		})
 	}

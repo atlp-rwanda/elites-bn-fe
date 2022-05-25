@@ -10,14 +10,19 @@ import Login from '../views/home/Login';
 import Signup from '../components/signup/Signup';
 import SignupSuccess from '../components/signup/SignupSuccess';
 import SocialAuthGoogleDir from '../views/home/SocialAuthGoogleDir';
+import Accommodation from '../components/accommodation/Accommodation';
 import AccommodationList from '../components/accommodation/AccommodationList';
+import AccommodationReview from '../components/accommodation/AccommodationReview';
+
 import SuccessLogin from '../views/home/SuccessLogin';
 import Roles from '../components/roles/roles';
 
 const AllRoutes = () => (
   <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/login" element={<Login />} />
+    <Route path='/' element={<Home />} />
+    {/* <Route path='/accommodations' element={<AccommodationList />} /> */}
+    <Route path='/dashboard' element={<Dashboard />} />
+    <Route path='/login' element={<Login />} />
     <Route
       path="/dashboard"
       element={
@@ -59,19 +64,6 @@ const AllRoutes = () => (
       path="/google/success/:token"
       element={<SocialAuthGoogleDir />}
     />
-
-    <Route
-      exact
-      path="/users"
-      element={
-        <ProtectRoute redirectTo="/login">
-          <Roles />
-        </ProtectRoute>
-      }
-    />
-
-    <Route path="/dashboard" element={<Dashboard />} />
-    <Route path="/login" element={<Login />} />
     <Route
       exact
       path="/success"
@@ -81,7 +73,9 @@ const AllRoutes = () => (
         </ProtectRoute>
       }
     />
+    <Route path="accommodations/review" element={<AccommodationReview/>} />
     <Route path="*" element={<NotFoundPage />} />
+    
   </Routes>
 );
 
