@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from '../layouts/dashboardLayout/Sidebar';
 import TopBar from '../layouts/dashboardLayout/TopBar';
-import { sideBarData } from '../layouts/dashboardLayout/adminMenuData';
+import { adminSideBarData } from '../layouts/dashboardLayout/menuData';
 import { DataGrid } from '@mui/x-data-grid';
 import {
   usersAction,
@@ -19,7 +19,6 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import 'react-dropdown/style.css';
 
 const Roles = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -217,7 +216,7 @@ const Roles = (props) => {
 
   return (
     <>
-      <Sidebar sideBarData={sideBarData} />
+      <Sidebar menuData={adminSideBarData} />
       <TopBar />
       <div style={{ height: '80vh', width: '78vw', marginLeft: '20%' }}>
         <Box
