@@ -22,6 +22,10 @@ import setCurrentUser, {
 } from '../../../redux/actions/currentUserActions';
 import { loadNotifications } from '../../../redux/actions/notificationsActions';
 import { showNotificationPanel } from '../../../redux/actions/notificationPanelActions';
+import setUserSearch from '../../../redux/actions/userSearchAction';
+import DataTable from './search/DataTable';
+import { loadLocations } from '../../../redux/actions/locationsActions';
+// import SearchBar from 'material-ui-search-bar';
 
 const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
 
@@ -54,6 +58,16 @@ const TopBar = () => {
   const { notifications } = notificationsState;
 
   const [socket, setSocket] = useState(null);
+  const [query, setQuery] = useState('');
+  const { globalUserSearch } = useSelector((state) => state.globalUserSearch);
+  const [show, setShow] = useState(false);
+
+  const search = (x) =>
+    globalUserSearch.filter(
+      (globalUserSearch) =>
+        globalUserSearch.tripReason.includes(x) ||
+        globalUserSearch.status.includes(x)
+    );
 
   const unreadNotifications = () => {
     const unreads = notifications.filter(
@@ -142,6 +156,7 @@ const TopBar = () => {
 
     console.log('socket///', socket);
     dispatch(loadNotifications());
+    dispatch(loadLocations());
   }, []);
 
   useEffect(() => {
@@ -180,7 +195,12 @@ const TopBar = () => {
             </Typography>
           </Box>
           <Search>
-            <InputBase placeholder="search..." />
+            <InputBase
+              placeholder="search..."
+              onChange={(e) => setQuery(e.target.value)}
+              onFocus={() => setShow(true)}
+              onBlur={() => setShow(false)}
+            />
             <SearchIcon
               sx={{
                 color: 'white',
@@ -193,6 +213,11 @@ const TopBar = () => {
               }}
             />
           </Search>
+          {/* <SearchBar
+          value={searched}
+          onChange={(searchVal) => requestSearch(searchVal)}
+          onCancelSearch={() => cancelSearch()}
+        /> */}
           <Icons
             sx={{
               backgroundColor: { sm: '#CCD4FF' },
@@ -239,6 +264,7 @@ const TopBar = () => {
               src={currentUserProfile?.picture}
             />
           </Icons>
+          {show && <DataTable tableData={search(query)} />}
         </Stack>
       </Box>
     </>

@@ -8,15 +8,16 @@ import {
   showSuccessSnackbar,
   clearSnackbar,
 } from '../../src/redux/actions/snackbarActions';
-import { LoginTypes, LOGOUT } from '../../src/redux/types';
-import { OPEN_SNACKBAR, CLOSE_SNACKBAR } from '../../src/redux/types';
+import {
+  LoginTypes, LOGOUT, OPEN_SNACKBAR, CLOSE_SNACKBAR,
+} from '../../src/redux/types';
+
 const middleware = [thunk];
 const mockStore = configureStore(middleware);
 const mock = new MockAdapter(axios);
 const store = mockStore({});
 
-const API_URL =
-  'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/login';
+const API_URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/login';
 
 describe('loginStore(creds)', () => {
   beforeEach(() => {
@@ -28,7 +29,7 @@ describe('loginStore(creds)', () => {
     store
       .dispatch(login({ email: 'yang@gmail.com', password: 'password' }))
       .then(() => {
-        let expectedActions = [
+        const expectedActions = [
           { type: LoginTypes.LOGIN_FAIL, payload: 'Incorrect credentials' },
         ];
         expect(store.getActions()).toEqual(expectedActions);
@@ -40,7 +41,7 @@ describe('closeSnackbar() action', () => {
   it('should dispatch the CLOSE_SNACKBAR action', () => {
     store.clearActions();
     store.dispatch(clearSnackbar());
-    let expectedAction = [{ type: CLOSE_SNACKBAR }];
+    const expectedAction = [{ type: CLOSE_SNACKBAR }];
     expect(store.getActions()).toEqual(expectedAction);
   });
 });
@@ -49,7 +50,7 @@ describe('openSnackbar() action', () => {
   it('should dispatch the OPEN_SNACKBAR action', () => {
     store.clearActions();
     store.dispatch(showSuccessSnackbar());
-    let expectedAction = [{ type: OPEN_SNACKBAR }];
+    const expectedAction = [{ type: OPEN_SNACKBAR }];
     expect(store.getActions()).toEqual(expectedAction);
   });
 });
@@ -58,7 +59,7 @@ describe('logout() action', () => {
   it('should dispatch LOGOUT action', () => {
     store.clearActions();
     store.dispatch(logout());
-    let expectedAction = [{ type: LOGOUT }];
+    const expectedAction = [{ type: LOGOUT }];
     expect(store.getActions()).toEqual(expectedAction);
   });
 });

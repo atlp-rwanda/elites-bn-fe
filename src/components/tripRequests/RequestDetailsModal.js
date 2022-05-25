@@ -87,9 +87,9 @@ export default function BasicModal(props) {
 
   const { tripRequests } = tripRequestsState;
   const { currentUser } = currentUserState;
-  const { locations } = locationsState;
+  const { locations } = locationsState;/////////
   const currentTripRequest = tripRequests.filter(
-    (request) => request.id === tripRequest
+    (request) => request.id === tripRequest,
   );
 
   if (currentTripRequest.length === 1) {
@@ -108,7 +108,7 @@ export default function BasicModal(props) {
     } = currentTripRequest[0];
 
     const departLocationName = locations.filter(
-      (location) => location.id === departLocation
+      (location) => location.id === departLocation,
     )[0].locationName;
 
     let destinationNames;
@@ -116,7 +116,7 @@ export default function BasicModal(props) {
     if (destinations.length === 1) {
       const parsedDestinations = JSON.parse(destinations);
       destinationNames = locations.filter(
-        (location) => location.id === parsedDestinations.destinationId
+        (location) => location.id === parsedDestinations.destinationId,
       )[0].locationName;
     }
     if (destinations.length > 1) {
@@ -177,8 +177,8 @@ export default function BasicModal(props) {
                     style={classes.userInfo.userImg}
                     alt="user"
                     src={
-                      User?.Profile?.picture ??
-                      'https://res.cloudinary.com/dpd4zujfh/image/upload/v1653137040/barefoot_api/profiles/avatar_fjiug5.jpg'
+                      User?.Profile?.picture
+                      ?? 'https://res.cloudinary.com/dpd4zujfh/image/upload/v1653137040/barefoot_api/profiles/avatar_fjiug5.jpg'
                     }
                   />
                 </Box>
@@ -249,15 +249,15 @@ export default function BasicModal(props) {
                     {!Array.isArray(destinationNames)
                       ? destinationNames
                       : destinationNames.map((destination, i, arr) => (
-                          <React.Fragment key={i}>
-                            {destination}
-                            {i + 1 === arr.length ? (
-                              ' .'
-                            ) : (
-                              <DoubleArrowIcon sx={classes.arrowIcon} />
-                            )}
-                          </React.Fragment>
-                        ))}
+                        <React.Fragment key={i}>
+                          {destination}
+                          {i + 1 === arr.length ? (
+                            ' .'
+                          ) : (
+                            <DoubleArrowIcon sx={classes.arrowIcon} />
+                          )}
+                        </React.Fragment>
+                      ))}
                   </Typography>
                   <Typography sx={classes.RightValues}>{tripReason}</Typography>
                   <Typography
