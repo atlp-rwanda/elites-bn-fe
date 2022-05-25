@@ -81,7 +81,7 @@ function TripStat(props) {
                     <input type="text" id="startDate" placeholder="yyyy-mm-dd" onChange={handleChangeDate} />
                     <Box sx={{ mx: 1 }}> to </Box>
                     <input type="text" id="endDate" placeholder="yyyy-mm-dd" onChange={handleChangeDate} />
-                    <button type="submit">SEND</button>
+                    <button type="submit" className="btn">SEND</button>
                   </form>
                 )}
               />
