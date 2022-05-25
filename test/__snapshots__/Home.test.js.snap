@@ -40,11 +40,7 @@ exports[`Snapshot Test Snapshot for Home Component 1`] = `
         Login
       </a>
       <a
-<<<<<<< HEAD
         href="/signup"
-=======
-        href="#"
->>>>>>>  This is a combination of 13 commits.
         style={
           Object {
             "align": "center",
