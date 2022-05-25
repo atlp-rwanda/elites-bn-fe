@@ -12,8 +12,7 @@ import App from './App';
 import store from './redux/store';
 import theme from './theme';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
@@ -21,20 +20,9 @@ root.render(
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,
+  document.getElementById('root')
 );
-
 module.hot.accept();
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <Provider store={store}>
-//       <ThemeProvider theme={theme}>
-//         <App />
-//       </ThemeProvider>
-//     </Provider>
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
-// module.hot.accept();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Accommodations from '../components/accommodations/accommodations';
 import Home from '../views/home/Home';
 import Dashboard from '../components/layouts/dashboardLayout';
 import TripRequests from '../components/tripRequests/TripRequests';
@@ -12,14 +11,12 @@ import Signup from '../components/signup/Signup';
 import SignupSuccess from '../components/signup/SignupSuccess';
 import SocialAuthGoogleDir from '../views/home/SocialAuthGoogleDir';
 import AccommodationList from '../components/accommodation/AccommodationList';
-import ProtectedTravelAdminRoutes from './protectedTravelAdminRoutes';
 import SuccessLogin from '../views/home/SuccessLogin';
 import Unauthorized from './unauthorizedRoutes';
 
 const AllRoutes = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    {/* <Route path='/accommodations' element={<AccommodationList />} /> */}
     <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/login" element={<Login />} />
     <Route
@@ -44,9 +41,9 @@ const AllRoutes = () => (
       exact
       path="/accommodations"
       element={
-        <ProtectedTravelAdminRoutes redirectTo="/login">
+        <ProtectRoute redirectTo="/login">
           <AccommodationList />
-        </ProtectedTravelAdminRoutes>
+        </ProtectRoute>
       }
     />
     <Route
