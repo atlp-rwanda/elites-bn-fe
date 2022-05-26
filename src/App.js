@@ -21,6 +21,7 @@ function App() {
         status,
         data: { path },
       } = error.response;
+
       if (status === 401) {
         dispatch(
           openGlobalSnackBar({
@@ -30,6 +31,7 @@ function App() {
         );
         window.location = '/login';
       }
+
       if (status === 500) {
         dispatch(
           openGlobalSnackBar({
@@ -38,6 +40,7 @@ function App() {
           })
         );
       }
+
       if (status === 404) {
         if (
           !(

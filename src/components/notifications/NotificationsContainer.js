@@ -100,7 +100,7 @@ const NotificationsContainer = () => {
             paddingTop: '1rem',
           }}
         >
-          {unreadNotifications() === 0 ? (
+          {notifications.length === 0 ? (
             <Typography>No notifications</Typography>
           ) : (
             <Box
