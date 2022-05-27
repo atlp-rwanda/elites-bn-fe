@@ -16,7 +16,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { logout } from '../../../redux/actions/loginActions';
-import { adminSideBarData, userSideBarData } from './menuData';
+import {
+  adminSideBarData,
+  userSideBarData,
+  travelAdminSidebarData,
+} from './menuData';
 import './sidebar.scss';
 
 const Sidebar = () => {
@@ -40,8 +44,14 @@ const Sidebar = () => {
     window.location.reload();
   };
   const navigate = useNavigate();
+  const roleId = currentUser?.roleId;
   const menuData =
-    currentUser?.roleId === 1 ? adminSideBarData : userSideBarData;
+    roleId === 1
+      ? adminSideBarData
+      : roleId === 2
+      ? travelAdminSidebarData
+      : userSideBarData;
+
   return (
     <div className="sidebar">
       <Box

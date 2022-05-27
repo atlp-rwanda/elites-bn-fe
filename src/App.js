@@ -17,20 +17,18 @@ function App() {
   axios.interceptors.response.use(
     (response) => response,
     (error) => {
-      const {
-        status,
-        data: { path },
-      } = error.response;
+      const { status } = error?.response;
+      const { path } = error?.response?.data;
 
-      if (status === 401) {
-        dispatch(
-          openGlobalSnackBar({
-            message: 'Unauthorized error!',
-            severity: 'error',
-          })
-        );
-        window.location = '/login';
-      }
+      // if (status === 401) {
+      //   dispatch(
+      //     openGlobalSnackBar({
+      //       message: 'Unauthorized error!',
+      //       severity: 'error',
+      //     })
+      //   );
+      //   window.location = '/login';
+      // }
 
       if (status === 500) {
         dispatch(

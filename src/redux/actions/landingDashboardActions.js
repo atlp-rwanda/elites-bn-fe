@@ -23,6 +23,6 @@ const setTripStatics = (startDate, endDate) => async (dispatch) => {
       },
     }
   );
-  dispatch(getTripStatAction(response.data.payload.rows));
+  response && dispatch(getTripStatAction(response.data.payload.rows));
 };
 export default setTripStatics;
