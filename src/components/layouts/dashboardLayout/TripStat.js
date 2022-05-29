@@ -49,7 +49,7 @@ function TripStat(props) {
   const approvedArray = [];
   const rejectedArray = [];
 
-  tripStatisticsState.tripStatistics.map((key) => {
+  tripStatisticsState?.tripStatistics?.map((key) => {
     if (key.status === 'pending') {
       pendingArray.push(key.status);
     }

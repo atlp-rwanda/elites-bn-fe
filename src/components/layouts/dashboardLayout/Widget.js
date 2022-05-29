@@ -15,7 +15,7 @@ const Widget = () => {
   const approvedArray = [];
   const rejectedArray = [];
 
-  tripStatisticsState.tripStatistics.map((key) => {
+  tripStatisticsState?.tripStatistics?.map((key) => {
     if (key.status === 'pending') {
       pendingArray.push(key.status);
     }
@@ -27,7 +27,8 @@ const Widget = () => {
     }
   });
 
-  const TotalRequest = pendingArray.length + approvedArray.length + rejectedArray.length;
+  const TotalRequest =
+    pendingArray.length + approvedArray.length + rejectedArray.length;
   const totPendingTripReq = (100 * pendingArray.length) / TotalRequest;
   const totPendingTripReqPercentage = totPendingTripReq.toFixed(1);
   const totApprovedTripReq = (100 * approvedArray.length) / TotalRequest;
@@ -40,74 +41,70 @@ const Widget = () => {
   }, []);
 
   return (
-
     <div className="AllWidget">
       <section className="WidgetCard">
         <div className="widget">
           <p>Total Pending Requests</p>
-          <p>
-            {' '}
-            {pendingArray.length}
-            {' '}
-          </p>
+          <p> {pendingArray.length} </p>
           <div className="MdNorthEastContainer">
-            <MdNorthEast className="MdNortIcon" style={{ alignSelf: 'center' }} />
+            <MdNorthEast
+              className="MdNortIcon"
+              style={{ alignSelf: 'center' }}
+            />
             <p> +0.5%Inc </p>
           </div>
         </div>
         <div className="widgetCircularBar">
           <HiDotsHorizontal className="DotHorizontal" />
-          <CircularProgressbar value={totPendingTripReqPercentage} text={`+${totPendingTripReqPercentage}%`} />
+          <CircularProgressbar
+            value={totPendingTripReqPercentage}
+            text={`+${totPendingTripReqPercentage}%`}
+          />
         </div>
-
       </section>
 
       <section className="WidgetCard">
         <div className="widget">
-          <p>
-            Total approved Requests
-          </p>
-          <p>
-            {' '}
-            {approvedArray.length}
-            {' '}
-          </p>
+          <p>Total approved Requests</p>
+          <p> {approvedArray.length} </p>
           <div className="MdNorthEastContainer">
-            <MdNorthEast className="MdNortIcon" style={{ alignSelf: 'center' }} />
+            <MdNorthEast
+              className="MdNortIcon"
+              style={{ alignSelf: 'center' }}
+            />
             <p> +0.5%Inc </p>
           </div>
         </div>
         <div className="widgetCircularBar">
           <HiDotsHorizontal className="DotHorizontal" />
-          <CircularProgressbar value={totApprovedTripReqPercentage} text={`+${totApprovedTripReqPercentage}%`} />
+          <CircularProgressbar
+            value={totApprovedTripReqPercentage}
+            text={`+${totApprovedTripReqPercentage}%`}
+          />
         </div>
-
       </section>
 
       <section className="WidgetCard">
         <div className="widget">
           <p>Total Rejected Requests</p>
-          <p>
-            {' '}
-            {
-              rejectedArray.length
-            }
-            {' '}
-
-          </p>
+          <p> {rejectedArray.length} </p>
           <div className="MdNorthEastContainer">
-            <MdNorthEast className="MdNortIcon" style={{ alignSelf: 'center' }} />
+            <MdNorthEast
+              className="MdNortIcon"
+              style={{ alignSelf: 'center' }}
+            />
             <p> +0.0%Inc </p>
           </div>
         </div>
         <div className="widgetCircularBar">
           <HiDotsHorizontal className="DotHorizontal" />
-          <CircularProgressbar value={totRejectedTripReqPercentage} text={`+${totRejectedTripReqPercentage}%`} />
+          <CircularProgressbar
+            value={totRejectedTripReqPercentage}
+            text={`+${totRejectedTripReqPercentage}%`}
+          />
         </div>
-
       </section>
     </div>
-
   );
 };
 

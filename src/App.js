@@ -3,6 +3,8 @@ import axios from 'axios';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import NotificationsPanel from './components/notifications/NotificationsPanel';
 import ViewTripRequest from './components/notifications/ViewTripRequest';
@@ -18,7 +20,6 @@ function App() {
     (response) => response,
     (error) => {
       const { status } = error?.response;
-      const { path } = error?.response?.data;
 
       // if (status === 401) {
       //   dispatch(
@@ -39,27 +40,21 @@ function App() {
         );
       }
 
-      if (status === 404) {
-        if (
-          !(
-            path.split('/').includes('notifications') ||
-            path.split('/').includes('profiles')
-          )
-        ) {
-          dispatch(
-            openGlobalSnackBar({
-              message: 'Resource you are looking for is not found!',
-              severity: 'error',
-            })
-          );
-        }
-      }
+      // if (status === 404) {
+      //   dispatch(
+      //     openGlobalSnackBar({
+      //       message: 'Resource you are looking for is not found!',
+      //       severity: 'error',
+      //     })
+      //   );
+      // }
 
       return Promise.reject(error);
     }
   );
   return (
     <BrowserRouter history={history}>
+      <ToastContainer />
       <ViewTripRequest />
       <GlobalSnackBar />
       <NotificationsPanel />

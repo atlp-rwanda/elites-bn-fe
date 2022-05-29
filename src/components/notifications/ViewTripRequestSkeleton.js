@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { ButtonGroup, Skeleton, Stack } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import '../tripRequests/requestsTable.scss';
 import { closeViewTrip } from '../../redux/actions/tripViewAction';
@@ -71,12 +71,18 @@ const classes = {
 };
 
 export default function ViewTripRequestSkeleton() {
+  const entireState = useSelector((state) => state);
+  const singleTripState = entireState.singleTrip;
+  const { tripRequest, loading } = singleTripState;
   const dispatch = useDispatch();
 
   const handleClose = () => {
     dispatch(closeViewTrip());
   };
 
+  if (!loading && !tripRequest) {
+    dispatch(closeViewTrip);
+  }
   return (
     <Box sx={classes.modal}>
       <Box

@@ -1,3 +1,4 @@
+import { io } from 'socket.io-client';
 import {
   Box,
   InputBase,
@@ -9,16 +10,20 @@ import {
 } from '@mui/material';
 import { Notifications } from '@mui/icons-material';
 import SearchIcon from '@mui/icons-material/Search';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import setCurrentUser, {
   setCurrentUserProfile,
 } from '../../../redux/actions/currentUserActions';
 import { loadNotifications } from '../../../redux/actions/notificationsActions';
 import { showNotificationPanel } from '../../../redux/actions/notificationPanelActions';
+
+const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
 
 const Search = styled('div')(({ theme }) => ({
   backgroundColor: 'white',
@@ -47,6 +52,8 @@ const TopBar = () => {
   const currentUserState = entireState.currentUser;
   const { currentUser, currentUserProfile } = currentUserState;
   const { notifications } = notificationsState;
+
+  const [socket, setSocket] = useState(null);
 
   const unreadNotifications = () => {
     const unreads = notifications.filter(
@@ -111,99 +118,130 @@ const TopBar = () => {
 
   useEffect(() => {
     getCurrentUser();
+    const socket = io('http://localhost:5000', {
+      reconnectionDelayMax: 10000,
+      auth: {
+        token: token,
+      },
+    });
+
+    setSocket(socket);
+    console.log('socket///', socket);
     dispatch(loadNotifications());
   }, []);
 
+  useEffect(() => {
+    socket?.on('onconnectTesting1', () => {
+      console.log('%c Server is listening to you bro', 'background-color:blue');
+    });
+
+    socket?.on('getNotification', (body) => {
+      toast(body, {
+        position: 'top-right',
+        autoClose: 8000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        icon: '🔔',
+      });
+      dispatch(loadNotifications());
+      console.log('%cTOAST NOTIFICATION', 'background-color:blue', body);
+    });
+  }, [socket]);
+
   const { names, roleName } = currentUser;
   return (
-    <Box
-      className="Topbar"
-      sx={{
-        height: '12vh',
-        width: '82vw',
-        marginLeft: '18vw',
-        display: 'flex',
-      }}
-    >
-      <Stack
-        direction="row"
-        spacing={2}
-        justifyContent="space-around"
-        alignItems="center"
-        width="100%"
+    <>
+      <Box
+        className="Topbar"
+        sx={{
+          height: '12vh',
+          width: '82vw',
+          marginLeft: '18vw',
+          display: 'flex',
+        }}
       >
-        <Box>
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            color="#07539F"
-            sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            {pathname}
-          </Typography>
-        </Box>
-        <Search>
-          <InputBase placeholder="search..." />
-          <SearchIcon
-            sx={{
-              color: 'white',
-              backgroundColor: '#6674BB',
-              position: 'absolute',
-              right: 0,
-              height: '100%',
-              width: '2.5rem',
-              borderRadius: '5px',
-            }}
-          />
-        </Search>
-        <Icons
-          sx={{
-            backgroundColor: { sm: '#CCD4FF' },
-            paddingLeft: { xs: '0.8rem', sm: '1.5rem' },
-            paddingRight: { xs: '0.8rem', sm: '1.5rem' },
-          }}
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="space-around"
+          alignItems="center"
+          width="100%"
         >
-          <Badge
-            badgeContent={unreadNotifications()}
-            color="error"
-            onClick={() => {
-              dispatch(showNotificationPanel());
-            }}
-            sx={{ cursor: 'pointer' }}
-          >
-            <Notifications />
-          </Badge>
           <Box>
             <Typography
-              variant="h6"
-              color="#07539F"
+              variant="h5"
               fontWeight="600"
-              textAlign="center"
-              sx={{ display: { xs: 'none', sm: 'block' } }}
-            >
-              {names}
-            </Typography>
-            <Typography
-              variant="h6"
               color="#07539F"
-              fontWeight="300"
-              textAlign="center"
               sx={{ display: { xs: 'none', sm: 'block' } }}
             >
-              {roleName}
+              {pathname}
             </Typography>
           </Box>
-          <Avatar
+          <Search>
+            <InputBase placeholder="search..." />
+            <SearchIcon
+              sx={{
+                color: 'white',
+                backgroundColor: '#6674BB',
+                position: 'absolute',
+                right: 0,
+                height: '100%',
+                width: '2.5rem',
+                borderRadius: '5px',
+              }}
+            />
+          </Search>
+          <Icons
             sx={{
-              width: { xs: 30, sm: 40 },
-              height: { xs: 30, sm: 40 },
-              cursor: 'pointer',
+              backgroundColor: { sm: '#CCD4FF' },
+              paddingLeft: { xs: '0.8rem', sm: '1.5rem' },
+              paddingRight: { xs: '0.8rem', sm: '1.5rem' },
             }}
-            src={currentUserProfile?.picture}
-          />
-        </Icons>
-      </Stack>
-    </Box>
+          >
+            <Badge
+              badgeContent={unreadNotifications()}
+              color="error"
+              onClick={() => {
+                dispatch(showNotificationPanel());
+              }}
+              sx={{ cursor: 'pointer' }}
+            >
+              <Notifications />
+            </Badge>
+            <Box>
+              <Typography
+                variant="h6"
+                color="#07539F"
+                fontWeight="600"
+                textAlign="center"
+                sx={{ display: { xs: 'none', sm: 'block' } }}
+              >
+                {names}
+              </Typography>
+              <Typography
+                variant="h6"
+                color="#07539F"
+                fontWeight="300"
+                textAlign="center"
+                sx={{ display: { xs: 'none', sm: 'block' } }}
+              >
+                {roleName}
+              </Typography>
+            </Box>
+            <Avatar
+              sx={{
+                width: { xs: 30, sm: 40 },
+                height: { xs: 30, sm: 40 },
+                cursor: 'pointer',
+              }}
+              src={currentUserProfile?.picture}
+            />
+          </Icons>
+        </Stack>
+      </Box>
+    </>
   );
 };
 
