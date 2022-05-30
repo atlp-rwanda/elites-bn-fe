@@ -118,7 +118,7 @@ const TopBar = () => {
 
   useEffect(() => {
     getCurrentUser();
-    const socket = io('http://localhost:5000', {
+    const socket = io('https://elites-barefoot-nomad.herokuapp.com', {
       reconnectionDelayMax: 10000,
       auth: {
         token: token,
