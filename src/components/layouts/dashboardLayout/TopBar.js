@@ -126,15 +126,6 @@ const TopBar = () => {
     });
 
     setSocket(socket);
-    console.log('socket///', socket);
-    dispatch(loadNotifications());
-  }, []);
-
-  useEffect(() => {
-    socket?.on('onconnectTesting1', () => {
-      console.log('%c Server is listening to you bro', 'background-color:blue');
-    });
-
     socket?.on('getNotification', (body) => {
       toast(body, {
         position: 'top-right',
@@ -147,6 +138,15 @@ const TopBar = () => {
       });
       dispatch(loadNotifications());
       console.log('%cTOAST NOTIFICATION', 'background-color:blue', body);
+    });
+
+    console.log('socket///', socket);
+    dispatch(loadNotifications());
+  }, []);
+
+  useEffect(() => {
+    socket?.on('onconnectTesting1', () => {
+      console.log('%c Server is listening to you', 'background-color:blue');
     });
   }, [socket]);
 
