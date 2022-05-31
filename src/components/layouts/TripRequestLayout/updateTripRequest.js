@@ -45,7 +45,7 @@ const closeIcon = {
   },
 };
 
-export const UpdateTripRequest = (props) => {
+const UpdateTripRequest = (props) => {
   const dispatch = useDispatch();
   const tripRequest = useSelector((state) => state.tripRequest);
   const allLocations = useSelector((state) => state.allLocations);
@@ -358,4 +358,4 @@ export const UpdateTripRequest = (props) => {
   );
 };
 
-// export default UpdateTripRequest;
+export default UpdateTripRequest;
