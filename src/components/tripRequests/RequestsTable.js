@@ -292,7 +292,7 @@ import './requestsTable.scss';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import Loader from '../progressBar/Loader';
 import { UpdateTripRequest }   from '../layouts/TripRequestLayout/updateTripRequest.js';
-import { CreateTripRequest }  from '../layouts/TripRequestLayout/createTripRequest.js';
+import { CreateTripRequest }  from '../layouts/TripRequestLayout/CreateTripRequest.js';
 // import { initialize } from '../../../src/redux/actions/tripRequestActions';
 
 const RequestsTable = () => {
