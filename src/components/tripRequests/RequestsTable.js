@@ -291,8 +291,8 @@ import { loadLocations } from '../../redux/actions/locationsActions';
 import './requestsTable.scss';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import Loader from '../progressBar/Loader';
-import UpdateTripRequest from '../layouts/TripRequestLayout/updateTripRequest';
-import CreateTripRequest from '../layouts/TripRequestLayout/createTripRequest';
+import UpdateTripRequest from '../layouts/TripRequestLayout/updateTripRequest.js';
+import CreateTripRequest from '../layouts/TripRequestLayout/createTripRequest.js';
 // import { initialize } from '../../../src/redux/actions/tripRequestActions';
 
 const RequestsTable = () => {
