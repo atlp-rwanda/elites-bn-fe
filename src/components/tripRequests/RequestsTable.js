@@ -23,8 +23,8 @@
 //   const [tripId, setTripId] = useState('');
 //   const [showConfirmModal, setShowConfirmModal] = useState(false);
 //   const [confirmModalData, setConfirmModalData] = useState('');
-//   const [openEditModal, setOpenEditModal] = useState(false);
-//   const [openCreateModal, setOpenCreateModal] = useState(false);
+  // const [openEditModal, setOpenEditModal] = useState(false);
+  // const [openCreateModal, setOpenCreateModal] = useState(false);
 
 //   let userColumns;
 //   let rows;
@@ -88,18 +88,18 @@
 //                 </div>
 //                 {params.row.status == 'pending' && (
 //                   <>
-//                     <Button
-//                       variant="primary"
-//                       size="small"
-//                       className="editButton"
-//                       onClick={() => {
-//                         setTripId(params.row.id);
-//                         console.log(currentTripRequest, 'current');
-//                         setOpenEditModal(true);
-//                       }}
-//                     >
-//                       Edit
-//                     </Button>
+                    // <Button
+                    //   variant="primary"
+                    //   size="small"
+                    //   className="editButton"
+                    //   onClick={() => {
+                    //     setTripId(params.row.id);
+                    //     console.log(currentTripRequest, 'current');
+                    //     setOpenEditModal(true);
+                    //   }}
+                    // >
+                    //   Edit
+                    // </Button>
 
 //                     <div
 //                       className="deleteButton"
@@ -226,16 +226,16 @@
 //           tripRequest={currentTripRequest}
 //         />
 
-//         <UpdateTripRequest
-//           open={openEditModal}
-//           close={() => setOpenEditModal(false)}
-//           id={tripId}
-//         />
-//         <CreateTripRequest
-//           open={openCreateModal}
-//           close={() =>  setOpenCreateModal(false)
-//           }
-//         />
+        // <UpdateTripRequest
+        //   open={openEditModal}
+        //   close={() => setOpenEditModal(false)}
+        //   id={tripId}
+        // />
+        // <CreateTripRequest
+        //   open={openCreateModal}
+        //   close={() =>  setOpenCreateModal(false)
+        //   }
+        // />
 
 //         {confirmModalData && (
 //           <ConfirmModal
@@ -276,6 +276,7 @@ import React, { useEffect, useState } from 'react';
 
 import { DataGrid } from '@mui/x-data-grid';
 import { Button, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import BasicModal from './RequestDetailsModal';
 import { loadTripRequests } from '../../redux/actions/tripRequestsActions';
@@ -284,12 +285,18 @@ import { loadLocations } from '../../redux/actions/locationsActions';
 import './requestsTable.scss';
 import ConfirmModal from '../confirmModal/ConfirmModal';
 import Loader from '../progressBar/Loader';
+import UpdateTripRequest from '../layouts/TripRequestLayout/updateTripRequest';
+import CreateTripRequest from '../layouts/TripRequestLayout/createTripRequest';
+import { initialize } from '../../../src/redux/actions/tripRequestActions';
 
 const RequestsTable = () => {
   const [showBasicModal, setShowBasicModal] = useState(false);
   const [currentTripRequest, setCurrentTripRequest] = useState('');
+  const [tripId, setTripId] = useState('');
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [confirmModalData, setConfirmModalData] = useState('');
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [openCreateModal, setOpenCreateModal] = useState(false);
 
   let userColumns;
   let rows;
@@ -353,10 +360,15 @@ const RequestsTable = () => {
                 </div>
                 {params.row.status == 'pending' && (
                   <>
-                    <Button
+                   <Button
                       variant="primary"
                       size="small"
                       className="editButton"
+                      onClick={() => {
+                        setTripId(params.row.id);
+                        console.log(currentTripRequest, 'current');
+                        setOpenEditModal(true);
+                      }}
                     >
                       Edit
                     </Button>
@@ -459,6 +471,15 @@ const RequestsTable = () => {
         <div className="datatable">
           <div style={{ display: 'flex', height: '100%' }}>
             <div style={{ flexGrow: 1 }}>
+            <Button
+                style={{ marginBottom: 20 }}
+                startIcon=<AddIcon />
+                variant="contained"
+                size="large"
+                onClick={() => setOpenCreateModal(true)}
+              >
+                New Trip
+              </Button>
               <DataGrid
                 className="datagrid"
                 rows={rows}
@@ -475,6 +496,19 @@ const RequestsTable = () => {
           close={() => setShowBasicModal(false)}
           tripRequest={currentTripRequest}
         />
+
+          <UpdateTripRequest
+          open={openEditModal}
+          close={() => setOpenEditModal(false)}
+          id={tripId}
+        />
+
+        <CreateTripRequest
+          open={openCreateModal}
+          close={() =>  setOpenCreateModal(false)
+          }
+        />
+
         {confirmModalData && (
           <ConfirmModal
             showModal={showConfirmModal}
