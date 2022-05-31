@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CreateTripRequest = (props) => {
+export const CreateTripRequest = (props) => {
   const dispatch = useDispatch();
   const tripRequest = useSelector((state) => state.tripRequest);
   const allLocations = useSelector((state) => state.allLocations);
@@ -308,4 +308,4 @@ const CreateTripRequest = (props) => {
   );
 };
 
-export default CreateTripRequest;
+// export default CreateTripRequest;
