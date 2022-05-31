@@ -123,10 +123,6 @@ const TopBar = () => {
       auth: {
         token: token,
       },
-      withCredentials: true,
-      extraHeaders: {
-        'my-custom-header': 'abcd',
-      },
     });
 
     setSocket(socket);
