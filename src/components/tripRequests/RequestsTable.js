@@ -287,7 +287,7 @@ import ConfirmModal from '../confirmModal/ConfirmModal';
 import Loader from '../progressBar/Loader';
 import UpdateTripRequest from '../layouts/TripRequestLayout/updateTripRequest';
 import CreateTripRequest from '../layouts/TripRequestLayout/createTripRequest';
-import { initialize } from '../../../src/redux/actions/tripRequestActions';
+// import { initialize } from '../../../src/redux/actions/tripRequestActions';
 
 const RequestsTable = () => {
   const [showBasicModal, setShowBasicModal] = useState(false);
