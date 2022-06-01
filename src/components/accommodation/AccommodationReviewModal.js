@@ -78,6 +78,7 @@ function AccommodationReviewModal({ handleClose, isOpen, accommodation, createAc
 							  }))
 						} else {
 							await createAccommodationReview(accommodation.id, { rating, feedback })
+							handleClose()
 						}
 
 					}} variant="contained" style={{ background: '#07539F' }} color="primary">
