@@ -17,7 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { initialize } from '../../../redux/actions/tripRequestActions';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Modal from '@mui/material/Modal';
-import { loadTripRequests } from '../../../redux/actions/tripRequestsActions'
+import { loadTripRequests } from '../../../redux/actions/tripRequestsActions';
 import { Stack } from '@mui/material';
 
 const closeIcon = {
@@ -86,7 +86,7 @@ const CreateTripRequest = (props) => {
         tripInfo,
         {
           headers: {
-            Authorization:`Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       )
@@ -95,13 +95,13 @@ const CreateTripRequest = (props) => {
         setSnackText(response.data.message);
         setOpen(true);
         setTimeout(() => {
-          props.close()
+          props.close();
         }, 7000);
         if (response.data.status === 201) {
           dispatch(initialize());
           setActiveStep(0);
           setIsLoading(false);
-          dispatch(loadTripRequests());      
+          dispatch(loadTripRequests());
         }
       })
       .catch((err) => {
@@ -210,16 +210,16 @@ const CreateTripRequest = (props) => {
       }}
     >
       <Box
-        component = 'div'
-        className = 'box'
+        component="div"
+        className="box"
         sx={{
           position: 'relative',
           background: 'white',
           width: '70vw',
           borderRadius: 3,
-          marginLeft:'200px',
-          marginRight:'200px',
-          marginBottom:'100px'
+          marginLeft: '200px',
+          marginRight: '200px',
+          marginBottom: '100px',
         }}
       >
         <CloseIcon sx={closeIcon} onClick={() => props.close()} />
@@ -261,7 +261,13 @@ const CreateTripRequest = (props) => {
           </Stepper>
 
           {showStep(activeStep)}
-          <div style={{ display: 'flex', justifyContent: 'center',marginBottom:20 }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: 20,
+            }}
+          >
             <div
               style={{
                 display: 'flex',

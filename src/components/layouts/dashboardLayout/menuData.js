@@ -18,11 +18,6 @@ export const adminSideBarData = [
     route: '/dashboard',
   },
   {
-    title: 'Locations',
-    icon: <LocationOn />,
-    route: '/locations',
-  },
-  {
     title: 'Accommodations',
     icon: <Apartment />,
     route: '/accommodations',
@@ -56,11 +51,6 @@ export const userSideBarData = [
     route: '/dashboard',
   },
   {
-    title: 'Locations',
-    icon: <LocationOn />,
-    route: '/locations',
-  },
-  {
     title: 'Accommodations',
     icon: <Apartment />,
     route: '/accommodations',
@@ -87,11 +77,6 @@ export const travelAdminSidebarData = [
     title: 'Dashboard',
     icon: <Dashboard />,
     route: '/dashboard',
-  },
-  {
-    title: 'Locations',
-    icon: <LocationOn />,
-    route: '/locations',
   },
   {
     title: 'Accommodations',

@@ -22,26 +22,26 @@ function App() {
   axios.interceptors.response.use(
     (response) => response,
     (error) => {
-      const { status } = error?.response;
-
-      // if (status === 401) {
-      //   dispatch(
-      //     openGlobalSnackBar({
-      //       message: 'Unauthorized error!',
-      //       severity: 'error',
-      //     })
-      //   );
-      //   window.location = '/login';
-      // }
-
+      const { status } = error.response;
+      /* if (status === 401) {
+        window.location = '/login';
+      } */
       if (status === 500) {
         dispatch(
           openGlobalSnackBar({
-            message: 'Internal Server error, try again later!',
+            message: 'Internal Server error!',
             severity: 'error',
           }),
         );
       }
+      /*    if (status === 404) {
+        dispatch(
+          openGlobalSnackBar({
+            message: 'Resource you are looking for is not found!',
+            severity: 'error',
+          })
+        );
+      } */
 
       // if (status === 404) {
       //   dispatch(

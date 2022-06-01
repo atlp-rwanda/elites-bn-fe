@@ -85,7 +85,7 @@ const Sidebar = () => {
         <List>
           {menuData.map((data) => (
             <ListItem
-              className={pathname === data.route ? 'active' : ''}
+              className={pathname === data.route ? 'Active' : ''}
               key={data.title}
               disablePadding
             >

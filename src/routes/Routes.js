@@ -16,13 +16,15 @@ import AccommodationReview from '../components/accommodation/AccommodationReview
 
 import SuccessLogin from '../views/home/SuccessLogin';
 import Roles from '../components/roles/roles';
+import BookingRooms from '../components/bookingRooms/BookingRooms';
+import SingleTrip from '../components/bookingRooms/SingleTrip';
 
 const AllRoutes = () => (
   <Routes>
-    <Route path='/' element={<Home />} />
+    <Route path="/" element={<Home />} />
     {/* <Route path='/accommodations' element={<AccommodationList />} /> */}
-    <Route path='/dashboard' element={<Dashboard />} />
-    <Route path='/login' element={<Login />} />
+    <Route path="/dashboard" element={<Dashboard />} />
+    <Route path="/login" element={<Login />} />
     <Route
       path="/dashboard"
       element={
@@ -59,6 +61,8 @@ const AllRoutes = () => (
         </ProtectRoute>
       }
     />
+    <Route path="/signup" element={<Signup />} />
+    <Route path="/signup/success" element={<SignupSuccess />} />
     <Route
       className="socialtestid"
       path="/google/success/:token"
@@ -73,9 +77,27 @@ const AllRoutes = () => (
         </ProtectRoute>
       }
     />
-    <Route path="accommodations/review" element={<AccommodationReview/>} />
+    <Route path="accommodations/review" element={<AccommodationReview />} />
     <Route path="*" element={<NotFoundPage />} />
-    
+
+    <Route
+      path="/:tripid/accommodations/:accommodationId/bookingroom/"
+      element={
+        <ProtectRoute redirectTo="/login">
+          <BookingRooms />
+        </ProtectRoute>
+      }
+    />
+    <Route
+      path="/tripRequests/:tripid"
+      element={
+        <ProtectRoute redirectTo="/login">
+          <SingleTrip />
+        </ProtectRoute>
+      }
+    />
+
+    <Route path="*" element={<NotFoundPage />} />
   </Routes>
 );
 

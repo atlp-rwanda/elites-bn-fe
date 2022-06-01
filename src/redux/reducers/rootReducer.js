@@ -19,11 +19,15 @@ import notificationsReducer from './notificationsReducer';
 import notificationPanelReducer from './notificationPanelReducer';
 import singleTripRequestReducer from './singleTripRequestReducer';
 import tripViewReducer from './tripViewReducer';
-import tripRequestReducer from './tripRequestReducer'
-import allLocationsReducer from './allLocationsReducer'
+import tripRequestReducer from './tripRequestReducer';
+import allLocationsReducer from './allLocationsReducer';
 import AccommodationReviewCreateReducer from './accommodationCreateReviewReducer';
 import globalUserSearchReducer from './userSearchReducer';
 import chatReducers from './chatReducers';
+import bookingRoomReducers from './bookingRoomReducers';
+import BookingConfirmationCreateReducer from './bookingConfirmationReducer';
+import BookingSetAccommodationIdReducer from './bookingSetAccommodationIdReducer';
+import BookingConfirmationSetTripIdReducer from './bookingConfirmationSetTripIdReducer';
 
 export default combineReducers({
   mostTravelledLocation: mostTravelledReducer,
@@ -47,10 +51,12 @@ export default combineReducers({
   users: usersReducers,
   allNotifications: notificationsReducer,
   notificationPanel: notificationPanelReducer,
-  Locations:allLocationsReducer,
-  tripRequest:tripRequestReducer,
+  Locations: allLocationsReducer,
+  tripRequest: tripRequestReducer,
   reviewAccommodation: AccommodationReviewCreateReducer,
   chat: chatReducers,
+  allRooms: bookingRoomReducers,
+  bookingConfrimationCreate: BookingConfirmationCreateReducer,
+  bookingSetAccommodationIdReducer: BookingSetAccommodationIdReducer,
+  bookingConfirmationSetTripIdReducer: BookingConfirmationSetTripIdReducer,
 });
-
-

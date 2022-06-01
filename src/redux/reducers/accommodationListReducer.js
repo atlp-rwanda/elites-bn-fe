@@ -1,31 +1,31 @@
-import { accommodationFetchType } from "../types"
+import { accommodationFetchType } from '../types';
 
 const initialState = {
-	loading: false,
-}
+  loading: true,
+};
 
 const AccommodationListReducer = (state = initialState, action) => {
-	switch (action.type) {
-		case accommodationFetchType.ACCOMMODATION_FETCH_REQUEST:
-			return {
-				loading: true
-			}
-	
-		case accommodationFetchType.ACCOMMODATION_FETCH_SUCCESS:
-			return {
-				loading:false,
-				data: action.payload
-			}
-		
-		case accommodationFetchType.ACCOMMODATION_FETCH_FAILURE:
-			return{
-				loading: false,
-				error: action.payload
-			}
+  switch (action.type) {
+    case accommodationFetchType.ACCOMMODATION_FETCH_REQUEST:
+      return {
+        loading: true,
+      };
 
-		default:
-			return state;
-	}
-}
+    case accommodationFetchType.ACCOMMODATION_FETCH_SUCCESS:
+      return {
+        loading: false,
+        data: action.payload,
+      };
 
-export default AccommodationListReducer
+    case accommodationFetchType.ACCOMMODATION_FETCH_FAILURE:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export default AccommodationListReducer;
