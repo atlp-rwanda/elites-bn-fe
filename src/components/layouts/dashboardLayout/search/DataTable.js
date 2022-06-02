@@ -92,7 +92,7 @@ export default function DataTable({ tableData }) {
           <TableRow>
             <StyledTableCell>ID</StyledTableCell>
             <StyledTableCell align="center">NAMES</StyledTableCell>
-            <StyledTableCell align="center">DESTINATIONS</StyledTableCell>
+            {/* <StyledTableCell align="center">DESTINATIONS</StyledTableCell> */}
             <StyledTableCell align="center">DEPARTURE LOCATION</StyledTableCell>
             <StyledTableCell align="center">TRIP REASON</StyledTableCell>
             <StyledTableCell align="center">STATUS</StyledTableCell>
@@ -108,13 +108,13 @@ export default function DataTable({ tableData }) {
                 <StyledTableCell align="center">
                   {globalUserSearch.names}
                 </StyledTableCell>
-                <StyledTableCell align="center">
+                {/* <StyledTableCell align="center">
                   {findLocationNames(globalUserSearch)?.destinationNames.map(
                     (destinationName) => {
                       return `${destinationName},`;
                     }
                   )}
-                </StyledTableCell>
+                </StyledTableCell> */}
                 <StyledTableCell align="center">
                   {findLocationNames(globalUserSearch)?.departLocationName}
                 </StyledTableCell>
