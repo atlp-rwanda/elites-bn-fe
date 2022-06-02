@@ -50,3 +50,5 @@ export default combineReducers({
   tripRequest:tripRequestReducer,
   reviewAccommodation: AccommodationReviewCreateReducer,
 });
+
+
