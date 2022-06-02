@@ -1,16 +1,9 @@
-<<<<<<< HEAD
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable jsx-quotes */
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-=======
-/* eslint-disable jsx-quotes */
-import axios from 'axios';
-import React from 'react';
-import { useDispatch } from 'react-redux';
->>>>>>>  This is a commit rebased with dev branch.
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
