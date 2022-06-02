@@ -68,6 +68,7 @@ const TopBar = () => {
         globalUserSearch.tripReason.includes(x) ||
         globalUserSearch.status.includes(x) ||
         globalUserSearch.names.includes(x)
+      
     );
 
   const unreadNotifications = () => {
