@@ -94,13 +94,7 @@ function TripStat(props) {
                       placeholder="yyyy-mm-dd"
                       onChange={handleChangeDate}
                     />
-                    <button
-                      type="submit"
-                      className="btn"
-                      style={{ cursor: 'pointer' }}
-                    >
-                      SEND
-                    </button>
+                    <Button variant="contained" type="submit" className="btn" sx={{width:50, marginLeft: 1}} >SEND</Button>
                   </form>
                 )}
               />
