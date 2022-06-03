@@ -18,6 +18,7 @@ import SuccessLogin from '../views/home/SuccessLogin';
 import Roles from '../components/roles/roles';
 import BookingRooms from '../components/bookingRooms/BookingRooms';
 import SingleTrip from '../components/bookingRooms/SingleTrip';
+import Profile from '../components/profile/profile'
 
 const AllRoutes = () => (
   <Routes>
@@ -63,6 +64,19 @@ const AllRoutes = () => (
     />
     <Route path="/signup" element={<Signup />} />
     <Route path="/signup/success" element={<SignupSuccess />} />
+
+    <Route
+       exact
+       path="/profile"
+       element={
+
+        <ProtectRoute redirectTo="/login">
+          <Profile /> 
+        </ProtectRoute>
+                 
+                
+        }
+     />
     <Route
       className="socialtestid"
       path="/google/success/:token"

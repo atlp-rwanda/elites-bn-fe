@@ -36,6 +36,7 @@ export const loadTripRequests = () => {
         },
       })
       .then((res) => {
+        console.log(res)
         dispatch(setTripRequests(res.data.payload));
       })
       .catch((err) => console.log(err));

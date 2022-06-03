@@ -37,6 +37,8 @@ function AccommodationCreateModal({ isOpen, handleClose, locations, createAccomm
 		setImage(e.target.files[0])
 	}
 
+  
+
 
 	const handleCreateAccommodation = async () => {
 		await createAccommodation({ description, accommodationName, streetAddress, locationId, geoCoordinates, ammenities, image })

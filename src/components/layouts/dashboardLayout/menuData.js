@@ -25,7 +25,7 @@ export const adminSideBarData = [
   {
     title: 'Profile',
     icon: <AccountCircle />,
-    route: '/profile/:id',
+    route: '/profile/',
   },
   {
     title: 'Trip requests',
@@ -58,7 +58,7 @@ export const userSideBarData = [
   {
     title: 'Profile',
     icon: <AccountCircle />,
-    route: '/profile/:id',
+    route: '/profile',
   },
   {
     title: 'Trip requests',
