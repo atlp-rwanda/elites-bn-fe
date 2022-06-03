@@ -6,14 +6,24 @@
   }
 
   img {
+
     width: 100% !important;
     border-radius:50% !important;
     margin: 0 !important;
-    margin: 20px !important;
+    margin: 70px 20px 20px 20px !important;
     object-fit: cover !important;
+
   }
 
   .profile {
     flex-direction: column !important;
+  }
+
+  .buttonOne {
+    display:none !important;
+  }
+
+  .buttonTwo {
+    display:flex !important;
   }
 }

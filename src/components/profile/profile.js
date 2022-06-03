@@ -636,7 +636,7 @@ function profile() {
       >
         <div
           className="box1"
-          style={{ display: 'flex', backgroundColor: 'white', padding: '50px' }}
+          style={{ display: 'flex', backgroundColor: 'white', padding: '50px', }}
         >
           <Box
             component="div"
@@ -683,6 +683,7 @@ function profile() {
             </label>
 
             <LoadingButton
+            className='buttonOne'
               loading={loading}
               onClick={async () => {
                 const res = await createProfile();
@@ -839,6 +840,26 @@ function profile() {
                 )}
               />
             </LocalizationProvider>
+            <LoadingButton
+              className='buttonTwo'
+              loading={loading}
+              onClick={async () => {
+                const res = await createProfile();
+              }}
+              variant="contained"
+              sx={{
+                alignSelf: 'center',
+                width: 180,
+                marginTop: 3,
+                marginBottom: 3,
+                backgroundColor: darkBlue,
+                color: 'white',
+                borderColor: 'white',
+                display:'none'
+              }}
+            >
+              CREATE PROFILE
+            </LoadingButton>
           </Box>
         </div>
       </Modal>
