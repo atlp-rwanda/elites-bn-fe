@@ -200,7 +200,7 @@ const CreateTripRequest = (props) => {
       open={props.open}
       onClose={() => props.close()}
       sx={{
-        overflow: 'scroll',
+        overFlow: 'scroll',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -213,13 +213,25 @@ const CreateTripRequest = (props) => {
         component="div"
         className="box"
         sx={{
+          overflow: 'scroll',
           position: 'relative',
           background: 'white',
           width: '70vw',
+          minWidth:'60vw',
+          height:'80vh',
           borderRadius: 3,
           marginLeft: '200px',
           marginRight: '200px',
-          marginBottom: '100px',
+          // marginBottom: '100px',
+          padding:'40px',
+
+          // overflow: 'scroll',
+          // display: 'flex',
+          // justifyContent: 'center',
+          // alignItems: 'center',
+          // padding: '20px',
+          // width: '100vw',
+          // height: '100vh',
         }}
       >
         <CloseIcon sx={closeIcon} onClick={() => props.close()} />

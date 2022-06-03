@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => {
     root: {
       '& .MuiTextField-root': {
         margin: 8,
-        width: 250,
+        maxWidth: '280px',
+        minWidth:'200px'
       },
     },
   };
@@ -129,14 +130,17 @@ const StepOne = (props) => {
                 marginRight: 20,
                 backgroundColor: '#E5EAFF',
                 borderRadius: 10,
+                width:'fit-content'
               }}
             >
               <TextField
-                id="standard-select-currency"
+                id="standard-select-depart"
                 label="Depart location"
                 select
+                sx={{
+                  width:'18vw',             
+                }}
                 value={ index-1 < 0 ? inputField.departLocation:array[index - 1].destination }
-               // index - 1 < 0 ? response.data.payload.departLocation : JSON.parse(arr[index - 1]).//destinationId,
                 inputProps={{
                   readOnly: props.active == undefined ? true : false,
                 }}
@@ -156,12 +160,15 @@ const StepOne = (props) => {
               </TextField>
 
               <TextField
-                id="standard-select-currency"
+                id="standard-select-destination"
                 select
                 label="Destination"
                 value={inputField.destination}
                 name="destination"
                 variant="standard"
+                sx={{
+                  width:'18vw'
+                }}
                 inputProps={{
                   readOnly: props.active == undefined ? true : false,
                 }}
@@ -181,12 +188,15 @@ const StepOne = (props) => {
               </TextField>
 
               <TextField
-                id="standard-select-currency"
+                id="standard-select-accomodation"
                 select
                 value={inputField.accomodation}
                 label="Accomodation"
                 name="accomodation"
                 variant="standard"
+                sx={{
+                  width:'18vw'
+                }}
                 inputProps={{
                   readOnly: props.active == undefined ? true : false,
                 }}
