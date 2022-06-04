@@ -205,7 +205,7 @@ const UpdateTripRequest = (props) => {
               gutterBottom
               sx={{ margin: 3, textAlign: 'left' }}
             >
-              <strong>N.B:</strong> Below is a read only overview of your tip
+              <strong>N.B:</strong> Below is a read only overview of your trip
               request before submission, to change some of the trip details,
               click the previous button
             </Typography>
@@ -259,17 +259,20 @@ const UpdateTripRequest = (props) => {
         alignItems: 'center',
         padding:'20px',
         width: '100vw',
-        height:'100vh'
-
+        height:'100vh',
       }}
     >
       <Box sx={{ 
+        overflow: 'scroll',
         position: 'relative',
         background: 'white',
-        width: 950,
+        width: '70vw',
+        minWidth:'60vw',
+        height:'80vh',
         borderRadius: 3,
-        marginTop: '50px',
-        marginLeft:'200px'
+        marginLeft: '200px',
+        marginRight: '200px',
+        padding:'40px',
         }}>
         <CloseIcon sx={closeIcon} onClick={()=> props.close()} />
         <form noValidate autoComplete="off">
@@ -323,7 +326,6 @@ const UpdateTripRequest = (props) => {
                 onClick={previousStep}
                 sx={{
                   width: 110,
-
                   backgroundColor: blueColor,
                 }}
                 style={{ display: activeStep < 1 ? 'none' : 'block' }}
