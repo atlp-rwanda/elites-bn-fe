@@ -158,7 +158,7 @@ const LoginComponent = (props) => {
                   />
                 </FormControl>
                 <Link
-                  href="#"
+                  href="/forgot-password"
                   underline="none"
                   style={{ color: '#07539F', marginBottom: '20px' }}
                 >

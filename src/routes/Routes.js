@@ -13,17 +13,20 @@ import SocialAuthGoogleDir from '../views/home/SocialAuthGoogleDir';
 import Accommodation from '../components/accommodation/Accommodation';
 import AccommodationList from '../components/accommodation/AccommodationList';
 import AccommodationReview from '../components/accommodation/AccommodationReview';
-
 import SuccessLogin from '../views/home/SuccessLogin';
 import Roles from '../components/roles/roles';
 import BookingRooms from '../components/bookingRooms/BookingRooms';
 import SingleTrip from '../components/bookingRooms/SingleTrip';
-import Profile from '../components/profile/profile'
+import Profile from '../components/profile/profile';
+import ForgotPassword from '../components/resetPassword/forgotPassword';
+import ResetPassword from '../components/resetPassword/resetPassword';
 
 const AllRoutes = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
+    <Route path='/forgot-password' element={<ForgotPassword />} />
+    <Route path='/reset-password' element={<ResetPassword />} />
     <Route
       path="/dashboard"
       element={

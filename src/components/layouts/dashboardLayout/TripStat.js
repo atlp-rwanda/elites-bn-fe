@@ -15,7 +15,7 @@ import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import { Typography, Button, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import setTripStatics from '../../../redux/actions/landingDashboardActions';
-import Loader from '../../home/loader';
+import Loader from '../../../views/home/loader';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function TripStat(props) {
