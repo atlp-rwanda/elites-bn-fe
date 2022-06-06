@@ -22,18 +22,18 @@ function App() {
   axios.interceptors.response.use(
     (response) => response,
     (error) => {
-      const { status } = error.response;
+      // const { status } = error.response;
       /* if (status === 401) {
         window.location = '/login';
       } */
-      if (status === 500) {
+      /*     if (status === 500) {
         dispatch(
           openGlobalSnackBar({
             message: 'Internal Server error!',
             severity: 'error',
           }),
         );
-      }
+      } */
       /*    if (status === 404) {
         dispatch(
           openGlobalSnackBar({
@@ -53,7 +53,7 @@ function App() {
       // }
 
       return Promise.reject(error);
-    },
+    }
   );
   return (
     <BrowserRouter history={history}>

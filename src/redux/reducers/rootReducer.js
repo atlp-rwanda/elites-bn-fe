@@ -31,6 +31,8 @@ import BookingConfirmationSetTripIdReducer from './bookingConfirmationSetTripIdR
 import profileReducer from './profileReducer';
 import resetPasswordReducers from './forgotPasswordReducers';
 import resetMessageReducer from './resetMessageReducer';
+import likeAccommodations from './likeAccommodationCreateReducer';
+import dislikeAccommodationCreateReducer from './dislikeAccommodationCreateReducer';
 
 export default combineReducers({
   mostTravelledLocation: mostTravelledReducer,
@@ -65,4 +67,6 @@ export default combineReducers({
   profile:profileReducer,
   forgotPassword:  resetPasswordReducers,
   resetMessage: resetMessageReducer,
+  like: likeAccommodations,
+  dislike: dislikeAccommodationCreateReducer,
 });

@@ -86,7 +86,7 @@ const AllRoutes = () => (
     <Route
       className="socialtestid"
       path="/google/success/:token"
-      element={<SocialAuthGoogleDir />}
+      element={<Dashboard />}
     />
     <Route
       exact

@@ -191,7 +191,7 @@ const TopBar = () => {
               variant="h5"
               fontWeight="600"
               color="#07539F"
-              sx={{ display: { xs: 'none', sm: 'block' } }}
+              sx={{ display: 'none' }}
             >
               {/* {pathname} */}
             </Typography>

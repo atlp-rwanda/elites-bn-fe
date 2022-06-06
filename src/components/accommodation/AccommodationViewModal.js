@@ -6,8 +6,12 @@ import {
   ImageListItem,
   Modal,
   Typography,
+  ButtonGroup,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import DislikeAccommodation from './DislikeAccommodation';
+import LikeAccommodation from './LikeAccommodation';
+import axios from 'axios';
 
 const style = {
   position: 'absolute',
@@ -38,6 +42,22 @@ function AccommodationViewModal({
   accommodation,
   modalId,
 }) {
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState(0);
+
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const resLikes = await axios.get(
+        `https://elites-barefoot-nomad.herokuapp.com/api/v1/accommodations/${accommodation.id}/likes`
+      );
+
+      setLikes(resLikes.data.payload.likes);
+      setDislikes(resLikes.data.payload.dislikes);
+    };
+
+    fetchLikes();
+  }, [dislikes, likes]);
+
   return (
     <div>
       <Modal
@@ -107,6 +127,22 @@ function AccommodationViewModal({
               />
             )}
           </ImageList>
+          <div
+            className="likesdislikes"
+            style={{ display: 'flex', marginLeft: '10%' }}
+          >
+            <LikeAccommodation
+              accommodation={accommodation}
+              likes={likes}
+              setLikes={setLikes}
+            />
+            <Typography sx={{ m: 4 }} />
+            <DislikeAccommodation
+              accommodation={accommodation}
+              dislikes={dislikes}
+              setDislikes={setDislikes}
+            />
+          </div>
         </Box>
       </Modal>
     </div>

@@ -86,7 +86,7 @@ export const travelAdminSidebarData = [
   {
     title: 'Profile',
     icon: <AccountCircle />,
-    route: '/profile/:id',
+    route: '/profile',
   },
   {
     title: 'Users',
