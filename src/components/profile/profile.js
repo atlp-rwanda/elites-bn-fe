@@ -34,7 +34,7 @@ import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Modal from '@mui/material/Modal';
 import './profile.scss';
-import Loader from '../home/loader'
+import Loader from '../home/loader';
 
 const blueColor = { color: '#07539F' };
 const StackedTypography = ({ header, body, display }) => {
@@ -89,7 +89,7 @@ function profile() {
   const [severity, setSeverity] = React.useState('success');
   const [snackText, setSnackText] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-  const [ loadingTwo, setLoadingTwo ] = React.useState(false)
+  const [loadingTwo, setLoadingTwo] = React.useState(false);
   const [image, setImage] = React.useState(null);
   const [newProfile, setNewProfile] = React.useState('no');
   const [showCreateProfileModal, setShowCreateProfileModal] =
@@ -108,6 +108,7 @@ function profile() {
   };
 
   const currentUser = useSelector((state) => state.currentUser.currentUser.id);
+
   const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
   const handleClose = (event, reason) => {
@@ -175,44 +176,41 @@ function profile() {
     return axios
       .get('https://elites-barefoot-nomad.herokuapp.com/api/v1/profiles', {
         headers: {
-          Authorization:`Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
         const fetchedUserProfile = response.data.payload.filter(
           (profileId, index) =>
             response.data.payload[index].User.id == currentUser
-        );     
+        );
         setLoadingTwo(false);
         let userProfile = fetchedUserProfile[0];
-          
-        
-          if( fetchedUserProfile && fetchedUserProfile.length <= 0){
 
-            setShowCreateProfileModal(true)
-            
+        if (fetchedUserProfile && fetchedUserProfile.length <= 0) {
+          if (currentUser) {
+            setShowCreateProfileModal(true);
           }
-          else{
-            setShowCreateProfileModal(false);
-            dispatch(
-              fetchedProfile({
-                names: userProfile.User.names,
-                email: userProfile.User.email,
-                gender: userProfile.gender,
-                role: userProfile.User.roleId,
-                image: userProfile.picture,
-                birthdate: new Date(userProfile.birthdate)
-                  .toISOString()
-                  .split('T')[0],
-                language: userProfile.language,
-                currency: userProfile.currency,
-                department: userProfile.department,
-                passportNumber: userProfile.passportNumber,
-                address: userProfile.address,
-              })
-            );
-          }
-        
+        } else {
+          setShowCreateProfileModal(false);
+          dispatch(
+            fetchedProfile({
+              names: userProfile.User.names,
+              email: userProfile.User.email,
+              gender: userProfile.gender,
+              role: userProfile.User.roleId,
+              image: userProfile.picture,
+              birthdate: new Date(userProfile.birthdate)
+                .toISOString()
+                .split('T')[0],
+              language: userProfile.language,
+              currency: userProfile.currency,
+              department: userProfile.department,
+              passportNumber: userProfile.passportNumber,
+              address: userProfile.address,
+            })
+          );
+        }
       });
   };
 
@@ -631,12 +629,11 @@ function profile() {
           padding: '20px',
           width: '100vw',
           height: '100vh',
-
         }}
       >
         <div
           className="box1"
-          style={{ display: 'flex', backgroundColor: 'white', padding: '50px', }}
+          style={{ display: 'flex', backgroundColor: 'white', padding: '50px' }}
         >
           <Box
             component="div"
@@ -683,7 +680,7 @@ function profile() {
             </label>
 
             <LoadingButton
-            className='buttonOne'
+              className="buttonOne"
               loading={loading}
               onClick={async () => {
                 const res = await createProfile();
@@ -825,7 +822,7 @@ function profile() {
                   <TextField
                     style={{
                       fontWeight: 600,
-                      marginTop:15,
+                      marginTop: 15,
                       marginLeft: 1.2,
                       marginRight: 1.2,
                       marginBottom: 1.2,
@@ -840,8 +837,9 @@ function profile() {
                 )}
               />
             </LocalizationProvider>
+
             <LoadingButton
-              className='buttonTwo'
+              className="buttonTwo"
               loading={loading}
               onClick={async () => {
                 const res = await createProfile();
@@ -855,7 +853,7 @@ function profile() {
                 backgroundColor: darkBlue,
                 color: 'white',
                 borderColor: 'white',
-                display:'none'
+                display: 'none',
               }}
             >
               CREATE PROFILE
