@@ -35,7 +35,7 @@ import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Modal from '@mui/material/Modal';
 import './profile.scss';
-import Loader from '../home/loader';
+import Loader from '../../views/home/loader';
 
 
 const useStyles = makeStyles(() => ({

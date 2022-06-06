@@ -144,7 +144,7 @@ const Roles = (props) => {
   const getRoleId = (roleName) => {
     const getRolesArr = props.users.roles;
     let role = [];
-    for (let i = 0; i < getRolesArr.length; i++) {
+    for (let i = 0; i < getRolesArr?.length; i++) {
       role = getRolesArr[i];
       if (role.name == roleName) {
         return role.id;
