@@ -29,13 +29,30 @@ const Widget = () => {
 
   const TotalRequest =
     pendingArray.length + approvedArray.length + rejectedArray.length;
-  const totPendingTripReq = (100 * pendingArray.length) / TotalRequest;
-  const totPendingTripReqPercentage = totPendingTripReq.toFixed(1);
-  const totApprovedTripReq = (100 * approvedArray.length) / TotalRequest;
-  const totApprovedTripReqPercentage = totApprovedTripReq.toFixed(1);
-  const totRejectedTripReq = (100 * rejectedArray.length) / TotalRequest;
-  const totRejectedTripReqPercentage = totRejectedTripReq.toFixed(1);
+    let totPendingTripReq = (100 * pendingArray.length) / TotalRequest;
+    let totApprovedTripReq = (100 * approvedArray.length) / TotalRequest;
+    let totRejectedTripReq = (100 * rejectedArray.length) / TotalRequest;
+    let totPendingTripReqPercentage;
+    let totApprovedTripReqPercentage;
+    let totRejectedTripReqPercentage;
+    
+    if(TotalRequest===0){
+      
+        totPendingTripReqPercentage = 0
+        totApprovedTripReqPercentage = 0;
+        totRejectedTripReqPercentage = 0;
+      
 
+    }else {
+      totPendingTripReqPercentage = totPendingTripReq.toFixed(1);
+      totApprovedTripReqPercentage = totApprovedTripReq.toFixed(1);
+      totRejectedTripReqPercentage = totRejectedTripReq.toFixed(1);
+    }
+   
+   
+ 
+
+  
   useEffect(() => {
     dispatch(setTripStatics());
   }, []);
