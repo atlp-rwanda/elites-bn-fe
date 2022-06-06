@@ -23,8 +23,6 @@ import Profile from '../components/profile/profile'
 const AllRoutes = () => (
   <Routes>
     <Route path="/" element={<Home />} />
-    {/* <Route path='/accommodations' element={<AccommodationList />} /> */}
-    <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/login" element={<Login />} />
     <Route
       path="/dashboard"

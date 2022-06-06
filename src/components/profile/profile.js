@@ -10,6 +10,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles } from '@mui/styles';
 import Sidebar from '../layouts/dashboardLayout/Sidebar';
 import TopBar from '../layouts/dashboardLayout/TopBar';
 import {
@@ -35,6 +36,15 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import Modal from '@mui/material/Modal';
 import './profile.scss';
 import Loader from '../home/loader';
+
+
+const useStyles = makeStyles(() => ({
+  root: {
+    '&&': {
+      '& .MuiStepIcon-completed': { color: '07539F' },
+    },
+  },
+}));
 
 const blueColor = { color: '#07539F' };
 const StackedTypography = ({ header, body, display }) => {
@@ -258,6 +268,7 @@ function profile() {
           setChange(false);
           fetchProfile();
           setShowCreateProfileModal(false);
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -631,6 +642,11 @@ function profile() {
           height: '100vh',
         }}
       >
+         <div
+          style={{ backgroundColor: 'white',textAlign:'center' ,padding:'20px'}}>
+         <Typography variant = 'h5' color = '#07539F'> You do not have a profile, create one to proceed!</Typography>
+
+            
         <div
           className="box1"
           style={{ display: 'flex', backgroundColor: 'white', padding: '50px' }}
@@ -860,6 +876,9 @@ function profile() {
             </LoadingButton>
           </Box>
         </div>
+
+         </div>
+        
       </Modal>
     </Box>
   );
