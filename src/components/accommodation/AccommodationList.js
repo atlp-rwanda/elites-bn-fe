@@ -169,8 +169,9 @@ function AccommodationList(props) {
             handleClose={() => setOpenC(false)}
             isOpen={openC}
           />
-          {roleId == 2 && (
+          
             <Grid container spacing={1}>
+            {roleId == 2 && (
               <Grid item><Button
                 onClick={handleOpenCreate}
                 sx={{ m: 4, color: '#07539F' }}
@@ -178,6 +179,7 @@ function AccommodationList(props) {
               >
                 CREATE AN ACCOMMODATION
               </Button></Grid>
+              )}
               <Grid item><Button
               onClick={()=>navigate('/accommodations/review')}
                 sx={{ m: 4, color: '#07539F' }}
@@ -188,7 +190,7 @@ function AccommodationList(props) {
             </Grid>
 
 
-          )}
+          
           <Typography
             variant="body1"
             sx={{
