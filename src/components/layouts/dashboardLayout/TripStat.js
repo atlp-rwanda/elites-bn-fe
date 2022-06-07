@@ -19,11 +19,12 @@ import Loader from '../../home/loader';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 function TripStat(props) {
+  const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
   const [value, setValue] = React.useState(['', '']);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState('1990-10-10');
-  const [endDate, setEndDate] = useState('2050-10-10');
-  const [loading, setLoading] = useState(false);
+  const [endDate, setEndDate] = useState('5050-10-10');
+  // const [loading, setLoading] = useState(false);
 
   const handleChangeDate = (e) => {
     if (e.target.id === 'startDate') {
@@ -37,10 +38,15 @@ function TripStat(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     // setLoading(true);
-    dispatch(setTripStatics(startDate, endDate));
+    dispatch(setTripStatics(startDate, endDate, token));
   };
 
   const tripStatisticsState = useSelector((state) => state.tripStatistics);
+  
+  useEffect(() => {
+      dispatch(setTripStatics(startDate, endDate, token));
+  }, []);
+
   const pendingArray = [];
   const approvedArray = [];
   const rejectedArray = [];
@@ -56,10 +62,6 @@ function TripStat(props) {
       rejectedArray.push(key.status);
     }
   });
-
-  useEffect(() => {
-    dispatch(setTripStatics(startDate, endDate));
-  }, []);
 
   return (
     <>

@@ -3,6 +3,8 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../views/home/Home';
 import Dashboard from '../components/layouts/dashboardLayout';
+import TripStat from '../components/layouts/dashboardLayout/TripStat';
+import Dashboardindex from '../components/layouts/dashboardLayout/DashboardIndex'
 import TripRequests from '../components/tripRequests/TripRequests';
 import NotFoundPage from '../views/notFound/NotFoundPage';
 import ProtectRoute from './protectedRoutes';
@@ -28,7 +30,9 @@ const AllRoutes = () => (
       path="/dashboard"
       element={
         <ProtectRoute redirectTo="/login">
-          <Dashboard />
+           {/* <TripStat /> */}
+          {/* <Dashboard /> */}
+          <Dashboardindex />
         </ProtectRoute>
       }
     />

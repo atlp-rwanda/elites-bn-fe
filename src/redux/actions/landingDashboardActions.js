@@ -9,8 +9,8 @@ const getTripStatAction = (data) => ({
   type: actionTypes.SET_TRIPSTATISTICS,
   payload: data,
 });
-const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
-const setTripStatics = (startDate, endDate) => async (dispatch) => {
+
+const setTripStatics = (startDate, endDate,token) => async (dispatch) => {
   const response = await axios.post(
     API_URL,
     {
@@ -24,5 +24,6 @@ const setTripStatics = (startDate, endDate) => async (dispatch) => {
     }
   );
   response && dispatch(getTripStatAction(response.data?.payload?.rows));
+  
 };
 export default setTripStatics;
