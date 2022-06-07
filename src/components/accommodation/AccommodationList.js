@@ -6,11 +6,13 @@ import {
   CircularProgress,
   Snackbar,
   Alert,
+  Grid
 } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { fetchAccommodations } from '../../redux/actions/accommodationListActions';
 import {
   clearSnackbar,
@@ -107,6 +109,9 @@ const columns = [
 ];
 
 function AccommodationList(props) {
+
+  const navigate = useNavigate()
+
   const [state, setState] = useState({
     open: true,
     vertical: 'top',
@@ -136,7 +141,7 @@ function AccommodationList(props) {
     fetchA();
   }, []);
 
-  useEffect(() => {});
+  useEffect(() => { });
 
   const action = (
     <React.Fragment>
@@ -165,13 +170,24 @@ function AccommodationList(props) {
             isOpen={openC}
           />
           {roleId == 2 && (
-            <Button
-              onClick={handleOpenCreate}
-              sx={{ m: 4, color: '#07539F' }}
-              variant="outlined"
-            >
-              CREATE AN ACCOMMODATION
-            </Button>
+            <Grid container spacing={1}>
+              <Grid item><Button
+                onClick={handleOpenCreate}
+                sx={{ m: 4, color: '#07539F' }}
+                variant="outlined"
+              >
+                CREATE AN ACCOMMODATION
+              </Button></Grid>
+              <Grid item><Button
+              onClick={()=>navigate('/accommodations/review')}
+                sx={{ m: 4, color: '#07539F' }}
+                variant="outlined"
+              >
+                ACCOMMODATION REVIEWS
+              </Button></Grid>
+            </Grid>
+
+
           )}
           <Typography
             variant="body1"
