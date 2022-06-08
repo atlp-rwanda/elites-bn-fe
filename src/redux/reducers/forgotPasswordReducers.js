@@ -1,6 +1,6 @@
 import { LoginTypes } from '../types';
 
-const initialState = {}
+const initialState = {err: false};
 
 export default function(state= initialState, action){
     const { type, payload } = action;
@@ -8,29 +8,16 @@ export default function(state= initialState, action){
         case LoginTypes.RESET_LINK_SUCCESS:
             return {
                 ...state,
-                token: payload
             };
 
         case LoginTypes.RESET_LINK_FAIL:
             return {
                 ...state,
-                error: payload
+                err: true
             };
-
-        case LoginTypes.RESET_PASSWORD_SUCCESS:
-                return {
-                    ...state,
-                    messsage: payload
-                };
-    
-        case LoginTypes.RESET_PASSWORD_FAIL:
-                return {
-                    ...state,
-                    message: payload
-                };
         
-            default:
-                return state;               
+        default:
+            return state;               
 
     }
 }

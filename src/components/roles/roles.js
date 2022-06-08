@@ -28,6 +28,7 @@ const Roles = (props) => {
   const [oldRole, setOldRole] = React.useState('');
   const [newRole, setNewRole] = React.useState('');
 
+  const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
   const handleCloseModel = () => {
     setOpen(false);
   };
@@ -192,19 +193,18 @@ const Roles = (props) => {
     }
   };
 
-  // call the row function
-
   const row = rows();
   useEffect(() => {
+    setIsLoading(true);
     const func = async () => {
-      setIsLoading(true);
-      await props.usersAction();
+      
+      await props.usersAction(token);
       setIsLoading(false);
     };
     func();
 
     const rolesFunction = async () => {
-      await props.userRoles();
+      await props.userRoles(token);
     };
     rolesFunction();
   }, []);

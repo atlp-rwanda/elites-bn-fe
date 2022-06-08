@@ -21,12 +21,14 @@ import Profile from '../components/profile/profile';
 import ForgotPassword from '../components/resetPassword/forgotPassword';
 import ResetPassword from '../components/resetPassword/resetPassword';
 
+
+
 const AllRoutes = () => (
   <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path='/forgot-password' element={<ForgotPassword />} />
-    <Route path='/reset-password' element={<ResetPassword />} />
+    <Route path= '/reset-password/:token' element={<ResetPassword />} />
     <Route
       path="/dashboard"
       element={

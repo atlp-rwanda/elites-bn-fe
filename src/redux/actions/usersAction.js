@@ -6,46 +6,64 @@ const API_URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/';
 const UPDATE_ROLE_URL =
   'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/updateRole';
 const URL = 'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/roles';
-const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
-export const usersAction = () => async (dispatch) => {
-  try {
-    const response = await axios.get(API_URL, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    // const decoded = jwt_decode(token);
-    if (response) {
-      dispatch({
-        type: actionTypes.GET_USERS,
-        payload: { users: response.data.payload },
-      });
-    }
-  } catch (err) {
-    dispatch({
-      type: actionTypes.LOAD_USERS_FAIL,
-      payload: 'failed to load users',
-    });
-  }
-};
+// const token = JSON.parse(localStorage.getItem('userToken'))?.accesstoken;
 
-export const userRoles = () => async (dispatch) => {
-  try {
-    const res = await axios.get(URL, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (res) {
-      dispatch({
-        type: actionTypes.SET_ROLES,
-        payload: { roles: res.data.payload },
+export const usersAction = (token) =>
+  function (dispatch) {
+    axios
+      .get(API_URL, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => {
+        dispatch({
+          type: actionTypes.GET_USERS,
+          payload: { users: res.data.payload },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: actionTypes.LOAD_USERS_FAIL,
+          payload: 'failed to load users',
+        });
       });
-    }
-  } catch (err) {
-    console.log(err);
-    dispatch({
-      type: actionTypes.FAILED_TO_LOAD_ROLES,
-      payload: ' failed to load roles',
-    });
-  }
-};
+  };
+
+// export const userRoles = () => async (dispatch) => {
+//   try {
+//     const res = await axios.get(URL, {
+//       headers: { Authorization: `Bearer ${token}` },
+//     });
+//     if (res) {
+//       dispatch({
+//         type: actionTypes.SET_ROLES,
+//         payload: { roles: res.data.payload },
+//       });
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     dispatch({
+//       type: actionTypes.FAILED_TO_LOAD_ROLES,
+//       payload: ' failed to load roles',
+//     });
+//   }
+// };
+
+export const userRoles= (token) => function(dispatch){
+  axios.get(URL, {
+          headers: { Authorization: `Bearer ${token}` },
+        }).then((res)=>{
+          dispatch({
+                    type: actionTypes.SET_ROLES,
+                    payload: { roles: res.data.payload },
+                  });
+        }).catch((err)=>{
+          dispatch({
+                  type: actionTypes.FAILED_TO_LOAD_ROLES,
+                  payload: `failed to load roles ${err}`,
+                });
+        })
+}
 
 export const updateRoles = (id, email) => async (dispatch) => {
   try {

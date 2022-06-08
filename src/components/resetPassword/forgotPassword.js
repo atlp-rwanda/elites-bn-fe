@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { CssBaseline } from '@mui/material';
-import { Container, FormControl, Typography, Snackbar } from '@mui/material';
+import { Container, FormControl, Typography } from '@mui/material';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
@@ -14,7 +14,7 @@ import { openGlobalSnackBar } from '../../redux/actions/globalSnackBarActions';
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [verify, showVerify] = useState(false);
+  const { message, messageOpen } = props.resetMessage;
   const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
@@ -23,18 +23,8 @@ const ForgotPassword = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    await props?.sendResetLink(email);
-
-    // console.log(props.reset.token);
-
+    await props.sendResetLink(email);
     setIsLoading(false);
-    if (props.reset.token) {
-      props.openGlobalSnackBar({
-        message: 'verification link sent',
-        severity: 'success',
-      });
-    }
-
     setEmail('');
   };
 
@@ -65,9 +55,6 @@ const ForgotPassword = (props) => {
           ></Box>
           <Box className={classes.rightContainer}>
             <Box
-              // component="form"
-              // noValidate
-              // autoComplete="off"
               sx={{
                 // backgroundColor: '#BDF2D5',
                 marginTop: '10vh',
@@ -120,18 +107,17 @@ const ForgotPassword = (props) => {
                   />
                   <Typography
                     sx={{
-                      display: verify ? 'block' : 'none',
+                      display: messageOpen ? 'block' : 'none',
                       color: 'green',
                     }}
                   >
-                    Verify your email to reset password
+                    {message}
                   </Typography>
 
                   <LoadingButton
                     loadingIndicator
                     variant="contained"
                     type="submit"
-                    // onSubmit= {handleSubmit}
                     loading={isLoading}
                     sx={{
                       borderRadius: '20px',
@@ -166,6 +152,7 @@ const mapStatesToProps = (state) => {
   return {
     reset: state.forgotPassword,
     snackBar: state.globalSnackBar,
+    resetMessage: state.resetMessage,
   };
 };
 
