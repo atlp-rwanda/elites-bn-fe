@@ -4,9 +4,7 @@ import { openGlobalSnackBar } from './globalSnackBarActions';
 import { resetMessage } from './resetMessageActions';
 
 const token = localStorage.getItem('resetToken');
-const URL = `https://elites-barefoot-nomad.herokuapp.com/api/v1/users/reset-password/${JSON.parse(
-  token
-)}`;
+const URL = `https://elites-barefoot-nomad.herokuapp.com/api/v1/users/reset-password/${token}`;
 
 export const resetPassword = (password, confirmPassword) =>
   function (dispatch) {

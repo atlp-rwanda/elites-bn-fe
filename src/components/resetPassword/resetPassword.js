@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 
@@ -40,8 +40,13 @@ const ResetPassword = (props) => {
   });
 
   const { token } = useParams();
-  const newT = token.replace(/\|+/gi, '.');
-  localStorage.setItem('resetToken', JSON.stringify(newT));
+  // const newT = token.replace(/\|+/gi, '.');
+  // localStorage.setItem('resetToken', JSON.stringify(newT));
+
+  useEffect(() => {
+    const newT = token.replace(/\|+/gi, '.');
+    localStorage.setItem('resetToken', newT);
+  }, []);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
