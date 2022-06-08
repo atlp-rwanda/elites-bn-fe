@@ -64,16 +64,8 @@ const ResetPassword = (props) => {
   const handleOnSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    if (password !== confirmPassword) {
-      await props.openGlobalSnackBar({
-        message: 'Password does not match',
-        severity: 'error',
-      });
-    } else {
-      await props.resetPassword(password, confirmPassword);
-      // return navigate('/login');
-      await props.resetMessage('done successfully');
-    }
+    await props.resetPassword(password, confirmPassword);
+
     console.log(messageOpen);
     setIsLoading(false);
   };
@@ -102,7 +94,7 @@ const ResetPassword = (props) => {
         }}
       >
         <Paper elevation={3}>
-            <Box sx={{bgcolor:'blue', color: 'white', padding: '10vh 10vh', 
+            <Box sx={{bgcolor:'#07539F', color: 'white', padding: '10vh 10vh', 
             display: 'flex' , flexDirection: 'column', height: 'inherit'}}>
             <Typography sx={{color: 'white', fontSize: '20px', fontWeight: 'bold'}}>
                 You have reset Password successfully!
@@ -110,7 +102,9 @@ const ResetPassword = (props) => {
             <Avatar sx={{ bgcolor: 'green', marginTop: '5%' }}>
                 < DoneIcon/>
             </Avatar>
-            <Button autoFocus  sx={{backgroundColor:'white', marginTop: '5%'}} onClick={handleClose}>
+            <Button autoFocus  sx={{backgroundColor:'white', marginTop: '5%', '&:hover': {
+                        backgroundColor: 'white',
+                      },}} onClick={handleClose}>
                 Login 
               </Button>
             </Box>
