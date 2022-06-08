@@ -60,12 +60,12 @@ export const userRoles= (token) => function(dispatch){
         }).catch((err)=>{
           dispatch({
                   type: actionTypes.FAILED_TO_LOAD_ROLES,
-                  payload: `failed to load roles ${err}`,
+                  payload: `failed to load roles`,
                 });
         })
 }
 
-export const updateRoles = (id, email) => async (dispatch) => {
+export const updateRoles = (id, email, token) => async (dispatch) => {
   try {
     const res = await axios.patch(
       `${UPDATE_ROLE_URL}/${id}`,

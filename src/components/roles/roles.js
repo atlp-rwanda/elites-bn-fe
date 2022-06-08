@@ -176,7 +176,7 @@ const Roles = (props) => {
           severity: 'error',
         });
       } else {
-        const response = await props.updateRoles(role, email);
+        const response = await props.updateRoles(role, email, token);
         await setSnackbar({
           children: `Role successfully updated from ${oldRole} to ${newRole} `,
           severity: 'success',
