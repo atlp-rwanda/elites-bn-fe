@@ -5,6 +5,7 @@ import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import { likeCreateAccommodation } from '../../redux/actions/likeAccommodationCreateActions';
 import { showSuccessSnackbar } from '../../redux/actions/snackbarActions';
 import { connect, useDispatch } from 'react-redux';
+import Tooltip from '@mui/material/Tooltip';
 
 function LikeAccommodation({
   id,
@@ -26,16 +27,17 @@ function LikeAccommodation({
 
   return (
     <div>
-      <ThumbUpAltOutlinedIcon
-        padding={10}
-        margin={5}
-        size="small"
-        color="primary"
-        variant="contained"
-        className="like"
-        onClick={handleLike}
-      />
-
+      <Button>
+        <ThumbUpAltOutlinedIcon
+          padding={10}
+          margin={5}
+          size="small"
+          color="primary"
+          variant="contained"
+          className="like"
+          onClick={handleLike}
+        />
+      </Button>
       <Typography
         sx={{
           top: '104px',
@@ -46,7 +48,7 @@ function LikeAccommodation({
           fontSize: '16px',
           letterSpacing: '0.18px',
           color: '#172B4D',
-          margin: '16px 0px',
+          margin: '16px 20px',
         }}
       >
         {likes}

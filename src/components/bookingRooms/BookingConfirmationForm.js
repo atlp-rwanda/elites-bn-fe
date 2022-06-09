@@ -25,6 +25,7 @@ import setCurrentUser, {
   setCurrentUserProfile,
 } from '../../redux/actions/currentUserActions';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 
 function BookingConfirmationForm(props) {
   const dispatch = useDispatch();
@@ -163,6 +164,7 @@ function BookingConfirmationForm(props) {
                             placeholder="yyyy-mm-dd"
                             format="yyyy-mm-dd"
                             required
+                            inputProps={{ maxLength: 10 }}
                             minDate={new Date()}
                           />
                         </Grid>
@@ -179,6 +181,7 @@ function BookingConfirmationForm(props) {
                             onChange={handleChange}
                             placeholder="yyyy-mm-dd"
                             required
+                            inputProps={{ maxLength: 10 }}
                             minDate={new Date()}
                           />
                         </Grid>

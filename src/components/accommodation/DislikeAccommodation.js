@@ -26,16 +26,17 @@ function DislikeAccommodation({
 
   return (
     <div>
-      <ThumbDownOutlinedIcon
-        padding={10}
-        margin={5}
-        size="small"
-        color="primary"
-        variant="contained"
-        className="like"
-        onClick={handleDislike}
-      />
-
+      <Button>
+        <ThumbDownOutlinedIcon
+          padding={10}
+          margin={5}
+          size="small"
+          color="primary"
+          variant="contained"
+          className="like"
+          onClick={handleDislike}
+        />
+      </Button>
       <Typography
         sx={{
           top: '104px',
@@ -46,7 +47,7 @@ function DislikeAccommodation({
           fontSize: '16px',
           letterSpacing: '0.18px',
           color: '#172B4D',
-          margin: '16px 0px',
+          margin: '16px 20px',
         }}
       >
         {dislikes}
