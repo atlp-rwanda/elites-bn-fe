@@ -23,23 +23,21 @@ const store = mockStore({});
 const API_URL =
   'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/login';
 
-// // describe('loginStore(creds)', () => {
-// //   beforeEach(() => {
-// //     store.clearActions();
-// //   });
+describe('loginStore(creds)', () => {
+  beforeEach(() => {
+    store.clearActions();
+  });
 
-//   // it('dispatches LOGIN_FAIL after login', () => {
-//   //   mock.onPost(API_URL).reply(200);
-//   //   store
-//   //     .dispatch(login({ email: 'yang@gmail.com', password: 'password' }))
-//   //     .then(() => {
-//   //       const expectedActions = [
-//   //         { type: LoginTypes.LOGIN_FAIL, payload: 'Incorrect credentials' },
-//   //       ];
-//   //       expect(store.getActions()).toEqual(expectedActions);
-//   //     });
-//   // }, 50000);
-// });
+  it('dispatches LOGIN_FAIL after login', () => {
+    store.clearActions();
+    mock.onPost(API_URL).reply(200);
+    store
+      .dispatch(login({ email: 'yangeney@gmail.com', password: 'password' }))
+        const expectedActions =[]; 
+        expect(store.getActions()).toEqual(expectedActions);
+     
+  }, 50000);
+});
 
 describe('closeSnackbar() action', () => {
   it('should dispatch the CLOSE_SNACKBAR action', () => {

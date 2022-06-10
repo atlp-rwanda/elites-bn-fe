@@ -123,7 +123,7 @@ function SingleTrip() {
                     </CardContent>
                     <CardActions>
                       <Button
-                        href={`/${tripid}/accommodations/${acc.id}/bookingroom`}
+                        href={`/tripRequests/${tripid}/accommodations/${acc.id}/bookingroom`}
                         size="small"
                         variant="outlined"
                       >

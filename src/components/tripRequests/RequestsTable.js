@@ -313,6 +313,22 @@ const RequestsTable = () => {
         <Typography variant="h5" sx={{ color: 'blue' }}>
           {t("You don't have any trip request yet!")}
         </Typography>
+        <CreateTripRequest
+            open={openCreateModal}
+            close={() => setOpenCreateModal(false)}
+          />
+        <Button
+          style={{
+            margin: 20,
+            display: currentUser.roleId == 5 ? 'flex' : 'none',
+          }}
+          startIcon={<AddIcon />}
+          variant="contained"
+          size="small"
+          onClick={() => setOpenCreateModal(true)}
+        >
+          {t('New Trip')}
+        </Button>
       </div>
     );
   }

@@ -188,15 +188,14 @@ const TopBar = () => {
           width="100%"
         >
           <Box>
-            <Typography
-              variant="h5"
-              fontWeight="600"
+            <Box
+              // variant="h5"
+              // fontWeight="600"
               color="#07539F"
               sx={{ display: { xs: 'none', sm: 'block' } }}
             >
-              {/* {pathname} */}
               <LanguageSwitcher />
-            </Typography>
+            </Box>
           </Box>
           <Search>
             <InputBase
@@ -259,6 +258,7 @@ const TopBar = () => {
                 width: { xs: 30, sm: 40 },
                 height: { xs: 30, sm: 40 },
                 cursor: 'pointer',
+                objectFit: 'cover',
               }}
               src={currentUserProfile?.picture}
             />

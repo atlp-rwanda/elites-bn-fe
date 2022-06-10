@@ -26,7 +26,6 @@ import {
 import Alert from '@mui/material/Alert';
 import { connect } from 'react-redux';
 import LoadingButton from '@mui/lab/LoadingButton';
-
 const LoginComponent = (props) => {
   const token = JSON.parse(localStorage.getItem('userToken'));
   const { t } = useTranslation();
@@ -38,28 +37,21 @@ const LoginComponent = (props) => {
     const email = e.target.value;
     setEmail(email);
   };
-
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
   };
-
-  const handleLogin = async(event) => {
-    event.preventDefault();
+  const handleLogin = async () => {
     setIsLoading(true);
-     await props.login(email, password);
-    navigate('/dashboard');
-    setIsLoading(false); 
-   
+    await props.login(email, password);
+    setIsLoading(false);
   };
-
   const googleDir = () => {
     window.open(
       'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/auth/google',
       '_self'
     );
   };
-
   const facebook = () => {
     window.open(
       'https://elites-barefoot-nomad.herokuapp.com/api/v1/users/auth/facebook',
@@ -68,18 +60,19 @@ const LoginComponent = (props) => {
     props.history.go('/');
     window.location.reload;
   };
-
   const handleClose = async () => {
     await props.clearSnackbar();
   };
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     if (token) {
+      // const funct = async () => {
+      //   await props.showSuccessSnackbar('Successfully login', 'success');
+      // };
+      // funct();
       return navigate('/dashboard');
     }
   });
-
   const classes = useStyles();
   return (
     <>
@@ -111,7 +104,13 @@ const LoginComponent = (props) => {
               <Typography className={classes.social}>
                 {t('Or use your email account')}
               </Typography>
-              <ValidatorForm form onSubmit={handleLogin}>
+              <ValidatorForm
+                form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleLogin();
+                }}
+              >
                 <FormControl margin="normal" required fullWidth>
                   <TextValidator
                     label="email"
@@ -183,7 +182,6 @@ const LoginComponent = (props) => {
             </Paper>
           </Container>
         </Box>
-
         <Snackbar
           anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
           open={props.SnackBar.SnackbarOpen}
@@ -224,7 +222,6 @@ const LoginComponent = (props) => {
                 )}
               </Typography>
             </div>
-
             <Button
               href="/signup"
               variant="outlined"
@@ -236,7 +233,7 @@ const LoginComponent = (props) => {
                 marginTop: '3%',
                 borderColor: 'white',
                 color: '#FFFFFF',
-                outlineColor: '#ffffff',
+                outlineColor: '#FFFFFF',
               }}
             >
               {t('Sign Up')}
@@ -247,14 +244,12 @@ const LoginComponent = (props) => {
     </>
   );
 };
-
 const mapStateToProps = (state) => {
   return {
     login: state.login,
     SnackBar: state.SnackBar,
   };
 };
-
 export default connect(mapStateToProps, {
   login,
   showSuccessSnackbar,

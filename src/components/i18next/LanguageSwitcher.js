@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LanguageIcon from '@mui/icons-material/Language';
 import i18next from 'i18next';
 import cookies from 'js-cookie';
@@ -7,6 +7,9 @@ import Select from '@mui/material/Select';
 import { Box } from '@mui/material';
 
 const LanguageSwitcher = () => {
+  const [currentLanguageCode, setCurrentLanguageCode] = useState(
+    cookies.get('i18next')
+  );
   const languages = [
     {
       code: 'fr',
@@ -24,7 +27,6 @@ const LanguageSwitcher = () => {
       country_code: 'rw',
     },
   ];
-  const currentLanguageCode = cookies.get('i18next') || 'en';
 
   return (
     <Box
@@ -50,10 +52,7 @@ const LanguageSwitcher = () => {
         }}
       >
         {languages.map(({ code, name, country_code }) => (
-          <MenuItem
-            key={country_code}
-            onClick={() => i18next.changeLanguage(code)}
-          >
+          <MenuItem>
             <button
               className="dropdown-item"
               disabled={code === currentLanguageCode}
@@ -61,6 +60,11 @@ const LanguageSwitcher = () => {
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
+              }}
+              key={country_code}
+              onClick={() => {
+                i18next.changeLanguage(code);
+                setCurrentLanguageCode(code);
               }}
             >
               <span style={{ marginRight: '5px' }}>

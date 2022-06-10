@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from '../views/home/Home';
 import Dashboard from '../components/layouts/dashboardLayout';
 import TripStat from '../components/layouts/dashboardLayout/TripStat';
-import Dashboardindex from '../components/layouts/dashboardLayout/DashboardIndex'
+import Dashboardindex from '../components/layouts/dashboardLayout/DashboardIndex';
 import TripRequests from '../components/tripRequests/TripRequests';
 import NotFoundPage from '../views/notFound/NotFoundPage';
 import ProtectRoute from './protectedRoutes';
@@ -34,7 +34,7 @@ const AllRoutes = () => (
       path="/dashboard"
       element={
         <ProtectRoute redirectTo="/login">
-           {/* <TripStat /> */}
+          {/* <TripStat /> */}
           {/* <Dashboard /> */}
           <Dashboardindex />
         </ProtectRoute>
@@ -72,21 +72,18 @@ const AllRoutes = () => (
     <Route path="/signup/success" element={<SignupSuccess />} />
 
     <Route
-       exact
-       path="/profile"
-       element={
-
+      exact
+      path="/profile"
+      element={
         <ProtectRoute redirectTo="/login">
-          <Profile /> 
+          <Profile />
         </ProtectRoute>
-                 
-                
-        }
-     />
+      }
+    />
     <Route
       className="socialtestid"
       path="/google/success/:token"
-      element={<Dashboard />}
+      element={<SocialAuthGoogleDir />}
     />
     <Route
       exact
@@ -101,7 +98,7 @@ const AllRoutes = () => (
     <Route path="*" element={<NotFoundPage />} />
 
     <Route
-      path="/:tripid/accommodations/:accommodationId/bookingroom/"
+      path="tripRequests/:tripid/accommodations/:accommodationId/bookingroom/"
       element={
         <ProtectRoute redirectTo="/login">
           <BookingRooms />
